@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowRight, FileText, Github, Linkedin, Code } from "lucide-react";
 import { CONTACT_INFO } from "@/lib/data";

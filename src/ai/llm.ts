@@ -1,4 +1,3 @@
-
 import Groq from "groq-sdk";
 
 if (!process.env.GROQ_API_KEY) {

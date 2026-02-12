@@ -46,10 +46,10 @@ export default function SkillMatcher() {
 
   const getIcon = (name: string) => {
     const lower = name.toLowerCase();
-    if (lower.includes('github')) return <Github className="h-5 w-5" />;
-    if (lower.includes('linkedin')) return <Linkedin className="h-5 w-5" />;
-    if (lower.includes('leetcode')) return <Code className="h-5 w-5" />;
-    return <ExternalLink className="h-5 w-5" />;
+    if (lower.includes('github')) return <Github className="h-4 w-4" />;
+    if (lower.includes('linkedin')) return <Linkedin className="h-4 w-4" />;
+    if (lower.includes('leetcode')) return <Code className="h-4 w-4" />;
+    return <ExternalLink className="h-4 w-4" />;
   };
 
   return (
@@ -108,7 +108,7 @@ export default function SkillMatcher() {
                       <CardDescription className="text-zinc-400 font-medium">Verified Analysis: Murari Komati</CardDescription>
                     </div>
                     <div className="flex flex-col items-end">
-                      <div className="text-[10px] font-bold uppercase tracking-widest text-primary mb-1">Technical Fit</div>
+                      <div className="text-[10px] font-bold uppercase tracking-widest text-primary mb-1">Fit Score</div>
                       <div className="bg-primary text-white font-black text-2xl px-4 py-2 rounded-xl shadow-lg border-none">
                         {result.matchScore}%
                       </div>
@@ -116,21 +116,21 @@ export default function SkillMatcher() {
                   </div>
                 </CardHeader>
                 <CardContent className="p-8 space-y-6 bg-zinc-900/80 max-h-[650px] overflow-y-auto custom-scrollbar">
-                  <div className="space-y-3">
+                  <div className="space-y-2">
                     <h4 className="font-bold text-xs uppercase tracking-[0.2em] text-primary">Core Value Proposition</h4>
                     <p className="text-lg leading-relaxed text-white font-medium">{result.impactSummary}</p>
                   </div>
 
-                  <div className="space-y-3">
+                  <div className="space-y-2">
                     <h4 className="font-bold text-xs uppercase tracking-[0.2em] text-primary">Matched Engineering Skills</h4>
-                    <div className="flex flex-wrap gap-2.5">
+                    <div className="flex flex-wrap gap-2">
                       {result.matchedSkills.map((skill, i) => (
                         <TechPill key={i} label={skill} />
                       ))}
                     </div>
                   </div>
 
-                  <div className="space-y-3">
+                  <div className="space-y-2">
                     <h4 className="font-bold text-xs uppercase tracking-[0.2em] text-primary">Evidence & Proof Points</h4>
                     <div className="space-y-4">
                       {result.matchedProjects.map((project, i) => (
@@ -142,7 +142,7 @@ export default function SkillMatcher() {
                     </div>
                   </div>
 
-                  <div className="space-y-3">
+                  <div className="space-y-2">
                     <h4 className="font-bold text-xs uppercase tracking-[0.2em] text-primary">Technical Deep Dive Links</h4>
                     <div className="grid grid-cols-1 gap-3">
                       {result.recommendedLinks.map((link, i) => (

@@ -1,4 +1,3 @@
-
 export const SKILLS = [
   { name: 'Azure Databricks / ADF', category: 'Cloud Platforms', icon: 'Cloud' },
   { name: 'PySpark / Spark SQL', category: 'Data Engineering', icon: 'Zap' },
@@ -13,7 +12,7 @@ export const PROJECTS = [
   {
     id: 1,
     title: 'Customer Service RAG Chatbot',
-    description: 'Enterprise-grade RAG system providing a natural language interface to MS SQL databases. Built with FastAPI and LangChain.',
+    description: 'Enterprise-grade RAG system providing a natural language interface to MS SQL databases. Built with FastAPI, LangChain, and FAISS for context-aware Q&A.',
     tech: ['Python', 'FastAPI', 'LangChain', 'MS SQL', 'FAISS'],
     category: 'GenAI',
     image: 'https://picsum.photos/seed/sql-chatbot/600/400',
@@ -22,7 +21,7 @@ export const PROJECTS = [
   {
     id: 2,
     title: 'Agentic AI Workflow Automation',
-    description: 'Autonomous multi-agent architecture using LangGraph and CrewAI to automate enterprise data ingestion and reasoning tasks.',
+    description: 'Autonomous multi-agent architecture using LangGraph and CrewAI to automate enterprise data ingestion, validation, and reasoning tasks on Databricks.',
     tech: ['LangGraph', 'CrewAI', 'Python', 'Databricks'],
     category: 'Agentic AI',
     image: 'https://picsum.photos/seed/crew-ai/600/400',
@@ -30,8 +29,8 @@ export const PROJECTS = [
   },
   {
     id: 3,
-    title: 'Real-Time Movie Analytics ELT',
-    description: 'Scalable cloud-native ELT platform using Amazon S3, Snowflake, and dbt. Built staging and analytics-ready layers using Kimball star schema models.',
+    title: 'Real-Time Movie Analytics ELT Platform',
+    description: 'Cloud-native ELT platform using S3, Snowflake, and dbt. Built staging and analytics layers using Kimball star schema models for high-performance ratings analysis.',
     tech: ['S3', 'Snowflake', 'dbt', 'Kimball'],
     category: 'Data Engineering',
     image: 'https://picsum.photos/seed/netflix-elt/600/400',
@@ -40,7 +39,7 @@ export const PROJECTS = [
   {
     id: 4,
     title: 'Real-Time Stock Market Data Pipeline',
-    description: 'Developed near real-time streaming ingestion pipelines using Azure Event Hub. Implemented anomaly detection reducing analyst response by 50%.',
+    description: 'Near real-time streaming ingestion pipelines using Azure Event Hub. Implemented anomaly detection and integrated streaming outputs with Microsoft Fabric.',
     tech: ['Event Hub', 'SQL Server', 'Fabric', 'Streaming'],
     category: 'Data Engineering',
     image: 'https://picsum.photos/seed/stock-stream/600/400',
