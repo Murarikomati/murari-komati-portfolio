@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useState } from "react";
@@ -17,12 +18,15 @@ export default function Projects() {
     : PROJECTS.filter(p => p.category === filter);
 
   return (
-    <section id="projects" className="py-24 px-4 bg-muted/20">
+    <section id="projects" className="py-24 px-4 bg-muted/10">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
           <div>
-            <h2 className="text-4xl font-bold font-headline mb-4">Featured <span className="text-primary">Impact</span></h2>
-            <p className="text-muted-foreground max-w-xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-4 border border-primary/20">
+              Portfolio
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold font-headline mb-4 text-white">Featured <span className="text-primary">Impact</span></h2>
+            <p className="text-zinc-400 max-w-xl text-lg">
               Production-ready solutions ranging from SQL-integrated LLMs to real-time 
               infrastructure optimization.
             </p>
@@ -33,7 +37,7 @@ export default function Projects() {
                 key={cat}
                 variant={filter === cat ? "default" : "outline"}
                 onClick={() => setFilter(cat)}
-                className="rounded-full h-10 px-6 font-bold"
+                className="rounded-full h-10 px-6 font-bold transition-all"
               >
                 {cat}
               </Button>
@@ -43,7 +47,7 @@ export default function Projects() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project) => (
-            <Card key={project.id} className="group border-border/60 overflow-hidden hover:border-primary/60 transition-all flex flex-col bg-card/60 backdrop-blur-sm shadow-xl">
+            <Card key={project.id} className="group border-zinc-800 overflow-hidden hover:border-primary/60 transition-all flex flex-col bg-zinc-900/50 backdrop-blur-sm shadow-xl rounded-[2rem]">
               <div className="relative aspect-video overflow-hidden">
                 <Image 
                   src={project.image} 
@@ -52,31 +56,33 @@ export default function Projects() {
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                   data-ai-hint={project.category}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
+                <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-80" />
                 <div className="absolute bottom-4 left-4 z-10">
-                  <Badge className="bg-primary text-primary-foreground font-bold hover:bg-primary/90 shadow-lg px-4">{project.category}</Badge>
+                  <Badge className="bg-primary text-white font-bold px-4 py-1.5 rounded-full border-none shadow-lg">{project.category}</Badge>
                 </div>
               </div>
               <CardHeader className="relative pb-2">
-                <CardTitle className="font-headline text-2xl font-bold text-foreground">{project.title}</CardTitle>
+                <CardTitle className="font-headline text-2xl font-bold text-white">{project.title}</CardTitle>
               </CardHeader>
               <CardContent className="flex-1">
-                <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+                <p className="text-zinc-400 text-sm leading-relaxed mb-6 font-medium">
                   {project.description}
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((t) => (
-                    <Badge key={t} className="text-[10px] font-black uppercase tracking-wider bg-accent/20 text-accent border border-accent/40 py-1 px-3 shadow-sm">
+                    <Badge key={t} className="bg-primary/20 text-white border-none py-1.5 px-4 font-bold shadow-sm text-[11px] rounded-full hover:bg-primary transition-colors">
                       {t}
                     </Badge>
                   ))}
                 </div>
               </CardContent>
               <CardFooter className="pt-4 flex gap-3">
-                <Button size="sm" variant="ghost" className="flex-1 rounded-lg hover:bg-primary/10 transition-colors border border-border/40 font-bold">
-                  <Github className="mr-2 h-4 w-4" /> Code
+                <Button size="sm" variant="outline" className="flex-1 rounded-full border-zinc-800 hover:bg-zinc-800 text-white font-bold h-11" asChild>
+                  <a href={project.url} target="_blank" rel="noopener noreferrer">
+                    <Github className="mr-2 h-4 w-4" /> Code
+                  </a>
                 </Button>
-                <Button size="sm" className="flex-1 rounded-lg shadow-xl shadow-primary/20 bg-primary text-white font-bold">
+                <Button size="sm" className="flex-1 rounded-full shadow-lg shadow-primary/20 bg-primary text-white font-bold h-11 transition-transform hover:scale-[1.02]">
                   <ExternalLink className="mr-2 h-4 w-4" /> Case Study
                 </Button>
               </CardFooter>
