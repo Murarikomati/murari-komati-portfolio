@@ -1,40 +1,41 @@
 export const SKILLS = [
-  { name: 'PySpark / Spark', category: 'Big Data & ETL', icon: 'Zap' },
-  { name: 'Delta Lake / DLT', category: 'Big Data & ETL', icon: 'Database' },
-  { name: 'Airflow / dbt Core', category: 'Big Data & ETL', icon: 'Workflow' },
+  // Data Engineering
+  { name: 'PySpark / Apache Spark', category: 'Data Engineering', icon: 'Zap' },
+  { name: 'dbt / Delta Lake', category: 'Data Engineering', icon: 'Database' },
+  { name: 'Delta Live Tables / Airflow', category: 'Data Engineering', icon: 'Workflow' },
+  { name: 'Kafka', category: 'Data Engineering', icon: 'Activity' },
+  
+  // Cloud
   { name: 'Azure (Databricks, ADF)', category: 'Cloud Platforms', icon: 'Cloud' },
   { name: 'GCP (BigQuery, Dataform)', category: 'Cloud Platforms', icon: 'Globe' },
-  { name: 'Kafka / Event Hub', category: 'Streaming', icon: 'Activity' },
-  { name: 'Medallion Architecture', category: 'Data Modeling', icon: 'Layers' },
-  { name: 'Kimball / SCD 1/2', category: 'Data Modeling', icon: 'GitGraph' },
-  { name: 'Python / SQL', category: 'Languages', icon: 'Code' },
-  { name: 'Power BI / Looker', category: 'Visualization', icon: 'BarChart' },
+  
+  // ML & MLOps
+  { name: 'MLflow / Unity Catalog', category: 'Machine Learning & MLOps', icon: 'Server' },
+  { name: 'Spark MLlib / Scikit-learn', category: 'Machine Learning & MLOps', icon: 'Brain' },
+  { name: 'Databricks Model Serving', category: 'Machine Learning & MLOps', icon: 'Cpu' },
+  
+  // GenAI & Agentic AI
+  { name: 'RAG Systems / LangChain', category: 'GenAI & Agentic AI', icon: 'Bot' },
+  { name: 'LangGraph / Embeddings', category: 'GenAI & Agentic AI', icon: 'Sparkles' },
+  { name: 'Prompt Engineering / LoRA', category: 'GenAI & Agentic AI', icon: 'MessageSquare' },
 ];
 
 export const PROJECTS = [
   {
     id: 1,
-    title: 'Real-Time Movie Analytics ELT Platform',
-    description: 'Designed and implemented a scalable cloud-native ELT platform (Netflix-style) using Amazon S3, Snowflake, and dbt to process large-scale movie metadata, ratings, and user interaction datasets. Built raw, staging, and analytics-ready layers using dimensional models based on Kimball star schema principles.',
-    tech: ['Amazon S3', 'Snowflake', 'dbt', 'Kimball Schema', 'Data Governance'],
-    category: 'Big Data',
-    image: 'https://picsum.photos/seed/movie-analytics/600/400',
+    title: 'Enterprise Document Analytics & RAG Platform',
+    description: 'Built an end-to-end document intelligence platform using Azure Databricks, LangChain, and Azure AI Search. Enabled semantic search and question answering across 1,000+ enterprise documents using embeddings and hybrid retrieval. Implemented chunking strategies and conversational memory to support business-facing analytical workflows.',
+    tech: ['Azure Databricks', 'LangChain', 'Azure AI Search', 'Embeddings', 'RAG'],
+    category: 'GenAI',
+    image: 'https://picsum.photos/seed/enterprise-rag/600/400',
   },
   {
     id: 2,
-    title: 'Real-Time Stock Market Data Pipeline',
-    description: 'Developed near real-time streaming ingestion pipelines using Azure Event Hub to process high-frequency stock market data. Implemented anomaly detection and automated alerting mechanisms, reducing analyst response time by 50%. Integrated streaming outputs with SQL Server and Microsoft Fabric.',
-    tech: ['Azure Event Hub', 'Microsoft Fabric', 'SQL Server', 'Streaming', 'Anomaly Detection'],
-    category: 'FinTech',
-    image: 'https://picsum.photos/seed/stock-pipeline/600/400',
-  },
-  {
-    id: 3,
-    title: 'CrewAI Job Search Assistant',
-    description: 'Autonomous LLM-powered agents built with CrewAI and LangChain to discover jobs, optimize resumes, and prepare for interviews. Uses a smart multi-agent system for personalized career optimization.',
-    tech: ['CrewAI', 'LangChain', 'OpenAI', 'Python', 'Pandas'],
+    title: 'Agentic AI Workflow Automation System',
+    description: 'Designed LangGraph-based agentic workflows for automated data ingestion, reasoning, validation, and reporting. Created a multi-step reasoning system that orchestrates tool execution and data validation, significantly reducing manual effort and turnaround time.',
+    tech: ['LangGraph', 'Agentic AI', 'Python', 'LLMs', 'Automation'],
     category: 'Agentic AI',
-    image: 'https://picsum.photos/seed/agent-job-search/600/400',
+    image: 'https://picsum.photos/seed/agentic-workflow/600/400',
   },
 ];
 
@@ -45,10 +46,10 @@ export const EXPERIENCE = [
     period: 'Nov 2025 – Dec 2025',
     location: 'Uttar Pradesh, India',
     highlights: [
-      'Migrated legacy ADF pipelines to PySpark-based ETL frameworks on Incorta and BigQuery, enabling API-driven ingestion and eliminating manual pipeline maintenance by 100%.',
-      'Built reusable Dataform SQLX models, functions, and dependency chains, reducing duplicate transformation logic by 40%.',
-      'Implemented data quality checks (uniqueness, not_null, referential integrity) and incremental load frameworks, reducing data issues reported by 35%.',
-      'Delivered curated, analytics-ready datasets to BigQuery and integrated with Looker, improving dashboard query performance by 30%.'
+      'Migrated legacy Azure Data Factory pipelines into scalable PySpark-based ETL frameworks on BigQuery and Incorta, enabling API-driven ingestion and fully automated refreshes.',
+      'Built reusable Dataform SQLX models with incremental logic and dependency management, reducing duplicated transformation effort and improving consistency.',
+      'Implemented data quality checks covering uniqueness, null handling, and referential integrity, significantly reducing downstream analytics issues.',
+      'Delivered curated, analytics-ready datasets integrated with Looker, improving dashboard performance and analyst productivity.'
     ],
   },
   {
@@ -57,12 +58,16 @@ export const EXPERIENCE = [
     period: 'Nov 2023 – Oct 2025',
     location: 'Maharashtra, India',
     highlights: [
-      'Designed and delivered batch and real-time ETL pipelines using Azure Data Factory, Databricks, DBT Cloud, Delta Live Tables, and Kafka, automating ingestion from SAP HANA, SFTP, and APIs with 100% automation.',
-      'Architected and optimized Medallion Architecture (Bronze-Silver-Gold) using partitioning, liquid clustering, and caching, improving query performance by 70% and supporting 500K+ daily transactions.',
-      'Processed 100GB+ datasets using PySpark and Spark SQL (broadcast joins, predicate pushdown), reducing compute costs by 30%.',
-      'Implemented CI/CD pipelines using Azure DevOps YAML across Dev-QA-Prod environments, reducing deployment effort by 45%.',
-      'Delivered Power BI dashboards and curated Gold-layer datasets, improving sales and financial insights by 40%.',
-      'Automated pipeline monitoring and alerting using ADF triggers and ServiceNow, implementing dbt freshness checks for SLA adherence.'
+      'Designed and operated large-scale batch and near real-time data pipelines using Azure Data Factory, Databricks, Delta Live Tables, dbt, and Kafka.',
+      'Ingested data from SAP HANA, APIs, SFTP, and enterprise systems into ADLS Gen2 with end-to-end automation.',
+      'Architected Medallion (Bronze-Silver-Gold) data models with optimized partitioning, clustering, and caching, supporting 500K+ daily records.',
+      'Built Spark ML pipelines on Azure Databricks for feature engineering, model training, and inference over 100GB+ datasets.',
+      'Performed distributed hyperparameter tuning using Optuna and Ray Tune integrated with Spark ML workflows.',
+      'Applied LoRA-based fine-tuning to adapt large language models for domain-specific document intelligence use cases.',
+      'Designed Agentic AI workflows using LangGraph to orchestrate multi-step reasoning, tool execution, and data validation.',
+      'Tracked experiments and model versions using MLflow and governed lifecycle management with Unity Catalog.',
+      'Deployed models using Databricks Model Serving and Spark-based batch inference pipelines.',
+      'Implemented CI/CD pipelines, monitoring, alerts, and SLA checks to ensure data reliability and production stability.'
     ],
   },
 ];
@@ -70,6 +75,18 @@ export const EXPERIENCE = [
 export const CERTIFICATIONS = [
   {
     name: 'Databricks Fundamentals',
+    issuer: 'Databricks',
+    date: '2025',
+    link: '#',
+  },
+  {
+    name: 'Machine Learning at Scale',
+    issuer: 'Databricks',
+    date: '2025',
+    link: '#',
+  },
+  {
+    name: 'Advanced Machine Learning Operations',
     issuer: 'Databricks',
     date: '2025',
     link: '#',

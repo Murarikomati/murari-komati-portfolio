@@ -13,16 +13,16 @@ export default function Hero() {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
           </span>
-          Murari Komati | Data Engineer • Cloud Specialist
+          Murari Komati | AI/ML & Data Engineer
         </div>
         
         <h1 className="text-5xl md:text-8xl font-bold tracking-tighter mb-8 font-headline leading-[1.1]">
-          Building Scalable <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary animate-gradient">Data Pipelines</span>
+          Architecting Scalable <br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary animate-gradient">AI & Data Systems</span>
         </h1>
         
         <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
-          Specializing in architecting <span className="text-foreground font-medium">Cloud-based solutions</span> using Azure, Databricks, and Python to transform complex requirements into strategic value.
+          Specializing in building production-grade <span className="text-foreground font-medium">Data Platforms</span>, Databricks ML systems, and <span className="text-foreground font-medium">Agentic AI</span> workflows.
         </p>
         
         <div className="flex flex-wrap items-center justify-center gap-4">
@@ -49,20 +49,20 @@ export default function Hero() {
       <div className="mt-24 w-full max-w-5xl px-4 animate-fade-in-up delay-300">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 p-10 rounded-3xl border bg-card/40 backdrop-blur-md shadow-2xl">
           <div className="text-center">
-            <p className="text-4xl font-bold font-headline mb-2 text-primary">100GB+</p>
-            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Daily Transaction Data</p>
+            <p className="text-4xl font-bold font-headline mb-2 text-primary">90%</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Manual Effort Reduced</p>
           </div>
           <div className="text-center">
-            <p className="text-4xl font-bold font-headline mb-2 text-accent">90%</p>
-            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Automation Gained</p>
+            <p className="text-4xl font-bold font-headline mb-2 text-accent">4x</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Faster Turnaround</p>
           </div>
           <div className="text-center">
-            <p className="text-4xl font-bold font-headline mb-2 text-secondary">20%</p>
-            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">User Engagement Boost</p>
+            <p className="text-4xl font-bold font-headline mb-2 text-secondary">500K+</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Daily Data Records</p>
           </div>
           <div className="text-center">
-            <p className="text-4xl font-bold font-headline mb-2 text-primary">Azure</p>
-            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Databricks Expert</p>
+            <p className="text-4xl font-bold font-headline mb-2 text-primary">MLOps</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Unity Catalog Expert</p>
           </div>
         </div>
       </div>

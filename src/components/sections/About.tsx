@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { User, Target, Rocket } from "lucide-react";
+import { Brain, Database, Rocket } from "lucide-react";
 
 export default function About() {
   return (
@@ -8,7 +8,7 @@ export default function About() {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold font-headline mb-4">Professional <span className="text-primary">Summary</span></h2>
           <p className="text-muted-foreground max-w-4xl mx-auto text-lg leading-relaxed">
-            Data Engineer with proven experience designing scalable, cloud-native data platforms and production-grade ETL pipelines for BFSI and enterprise environments. Strong expertise in data modeling, distributed processing, data quality frameworks, and observability, with a consistent record of improving reliability, performance, and analytical readiness.
+            AI / ML and Data Engineer with hands-on experience building scalable data platforms, Databricks-based ML systems, and GenAI solutions. Strong expertise in distributed data processing, data modeling, MLOps, and Agentic AI workflows, delivering reliable, analytics-ready and AI-ready datasets for enterprise use cases.
           </p>
         </div>
 
@@ -16,11 +16,11 @@ export default function About() {
           <Card className="bg-muted/30 border-none shadow-none">
             <CardContent className="pt-6 text-center space-y-4">
               <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
-                <Target className="text-primary h-6 w-6" />
+                <Database className="text-primary h-6 w-6" />
               </div>
-              <h3 className="font-bold text-xl font-headline">Impact Focused</h3>
+              <h3 className="font-bold text-xl font-headline">Data Engineering</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Consistent record of improving reliability and performance, reducing compute costs by up to 30% through optimized distributed processing.
+                Architecting Medallion (Bronze-Silver-Gold) models and scalable PySpark-based ETL frameworks for high-throughput enterprise data.
               </p>
             </CardContent>
           </Card>
@@ -30,9 +30,9 @@ export default function About() {
               <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mx-auto">
                 <Rocket className="text-accent h-6 w-6" />
               </div>
-              <h3 className="font-bold text-xl font-headline">Modern Stack</h3>
+              <h3 className="font-bold text-xl font-headline">MLOps & Cloud</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Expertise in Medallion Architecture, Spark SQL, and cloud-native tools like Databricks and BigQuery for high-throughput data ingestion.
+                Streamlining model lifecycles with MLflow, Unity Catalog, and Databricks Model Serving across Azure and GCP platforms.
               </p>
             </CardContent>
           </Card>
@@ -40,11 +40,11 @@ export default function About() {
           <Card className="bg-muted/30 border-none shadow-none">
             <CardContent className="pt-6 text-center space-y-4">
               <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
-                <User className="text-primary h-6 w-6" />
+                <Brain className="text-primary h-6 w-6" />
               </div>
-              <h3 className="font-bold text-xl font-headline">Enterprise Grade</h3>
+              <h3 className="font-bold text-xl font-headline">GenAI & Agentic AI</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Implementing production-grade CI/CD pipelines and data quality assertions to ensure reliable and compliant data platforms.
+                Building context-aware RAG systems and autonomous Agentic AI workflows using LangChain, LangGraph, and LoRA fine-tuning.
               </p>
             </CardContent>
           </Card>
