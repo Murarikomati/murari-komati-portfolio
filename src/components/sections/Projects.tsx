@@ -54,25 +54,25 @@ export default function Projects() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
                 <div className="absolute bottom-4 left-4 z-10">
-                  <Badge className="bg-primary/90 text-primary-foreground hover:bg-primary backdrop-blur-sm">{project.category}</Badge>
+                  <Badge className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm">{project.category}</Badge>
                 </div>
               </div>
               <CardHeader className="relative">
-                <CardTitle className="font-headline text-xl">{project.title}</CardTitle>
+                <CardTitle className="font-headline text-2xl font-bold">{project.title}</CardTitle>
               </CardHeader>
               <CardContent className="flex-1">
-                <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+                <p className="text-muted-foreground text-base leading-relaxed mb-6">
                   {project.description}
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((t) => (
-                    <Badge key={t} variant="secondary" className="text-[10px] font-bold tracking-tight bg-primary/5 border-primary/10">
+                    <Badge key={t} className="text-[10px] font-bold tracking-tight bg-primary/20 text-primary border border-primary/30 py-1 px-3">
                       {t}
                     </Badge>
                   ))}
                 </div>
               </CardContent>
-              <CardFooter className="pt-0 flex gap-2">
+              <CardFooter className="pt-4 flex gap-3">
                 <Button size="sm" variant="ghost" className="flex-1 rounded-lg hover:bg-primary/10 transition-colors">
                   <Github className="mr-2 h-4 w-4" /> Code
                 </Button>
