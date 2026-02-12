@@ -30,7 +30,7 @@ export const PROJECTS = [
   {
     id: 3,
     title: 'Real-Time Movie Analytics ELT Platform',
-    description: 'Cloud-native ELT platform using S3, Snowflake, and dbt. Built staging and analytics layers using Kimball star schema models for high-performance ratings analysis.',
+    description: 'Designed and implemented a scalable cloud-native ELT platform using Amazon S3, Snowflake, and dbt to process large-scale movie metadata, ratings, and user interaction datasets. Built raw, staging, and analytics-ready layers using dimensional models based on Kimball star schema principles.',
     tech: ['S3', 'Snowflake', 'dbt', 'Kimball'],
     category: 'Data Engineering',
     image: 'https://picsum.photos/seed/netflix-elt/600/400',
@@ -39,7 +39,7 @@ export const PROJECTS = [
   {
     id: 4,
     title: 'Real-Time Stock Market Data Pipeline',
-    description: 'Near real-time streaming ingestion pipelines using Azure Event Hub. Implemented anomaly detection and integrated streaming outputs with Microsoft Fabric.',
+    description: 'Developed near real-time streaming ingestion pipelines using Azure Event Hub to process high-frequency stock market data. Implemented anomaly detection and automated alerting mechanisms, reducing analyst response time by 50%. Integrated streaming outputs with SQL Server and Microsoft Fabric.',
     tech: ['Event Hub', 'SQL Server', 'Fabric', 'Streaming'],
     category: 'Data Engineering',
     image: 'https://picsum.photos/seed/stock-stream/600/400',

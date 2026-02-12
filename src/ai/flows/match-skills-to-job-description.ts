@@ -39,7 +39,7 @@ CRITICAL CONSTRAINTS (MANDATORY):
 3. **FLAGSHIP PROJECTS**: 
    - 'Customer Service RAG Chatbot' (Python, FastAPI, LangChain)
    - 'Agentic AI Workflow Automation' (LangGraph, CrewAI, Databricks)
-   - 'Real-Time Movie Analytics ELT' (Snowflake, dbt, S3)
+   - 'Real-Time Movie Analytics ELT Platform' (Snowflake, dbt, S3)
    - 'Real-Time Stock Market Data Pipeline' (Azure, Fabric)
 4. **FIT SCORE**: Because of his specialized Data/AI seniority and DSA skills, the **matchScore MUST be between 85 and 98** for any technical role.
 

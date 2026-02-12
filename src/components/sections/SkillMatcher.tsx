@@ -121,16 +121,16 @@ export default function SkillMatcher() {
                     <p className="text-lg leading-relaxed text-white font-medium">{result.impactSummary}</p>
                   </div>
 
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     <h4 className="font-bold text-xs uppercase tracking-[0.2em] text-primary">Matched Engineering Skills</h4>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2.5">
                       {result.matchedSkills.map((skill, i) => (
                         <TechPill key={i} label={skill} />
                       ))}
                     </div>
                   </div>
 
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     <h4 className="font-bold text-xs uppercase tracking-[0.2em] text-primary">Evidence & Proof Points</h4>
                     <div className="space-y-4">
                       {result.matchedProjects.map((project, i) => (
@@ -142,7 +142,7 @@ export default function SkillMatcher() {
                     </div>
                   </div>
 
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     <h4 className="font-bold text-xs uppercase tracking-[0.2em] text-primary">Technical Deep Dive Links</h4>
                     <div className="grid grid-cols-1 gap-3">
                       {result.recommendedLinks.map((link, i) => (
