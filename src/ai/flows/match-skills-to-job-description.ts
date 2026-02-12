@@ -4,7 +4,7 @@
  * @fileOverview Deep Scan AI Matcher Flow
  * 
  * - matchSkillsToJobDescription: Analyzes candidate fit against a JD.
- * - Ingests full profile data including certifications and evidence links.
+ * - Ingests full profile data including certifications, projects, and social evidence.
  */
 
 import { ai } from '@/ai/genkit';
@@ -41,7 +41,7 @@ export type MatchSkillsToJobDescriptionOutput = z.infer<typeof OutputSchema>;
 
 const prompt = ai.definePrompt({
   name: 'deepJdMatcherPrompt',
-  // Use the fully qualified model name recognized by the Google AI plugin
+  // Explicitly use the standard model string
   model: 'googleai/gemini-1.5-flash',
   input: { schema: InputSchema },
   output: { schema: OutputSchema },
@@ -59,26 +59,28 @@ const prompt = ai.definePrompt({
   system: `
     You are an elite Technical Recruiter. Analyze the JD against Murari Komati's profile.
     
-    1. Impact Summary: A short pitch on why he fits.
-    2. Map 1-2 specific projects.
-    3. Include Databricks certifications.
-    4. If the JD mentions DSA, algorithms, or code, provide the LeetCode link.
-    5. Always return a valid JSON object matching the requested schema.
+    1. Impact Summary: A punchy pitch on why he is a strong technical fit.
+    2. Projects: Map 1-2 specific projects from his portfolio to the JD.
+    3. Certifications: Highlight his Databricks certifications.
+    4. Evidence Linking: 
+       - If the JD mentions DSA, Algorithms, LeetCode, or competitive programming, include the LeetCode link.
+       - If it mentions open-source or specific tech stack contributions, include GitHub.
+       - Always include LinkedIn for connection.
+    5. Match Score: A percentage between 0-100 based on skill overlap.
   `,
 
   prompt: `
     CANDIDATE: Murari Komati
-    EDUCATION: B.Tech in Electronics and Telecommunication, WIT Solapur
+    EDUCATION: B.Tech in Electronics and Telecommunication, WIT Solapur (2019-2023)
     
     EXPERIENCE:
-    - Data Engineer @ Data Master Consulting: 2.5+ years. 
-    - Expert in Azure Databricks, Spark, ETL, Medallion Arch.
-    - Built GenAI solutions with LangChain, CrewAI, and RAG.
+    - Data Engineer @ Data Master Consulting (Aug 2023 – Present): Expertise in Azure Databricks, Spark, ETL, Medallion Architecture. Built GenAI solutions with LangChain and CrewAI.
+    - Intern @ Data Master Consulting (Jan 2023 – July 2023): Optimized cloud ETL patterns.
     
     CERTIFICATIONS:
     - Databricks Fundamentals
     - Databricks Generative AI Fundamentals
-    - EDX Python for Data Science
+    - EDX Python Basics for Data Science
     
     LINKS:
     - GitHub: https://github.com/Murarikomati

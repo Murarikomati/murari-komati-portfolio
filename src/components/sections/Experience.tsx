@@ -19,6 +19,7 @@ export default function Experience() {
         </div>
 
         <div className="relative">
+          {/* Vertical Timeline Line */}
           <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary via-accent to-transparent md:translate-x-[-0.5px]" />
 
           <div className="space-y-20">
@@ -32,8 +33,10 @@ export default function Experience() {
                 onMouseEnter={() => setHoveredIndex(i)}
                 onMouseLeave={() => setHoveredIndex(null)}
               >
+                {/* Timeline Dot */}
                 <div className="absolute left-4 md:left-1/2 w-3 h-3 rounded-full bg-background border-2 border-primary z-10 translate-x-[-6px] md:translate-x-[-6px] group-hover:scale-150 transition-transform group-hover:bg-primary shadow-[0_0_15px_rgba(var(--primary),0.5)]" />
 
+                {/* Date Side (Desktop Only) */}
                 <div className={cn(
                   "hidden md:block w-1/2",
                   i % 2 !== 0 ? "text-left pl-8" : "text-right pr-8"
@@ -43,6 +46,7 @@ export default function Experience() {
                   </span>
                 </div>
 
+                {/* Content Side */}
                 <div className="w-full md:w-1/2 pl-12 md:pl-0">
                   <div className={cn(
                     "p-8 rounded-[2rem] border bg-card/50 backdrop-blur-md transition-all duration-500 cursor-default",
@@ -63,6 +67,7 @@ export default function Experience() {
                         {exp.summary}
                       </p>
 
+                      {/* Expandable Impact Details */}
                       <div className={cn(
                         "overflow-hidden transition-all duration-700 ease-in-out",
                         hoveredIndex === i ? "max-h-[600px] opacity-100 mt-6 pt-6 border-t border-border" : "max-h-0 opacity-0"
@@ -79,7 +84,7 @@ export default function Experience() {
 
                       {hoveredIndex !== i && (
                         <p className="text-[10px] font-bold uppercase tracking-widest text-primary/50 animate-pulse pt-2">
-                          + Hover to reveal impact details
+                          + Hover to reveal professional impact
                         </p>
                       )}
                     </div>
