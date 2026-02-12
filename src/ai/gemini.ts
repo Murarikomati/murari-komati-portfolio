@@ -1,4 +1,4 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { GoogleGenerativeAI, SchemaType } from "@google/generative-ai";
 
 if (!process.env.GOOGLE_GENAI_API_KEY) {
   throw new Error("Missing GOOGLE_GENAI_API_KEY.");
@@ -7,14 +7,13 @@ if (!process.env.GOOGLE_GENAI_API_KEY) {
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GENAI_API_KEY);
 
 /* =====================================
-   TEXT GENERATION (For summaries)
+   TEXT GENERATION
 ===================================== */
-
 export async function generateText(prompt: string): Promise<string> {
   const model = genAI.getGenerativeModel({
-    model: "gemini-2.5-flash",
+    model: "gemini-1.5-flash",
     generationConfig: {
-      temperature: 0.5,
+      temperature: 0.7,
     },
   });
 
@@ -24,28 +23,20 @@ export async function generateText(prompt: string): Promise<string> {
 }
 
 /* =====================================
-   JSON GENERATION (If ever needed)
+   JSON GENERATION (Structured Output)
 ===================================== */
-
-export async function generateJSON(prompt: string) {
+export async function generateJSON<T>(prompt: string, schema: any): Promise<T> {
   const model = genAI.getGenerativeModel({
-    model: "gemini-2.5-flash",
+    model: "gemini-1.5-flash",
     generationConfig: {
-      temperature: 0.3,
+      temperature: 0.4,
+      responseMimeType: "application/json",
+      responseSchema: schema,
     },
   });
 
   const result = await model.generateContent(prompt);
   const response = await result.response;
-  let text = response.text();
-
-  text = text.replace(/```json/gi, "").replace(/```/g, "").trim();
-
-  const jsonMatch = text.match(/\{[\s\S]*\}/);
-
-  if (!jsonMatch) {
-    throw new Error("No JSON found in Gemini response.");
-  }
-
-  return JSON.parse(jsonMatch[0]);
+  const text = response.text();
+  return JSON.parse(text) as T;
 }

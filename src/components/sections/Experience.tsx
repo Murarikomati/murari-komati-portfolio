@@ -12,18 +12,17 @@ export default function Experience() {
     <section id="experience" className="py-24 px-4 overflow-hidden bg-background">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-20">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-4 border border-primary/20">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/15 text-primary text-xs font-bold uppercase tracking-widest mb-4 border border-primary/20">
             <Briefcase className="h-3 w-3" /> Career Path
           </div>
           <h2 className="text-4xl md:text-5xl font-bold font-headline mb-6">Professional <span className="text-primary">Journey</span></h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed">
+          <p className="text-foreground/80 max-w-2xl mx-auto text-lg leading-relaxed">
             A chronological narrative of building enterprise data backbones and autonomous AI systems.
           </p>
         </div>
 
         <div className="relative">
-          {/* Vertical Timeline Line */}
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary via-accent to-transparent md:translate-x-[-0.5px] opacity-30" />
+          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary via-accent to-transparent md:translate-x-[-0.5px] opacity-40" />
 
           <div className="space-y-16">
             {EXPERIENCE.map((exp, i) => (
@@ -36,49 +35,37 @@ export default function Experience() {
                 onMouseEnter={() => setHoveredIndex(i)}
                 onMouseLeave={() => setHoveredIndex(null)}
               >
-                {/* Timeline Dot */}
-                <div className="absolute left-4 md:left-1/2 w-4 h-4 rounded-full bg-background border-2 border-primary z-10 translate-x-[-7.5px] md:translate-x-[-7.5px] group-hover:scale-125 transition-all duration-300 group-hover:bg-primary group-hover:shadow-[0_0_15px_rgba(var(--primary),0.5)]" />
+                <div className="absolute left-4 md:left-1/2 w-4 h-4 rounded-full bg-background border-2 border-primary z-10 translate-x-[-7.5px] group-hover:scale-125 transition-all duration-300 group-hover:bg-primary" />
 
-                {/* Date Side (Desktop Only) */}
                 <div className={cn(
                   "hidden md:block w-1/2",
                   i % 2 !== 0 ? "text-left pl-12" : "text-right pr-12"
                 )}>
                   <div className="sticky top-24">
-                    <span className="inline-flex items-center gap-2 text-sm font-bold text-primary bg-primary/10 px-4 py-2 rounded-full border border-primary/30 shadow-sm">
+                    <span className="inline-flex items-center gap-2 text-sm font-bold text-primary bg-primary/10 px-4 py-2 rounded-full border border-primary/30">
                       <Calendar className="h-4 w-4" /> {exp.period}
                     </span>
-                    <p className="mt-4 text-xs font-bold uppercase tracking-widest text-muted-foreground">{exp.location}</p>
-                    <div className={cn(
-                      "mt-6 p-4 rounded-xl border border-dashed border-primary/30 bg-primary/5 transition-opacity duration-300",
-                      hoveredIndex === i ? "opacity-100" : "opacity-40"
-                    )}>
-                      <p className="text-[10px] font-bold uppercase text-primary mb-2">Primary Impact</p>
-                      <p className="text-xs text-foreground/90 italic">"Architecture scaling & process automation excellence."</p>
-                    </div>
+                    <p className="mt-4 text-xs font-bold uppercase tracking-widest text-foreground/70">{exp.location}</p>
                   </div>
                 </div>
 
-                {/* Content Side */}
                 <div className="w-full md:w-1/2 pl-12 md:pl-0">
                   <div className={cn(
-                    "p-8 rounded-[2.5rem] border bg-card/40 backdrop-blur-xl transition-all duration-500 cursor-pointer relative overflow-hidden",
-                    hoveredIndex === i ? "border-primary/50 shadow-2xl shadow-primary/10 -translate-y-2" : "border-border/40 hover:border-primary/30"
+                    "p-8 rounded-[2.5rem] border bg-card shadow-xl transition-all duration-500 cursor-pointer relative overflow-hidden",
+                    hoveredIndex === i ? "border-primary/50 -translate-y-2" : "border-border/60"
                   )}>
-                    <div className="absolute -top-24 -right-24 w-48 h-48 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-colors" />
-                    
                     <div className="relative z-10 space-y-4">
                       <div className="flex flex-col gap-1">
                         <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">{exp.role}</span>
                         <h3 className="text-2xl md:text-3xl font-bold font-headline">{exp.company}</h3>
                       </div>
                       
-                      <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-                        <span className="flex items-center gap-1.5 md:hidden"><Calendar className="h-4 w-4" /> {exp.period}</span>
+                      <div className="flex flex-wrap items-center gap-4 text-sm text-foreground/70">
+                        <span className="flex items-center gap-1.5 md:hidden font-medium text-primary"><Calendar className="h-4 w-4" /> {exp.period}</span>
                         <span className="flex items-center gap-1.5"><MapPin className="h-4 w-4" /> {exp.location}</span>
                       </div>
 
-                      <p className="text-base text-muted-foreground leading-relaxed">
+                      <p className="text-base text-foreground/90 leading-relaxed font-medium">
                         {exp.summary}
                       </p>
 
@@ -92,21 +79,13 @@ export default function Experience() {
                           </h4>
                           <div className="space-y-4">
                             {exp.highlights?.map((highlight, j) => (
-                              <div key={j} className="flex gap-3 text-sm leading-relaxed text-foreground group/item">
+                              <div key={j} className="flex gap-3 text-sm leading-relaxed text-foreground/90 group/item">
                                 <ChevronRight className="h-5 w-5 shrink-0 text-primary transition-transform group-hover/item:translate-x-1" />
-                                <span>{highlight}</span>
+                                <span className="font-medium">{highlight}</span>
                               </div>
                             ))}
                           </div>
                         </div>
-                      </div>
-
-                      <div className={cn(
-                        "pt-2 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary/70 transition-opacity duration-300",
-                        hoveredIndex === i ? "opacity-0" : "opacity-100"
-                      )}>
-                        <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                        Explore impact
                       </div>
                     </div>
                   </div>
