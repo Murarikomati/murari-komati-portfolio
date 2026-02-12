@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState } from "react";
@@ -65,7 +64,7 @@ export default function SkillMatcher() {
             <div className="space-y-4">
               <Textarea 
                 placeholder="Paste the full job description here..." 
-                className="min-h-[300px] bg-zinc-900 border-zinc-800 rounded-2xl resize-none p-6 focus:ring-primary shadow-2xl text-white placeholder:text-zinc-600"
+                className="min-h-[300px] bg-zinc-900 border-zinc-800 rounded-3xl resize-none p-6 focus:ring-primary shadow-2xl text-white placeholder:text-zinc-600"
                 value={jobDescription}
                 onChange={(e) => setJobDescription(e.target.value)}
                 suppressHydrationWarning
@@ -93,16 +92,16 @@ export default function SkillMatcher() {
             {result ? (
               <Card className="border-zinc-800 bg-zinc-900 shadow-2xl overflow-hidden animate-fade-in-up rounded-[2.5rem]">
                 <CardHeader className="bg-primary p-8">
-                  <div className="flex justify-between items-center">
+                  <div className="flex justify-between items-center text-white">
                     <div>
-                      <CardTitle className="flex items-center gap-2 text-2xl font-bold text-white">
-                        <CheckCircle2 className="h-6 w-6 text-white" /> Recruiter Cheat Sheet
+                      <CardTitle className="flex items-center gap-2 text-2xl font-bold">
+                        <CheckCircle2 className="h-6 w-6" /> Recruiter Cheat Sheet
                       </CardTitle>
                       <CardDescription className="text-white/80 font-medium">Tailored for Murari Komati</CardDescription>
                     </div>
                     <div className="flex flex-col items-end">
                       <div className="text-[10px] font-bold uppercase tracking-widest text-white/70 mb-1">Fit Score</div>
-                      <Badge className="bg-white text-primary font-black text-2xl px-4 py-2 rounded-xl shadow-lg">
+                      <Badge className="bg-white text-primary font-black text-2xl px-4 py-2 rounded-xl shadow-lg border-none">
                         {result.matchScore}%
                       </Badge>
                     </div>
@@ -129,7 +128,7 @@ export default function SkillMatcher() {
                     <h4 className="font-bold text-xs uppercase tracking-[0.2em] text-primary">Evidence & Proof Points</h4>
                     <div className="space-y-4">
                       {result.matchedProjects.map((project, i) => (
-                        <div key={i} className="bg-zinc-800/50 p-6 rounded-2xl border border-zinc-700/50 hover:border-primary/50 transition-all">
+                        <div key={i} className="bg-zinc-800/50 p-6 rounded-3xl border border-zinc-700/50 hover:border-primary/50 transition-all">
                           <p className="font-bold text-lg mb-2 text-white">{project.title}</p>
                           <p className="text-sm text-zinc-300 leading-relaxed font-medium">{project.reason}</p>
                         </div>
@@ -146,7 +145,7 @@ export default function SkillMatcher() {
                           href={link.url} 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="group flex items-center justify-between p-5 rounded-2xl border border-zinc-800 bg-zinc-800/30 hover:bg-zinc-800 transition-all shadow-sm"
+                          className="group flex items-center justify-between p-5 rounded-3xl border border-zinc-800 bg-zinc-800/30 hover:bg-zinc-800 transition-all shadow-sm"
                         >
                           <div className="flex items-center gap-4">
                             <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all text-primary">
@@ -165,7 +164,7 @@ export default function SkillMatcher() {
 
                   <Button 
                     variant="ghost" 
-                    className="w-full rounded-2xl text-xs text-zinc-500 hover:text-primary hover:bg-primary/10 py-8 font-bold uppercase tracking-widest transition-colors border border-dashed border-zinc-800"
+                    className="w-full rounded-full text-xs text-zinc-500 hover:text-primary hover:bg-primary/10 py-8 font-bold uppercase tracking-widest transition-colors border border-dashed border-zinc-800"
                     onClick={() => {
                       setResult(null);
                       setJobDescription("");

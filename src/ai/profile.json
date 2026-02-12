@@ -1,4 +1,3 @@
-
 {
   "name": "Murari Komati",
   "title": "Data Engineer & AI Solutions Architect",
@@ -12,7 +11,7 @@
     {
       "company": "Data Master Consulting Pvt Ltd",
       "role": "Data Engineer",
-      "duration": "Aug 2023 - Present",
+      "duration": "Jan 2023 - Present",
       "location": "Maharashtra, India",
       "responsibilities": [
         "Architected scalable ETL pipelines using Azure Data Factory and Databricks (Medallion Architecture)",
@@ -24,7 +23,7 @@
     {
       "company": "EZData Advisory IT Services & Consulting",
       "role": "Data Engineer Intern",
-      "duration": "Jan 2023 - July 2023",
+      "duration": "June 2022 - Dec 2022",
       "location": "India",
       "responsibilities": [
         "Migrated legacy pipelines to PySpark frameworks",
@@ -40,7 +39,7 @@
       "Advanced Data Structures & Algorithms (DSA)"
     ],
     "data_engineering": [
-      "PySpark", "Apache Spark", "SQL", "Delta Lake", "Medallion Architecture", "ADF", "Databricks"
+      "PySpark", "Apache Spark", "SQL", "Delta Lake", "Medallion Architecture", "ADF", "Databricks", "ETL/ELT"
     ],
     "ai_ml": [
       "RAG Systems", "Agentic AI", "LangChain", "LangGraph", "CrewAI", "Vector Databases"

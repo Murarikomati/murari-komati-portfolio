@@ -12,9 +12,9 @@ const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GENAI_API_KEY);
  * Optimized for production reliability and stable JSON parsing.
  */
 export async function generateJSON<T>(prompt: string): Promise<T> {
-  // Using gemini-2.0-flash (stable latest)
+  // Using gemini-2.5-flash (stable latest)
   const model = genAI.getGenerativeModel({
-    model: "gemini-2.0-flash",
+    model: "gemini-2.5-flash",
     generationConfig: {
       temperature: 0.2,
       responseMimeType: "application/json",

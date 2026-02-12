@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useState } from "react";
@@ -47,7 +46,7 @@ export default function Projects() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project) => (
-            <Card key={project.id} className="group border-zinc-800 overflow-hidden hover:border-primary/60 transition-all flex flex-col bg-zinc-900/50 backdrop-blur-sm shadow-xl rounded-[2rem]">
+            <Card key={project.id} className="group border-zinc-800 overflow-hidden hover:border-primary/60 transition-all flex flex-col bg-zinc-900/50 backdrop-blur-sm shadow-xl rounded-[2.5rem]">
               <div className="relative aspect-video overflow-hidden">
                 <Image 
                   src={project.image} 
@@ -65,12 +64,12 @@ export default function Projects() {
                 <CardTitle className="font-headline text-2xl font-bold text-white">{project.title}</CardTitle>
               </CardHeader>
               <CardContent className="flex-1">
-                <p className="text-zinc-400 text-sm leading-relaxed mb-6 font-medium">
+                <p className="text-zinc-300 text-sm leading-relaxed mb-6 font-medium">
                   {project.description}
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((t) => (
-                    <Badge key={t} className="bg-primary/20 text-white border-none py-1.5 px-4 font-bold shadow-sm text-[11px] rounded-full hover:bg-primary transition-colors">
+                    <Badge key={t} className="bg-primary text-white border-none py-1.5 px-4 font-bold shadow-md text-[11px] rounded-full">
                       {t}
                     </Badge>
                   ))}
