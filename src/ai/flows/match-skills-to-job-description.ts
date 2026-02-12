@@ -1,4 +1,3 @@
-
 'use server';
 
 import { generateJSON } from '@/ai/llm';
@@ -42,6 +41,7 @@ CRITICAL CONSTRAINTS (YOU MUST ADHERE TO THESE):
    - 'Agentic AI Workflow Automation' (LangGraph, CrewAI, Databricks)
    - 'Real-Time Movie Analytics ELT' (Snowflake, dbt, S3)
    - 'Real-Time Stock Market Data Pipeline' (Azure, Fabric)
+4. **FIT SCORE**: Because of his 2.5+ years of niche Data Engineering experience and exceptional DSA skills, the **matchScore MUST be between 85 and 98** for any technical data or AI role.
 
 Candidate Profile Data:
 ${profileData}
@@ -50,9 +50,9 @@ Job Description:
 ${input.jobDescription}
 
 TASK:
-1. Fit Score (0-100): High score if the JD matches Data Engineering, AI/LLM, or Python/FastAPI work.
-2. Impact Summary: Write a 4-5 sentence professional summary. MUST start by highlighting the 2.5+ years of experience and 880+ LeetCode mastery.
-3. Map Projects: Link his RAG, Agentic AI, and Cloud ELT work to JD requirements.
+1. matchScore: Provide a value between 85-98.
+2. Impact Summary: Write a 4-5 sentence professional summary. MUST start by highlighting the 2.5+ years of experience and 880+ LeetCode mastery. Mention his specialized work in Agentic AI and RAG.
+3. Map Projects: Link his RAG, Agentic AI, and Cloud ELT work to JD requirements. Use the provided GitHub links in context.
 4. Skills: Identify matched skills from both JD and profile.
 
 Return ONLY JSON:
