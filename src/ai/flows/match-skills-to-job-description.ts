@@ -55,7 +55,7 @@ const prompt = ai.definePrompt({
   },
 
   prompt: `
-    INSTRUCTIONS:
+    SYSTEM INSTRUCTIONS:
     You are an elite Technical Recruiter. Analyze the provided JD against Murari Komati's profile.
     
     CRITICAL OBJECTIVES:
