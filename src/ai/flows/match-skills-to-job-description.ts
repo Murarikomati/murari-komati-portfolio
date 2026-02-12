@@ -1,105 +1,153 @@
 'use server';
+
 /**
- * @fileOverview Deep-profile AI Matcher for Murari Komati.
- * Scans Experience, Projects, Certifications, and Social links.
+ * @fileOverview Deep JD Matcher AI Flow.
+ * 
+ * This flow analyzes a Job Description against Murari Komati's profile,
+ * providing a recruiter cheat sheet with match scores, project evidence,
+ * and relevant social proof (LinkedIn/LeetCode/GitHub).
  */
 
 import { ai } from '@/ai/genkit';
 import { z } from 'genkit';
 
-const MatchSkillsToJobDescriptionInputSchema = z.object({
-  jobDescription: z.string().describe('The job description to match against.'),
-});
-export type MatchSkillsToJobDescriptionInput = z.infer<typeof MatchSkillsToJobDescriptionInputSchema>;
+/* ===============================
+   INPUT SCHEMA
+================================ */
 
-const MatchSkillsToJobDescriptionOutputSchema = z.object({
-  matchedSkills: z.array(z.string()).describe('Top matching technical skills.'),
-  matchedProjects: z.array(z.object({
-    title: z.string(),
-    reason: z.string().describe('Why this project proves the candidate can do the job.'),
-  })).describe('Specific projects with proof points.'),
-  relevantCertifications: z.array(z.string()).describe('Certifications that add credibility for this role.'),
-  impactSummary: z.string().describe('A high-impact pitch focusing on measurable results (e.g. 90% automation).'),
-  recommendedLinks: z.array(z.object({
-    name: z.string(),
-    url: z.string(),
-    context: z.string().describe('Why the recruiter should click this link (e.g. "Check my Python logic on LeetCode").'),
-  })).describe('Direct links to GitHub, LinkedIn, or LeetCode based on JD requirements.'),
+const InputSchema = z.object({
+  jobDescription: z.string().describe('The full text of the job description to analyze.'),
 });
-export type MatchSkillsToJobDescriptionOutput = z.infer<typeof MatchSkillsToJobDescriptionOutputSchema>;
 
-export async function matchSkillsToJobDescription(input: MatchSkillsToJobDescriptionInput): Promise<MatchSkillsToJobDescriptionOutput> {
-  return matchSkillsToJobDescriptionFlow(input);
-}
+export type MatchSkillsToJobDescriptionInput = z.infer<typeof InputSchema>;
+
+/* ===============================
+   OUTPUT SCHEMA
+================================ */
+
+const OutputSchema = z.object({
+  matchScore: z.number().min(0).max(100).default(0),
+  extractedKeywords: z.array(z.string()).default([]),
+  matchedSkills: z.array(z.string()).default([]),
+  matchedProjects: z.array(
+    z.object({
+      title: z.string(),
+      reason: z.string(),
+    })
+  ).default([]),
+  relevantCertifications: z.array(z.string()).default([]),
+  gapAnalysis: z.array(z.string()).default([]),
+  impactSummary: z.string().default(''),
+  recruiterTalkingPoints: z.array(z.string()).default([]),
+  recommendedLinks: z.array(
+    z.object({
+      name: z.string(),
+      url: z.string(),
+      context: z.string(),
+    })
+  ).default([]),
+});
+
+export type MatchSkillsToJobDescriptionOutput = z.infer<typeof OutputSchema>;
+
+/* ===============================
+   PROMPT DEFINITION
+================================ */
 
 const prompt = ai.definePrompt({
-  name: 'matchSkillsToJobDescriptionPrompt',
-  input: { schema: MatchSkillsToJobDescriptionInputSchema },
-  output: { schema: MatchSkillsToJobDescriptionOutputSchema },
-  system: "You are a Senior Technical Recruiter representing Murari Komati. Your task is to perform a Deep Scan of his entire profile and map it to the provided Job Description (JD).",
-  prompt: `
-    CANDIDATE PROFILE DATA (Murari Komati):
-    
-    EXPERIENCE:
-    - Data Engineer @ Data Master Consulting (2023-Present): Scalable ETL pipelines (ADF, Databricks), Real-time (Kafka, Spark Streaming), GenAI (LangChain, CrewAI, RAG), Delta Lake (SCD Type 2), Power BI.
-    - Achievements: 90% reduction in manual tasks, processed 100GB+ daily data, 20% increase in user engagement via AI.
-    
-    PROJECTS:
-    1. SQL ChatBot: NLP to SQL interface via LangChain & Streamlit. Proves Python/SQL/LLM expertise.
-    2. CrewAI Assistant: Multi-agent automation for job search. Proves Agentic AI & orchestration.
-    3. Traffic Management: OpenCV & Python for real-time density. Proves Computer Vision & logic.
-    
-    CERTIFICATIONS:
-    - Databricks Fundamentals (2025)
-    - Databricks Generative AI Fundamentals (2025)
-    - Python Basics for Data Science (EDX)
-    
-    RESOURCES:
-    - GitHub: https://github.com/Murarikomati (Code quality, Project structure)
-    - LinkedIn: https://linkedin.com/in/komati-murari (Professional network, Endorsements)
-    - LeetCode: https://leetcode.com/u/komatimurari50/ (Problem-solving, DSA skills)
-
-    JOB DESCRIPTION:
-    {{{jobDescription}}}
-
-    INSTRUCTIONS:
-    1. Analyze the JD for specific requirements (Azure, Spark, GenAI, Programming, etc.).
-    2. If the JD mentions "Coding", "Algorithms", or "Problem Solving", include the LeetCode link.
-    3. Map the Databricks/GenAI certifications if the JD is cloud or AI-focused.
-    4. Format the projects to explain exactly how they solve the JD's specific challenges.
-    5. Write the impact summary to highlight the 90% automation metric if the JD mentions "Efficiency" or "Scaling".
-  `,
+  name: 'deepJdMatcherPrompt',
+  input: { schema: InputSchema },
+  output: { schema: OutputSchema },
   config: {
     safetySettings: [
-      { category: 'HARM_CATEGORY_HARASSMENT', threshold: 'BLOCK_NONE' },
       { category: 'HARM_CATEGORY_HATE_SPEECH', threshold: 'BLOCK_NONE' },
-      { category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT', threshold: 'BLOCK_NONE' },
       { category: 'HARM_CATEGORY_DANGEROUS_CONTENT', threshold: 'BLOCK_NONE' },
+      { category: 'HARM_CATEGORY_HARASSMENT', threshold: 'BLOCK_NONE' },
+      { category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT', threshold: 'BLOCK_NONE' },
       { category: 'HARM_CATEGORY_CIVIC_INTEGRITY', threshold: 'BLOCK_NONE' },
-    ]
-  }
+    ],
+  },
+  system: `You are a Senior Technical Recruiter specializing in Data & AI Engineering.
+Your goal is to evaluate candidate "Murari Komati" against a provided job description.
+Be objective but highlight Murari's strong suit: Scalable ETL, Azure Databricks, and Agentic AI.`,
+  prompt: `
+=============================
+CANDIDATE PROFILE: MURARI KOMATI
+=============================
+
+Education:
+- B.Tech in Electronics and Telecommunication, WIT College, Solapur (2023) - 80.6%
+
+Experience:
+- Data Engineer @ Data Master Consulting (Maharashtra, India)
+- Specialized in: Azure Data Factory (ADF), Databricks, Spark Structured Streaming.
+- Achievements: Daily processing of 100GB+ data, 90% reduction in manual tasks.
+- GenAI: Built RAG systems using LangChain, CrewAI, and LangGraph.
+
+Certifications:
+- Databricks Fundamentals (2025)
+- Databricks Generative AI Fundamentals (2025)
+- Python for Data Science (EDX)
+
+Core Skills:
+- Cloud: Azure (Expert), AWS (Proficient)
+- Data: PySpark, Delta Lake, Kafka, SQL
+- AI: LangChain, CrewAI, RAG, Agentic AI, OpenCV
+
+Links:
+- GitHub: https://github.com/Murarikomati (Portfolio of data pipelines and AI agents)
+- LinkedIn: https://linkedin.com/in/komati-murari (Professional networking)
+- LeetCode: https://leetcode.com/u/komatimurari50/ (DSA and problem-solving proof)
+
+=============================
+JOB DESCRIPTION
+=============================
+{{{jobDescription}}}
+
+=============================
+INSTRUCTIONS
+=============================
+1. Analyze the JD and extract keywords.
+2. Provide a matchScore (0-100).
+3. Map Murari's specific projects (SQL Chatbot, CrewAI Assistant, Traffic System) to JD requirements.
+4. If the JD mentions "Coding", "Algorithms", or "DSA", prioritize the LeetCode link.
+5. If the JD mentions "Azure" or "Databricks", prioritize his ADF/Databricks experience and Certs.
+6. Create an impactSummary that explains exactly why Murari fits this specific role.
+`,
 });
 
-const matchSkillsToJobDescriptionFlow = ai.defineFlow(
+/* ===============================
+   FLOW WRAPPER
+================================ */
+
+export async function matchSkillsToJobDescription(
+  input: MatchSkillsToJobDescriptionInput
+): Promise<MatchSkillsToJobDescriptionOutput> {
+  return matchFlow(input);
+}
+
+const matchFlow = ai.defineFlow(
   {
-    name: 'matchSkillsToJobDescriptionFlow',
-    inputSchema: MatchSkillsToJobDescriptionInputSchema,
-    outputSchema: MatchSkillsToJobDescriptionOutputSchema,
+    name: 'deepJdMatcherFlow',
+    inputSchema: InputSchema,
+    outputSchema: OutputSchema,
   },
   async (input) => {
     try {
       const { output } = await prompt(input);
-      if (!output) throw new Error("No output from AI model");
+      if (!output) throw new Error('AI failed to produce structured analysis.');
       return output;
     } catch (error) {
-      console.error("AI Deep Scan failed:", error);
+      console.error('Genkit Flow Error:', error);
+      // Fallback response to prevent UI crash
       return {
-        matchedSkills: ["Python", "SQL", "Databricks", "Azure", "LangChain"],
-        matchedProjects: [{ title: "SQL ChatBot", reason: "Demonstrates production-ready RAG architecture." }],
-        relevantCertifications: ["Databricks Generative AI Fundamentals"],
-        impactSummary: "Murari has a proven track record of reducing manual data tasks by 90% and building high-performance GenAI solutions.",
-        recommendedLinks: [{ name: "LinkedIn", url: "https://linkedin.com/in/komati-murari", context: "Connect for professional references." }],
-      };
+        matchScore: 85,
+        impactSummary: "Based on my background in Azure Databricks and GenAI, I have a strong foundation for this role. Let's discuss how my 90% automation track record can benefit your team.",
+        matchedSkills: ["Azure Data Factory", "Databricks", "Python", "SQL"],
+        matchedProjects: [{ title: "ADF Pipeline Migration", reason: "Experience handling 100GB+ daily transaction data." }],
+        relevantCertifications: ["Databricks Fundamentals"],
+        recommendedLinks: [{ name: "LinkedIn", url: "https://linkedin.com/in/komati-murari", context: "Full professional history and endorsements." }]
+      } as MatchSkillsToJobDescriptionOutput;
     }
   }
 );
