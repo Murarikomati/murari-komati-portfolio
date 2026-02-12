@@ -1,185 +1,84 @@
 'use server';
 
-import { z } from "zod";
-import fs from "fs";
-import path from "path";
-import { generateText } from "../gemini";
+/**
+ * @fileOverview AI Flow to match job descriptions to candidate profile.
+ */
 
+import { ai } from '@/ai/genkit';
+import { z } from 'genkit';
+import fs from 'fs';
+import path from 'path';
 
-/* ================================
-   SCHEMAS
-================================ */
-
-const InputSchema = z.object({
-  jobDescription: z.string().min(50),
+const MatchSkillsToJobDescriptionInputSchema = z.object({
+  jobDescription: z.string().describe('The full text of the job description.'),
 });
+export type MatchSkillsToJobDescriptionInput = z.infer<typeof MatchSkillsToJobDescriptionInputSchema>;
 
-const SafeOutputSchema = z.object({
-  matchScore: z.number().min(0).max(100).default(0),
-  impactSummary: z.string().default("Relevant technical alignment found."),
-  matchedSkills: z.array(z.string()).default([]),
+const MatchSkillsToJobDescriptionOutputSchema = z.object({
+  matchScore: z.number().describe('A percentage score from 0-100 indicating fit.'),
+  impactSummary: z.string().describe('A concise 2-sentence pitch for the candidate.'),
+  matchedSkills: z.array(z.string()).describe('Top technical skills that overlap with the JD.'),
   matchedProjects: z.array(
     z.object({
       title: z.string(),
-      reason: z.string(),
+      reason: z.string().describe('Why this project proves the candidate fits the JD.'),
     })
-  ).default([]),
-  relevantCertifications: z.array(z.string()).default([]),
+  ).describe('Up to 3 relevant projects.'),
+  relevantCertifications: z.array(z.string()).describe('Certifications mentioned or implied by the JD.'),
   recommendedLinks: z.array(
     z.object({
       name: z.string(),
       url: z.string(),
       context: z.string(),
     })
-  ).default([])
+  ).describe('Links to evidence like LinkedIn or GitHub.'),
+});
+export type MatchSkillsToJobDescriptionOutput = z.infer<typeof MatchSkillsToJobDescriptionOutputSchema>;
+
+const matchPrompt = ai.definePrompt({
+  name: 'matchSkillsToJobDescriptionPrompt',
+  input: { schema: MatchSkillsToJobDescriptionInputSchema },
+  output: { schema: MatchSkillsToJobDescriptionOutputSchema },
+  prompt: `You are an expert technical recruiter analyzing a candidate's profile against a Job Description.
+
+Candidate Profile:
+{{{profile}}}
+
+Job Description:
+{{{jobDescription}}}
+
+Analyze the alignment and generate a "Recruiter Cheat Sheet". 
+Be honest but highlight the candidate's strengths.
+Ensure the matchScore reflects real overlap.
+Limit matchedSkills to the 6 most relevant ones.
+Only include projects and certifications that are actually relevant to the JD.`,
 });
 
-export type MatchSkillsToJobDescriptionOutput =
-  z.infer<typeof SafeOutputSchema>;
-
-/* ================================
-   MAIN FUNCTION
-================================ */
-
 export async function matchSkillsToJobDescription(
-  input: { jobDescription: string }
+  input: MatchSkillsToJobDescriptionInput
 ): Promise<MatchSkillsToJobDescriptionOutput> {
+  const profilePath = path.join(process.cwd(), 'src/ai/profile.json');
+  const profileData = fs.readFileSync(profilePath, 'utf-8');
 
-  try {
-    const validatedInput = InputSchema.parse(input);
-    const jdText = validatedInput.jobDescription.toLowerCase();
+  const { output } = await matchPrompt({
+    ...input,
+    profile: profileData,
+  });
 
-    /* ================================
-       LOAD PROFILE.JSON
-    ================================= */
-
-    const profilePath = path.join(
-      process.cwd(),
-      "src/ai/profile.json"
-    );
-
-    const profile = JSON.parse(
-      fs.readFileSync(profilePath, "utf-8")
-    );
-
-    /* ================================
-       FLATTEN ALL SKILLS
-    ================================= */
-
-    const allSkills = [
-      ...profile.skills.data_engineering,
-      ...profile.skills.cloud.azure,
-      ...profile.skills.cloud.gcp,
-      ...profile.skills.cloud.aws,
-      ...profile.skills.streaming,
-      ...profile.skills.data_modeling,
-      ...profile.skills.machine_learning,
-      ...profile.skills.genai,
-      ...profile.skills.programming
-    ];
-
-    /* ================================
-       MATCH SKILLS (STRICT OVERLAP)
-    ================================= */
-
-    const matchedSkills = allSkills.filter(skill =>
-      jdText.includes(skill.toLowerCase())
-    );
-
-    /* ================================
-       MATCH CERTIFICATIONS
-    ================================= */
-
-    const relevantCertifications = profile.certifications.filter(cert =>
-      jdText.includes(cert.toLowerCase())
-    );
-
-    /* ================================
-       MATCH PROJECTS
-    ================================= */
-
-    const matchedProjects = profile.projects
-      .filter(project =>
-        project.technologies.some(tech =>
-          jdText.includes(tech.toLowerCase())
-        )
-      )
-      .slice(0, 3) // 🔥 keep minimal
-      .map(project => ({
-        title: project.name,
-        reason: "Uses technologies directly mentioned in JD."
-      }));
-
-    /* ================================
-       CALCULATE MATCH SCORE
-    ================================= */
-
-    const uniqueJDMatches = matchedSkills.length +
-      relevantCertifications.length +
-      matchedProjects.length;
-
-    const matchScore = Math.min(
-      100,
-      Math.round((uniqueJDMatches / 10) * 100)
-    );
-
-    /* ================================
-       GENERATE SHORT SUMMARY (AI)
-    ================================= */
-
-    let impactSummary = "";
-
-    if (matchedSkills.length > 0) {
-      const summaryPrompt = `
-Write a 2-line professional summary explaining why a candidate with these skills is relevant for this job:
-
-Matched Skills: ${matchedSkills.join(", ")}
-
-Be concise. No exaggeration.
-      `;
-
-      try {
-        impactSummary = await generateText(summaryPrompt) || 
-          "Relevant technical alignment found.";
-      } catch {
-        impactSummary = "Relevant technical alignment found.";
-      }
-    }
-
-    /* ================================
-       FINAL CLEAN OUTPUT
-    ================================= */
-
-    return SafeOutputSchema.parse({
-      matchScore,
-      impactSummary,
-      matchedSkills: matchedSkills.slice(0, 6), // 🔥 limit clutter
-      matchedProjects,
-      relevantCertifications,
-      recommendedLinks: [
-        {
-          name: "LinkedIn",
-          url: "https://linkedin.com/in/komati-murari",
-          context: "Professional profile overview."
-        },
-        {
-          name: "GitHub",
-          url: "https://github.com/Murarikomati",
-          context: "Code repositories and projects."
-        }
-      ]
-    });
-
-  } catch (error) {
-    console.error("Deep Scan Error:", error);
-
-    return {
-      matchScore: 0,
-      impactSummary: "Analysis could not be completed.",
-      matchedSkills: [],
-      matchedProjects: [],
-      relevantCertifications: [],
-      recommendedLinks: []
-    };
+  if (!output) {
+    throw new Error('AI failed to generate a matching report. Please try again.');
   }
+
+  return output;
 }
+
+const matchSkillsToJobDescriptionFlow = ai.defineFlow(
+  {
+    name: 'matchSkillsToJobDescriptionFlow',
+    inputSchema: MatchSkillsToJobDescriptionInputSchema,
+    outputSchema: MatchSkillsToJobDescriptionOutputSchema,
+  },
+  async (input) => {
+    return matchSkillsToJobDescription(input);
+  }
+);

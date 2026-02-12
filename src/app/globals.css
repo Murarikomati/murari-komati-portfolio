@@ -26,25 +26,25 @@
     --radius: 1rem;
   }
   .dark {
-    --background: 225 12% 11%; /* #1A1C21 - Near Black */
+    --background: 225 12% 9%; /* Darker background for more depth */
     --foreground: 0 0% 98%;
-    --card: 225 12% 13%;
+    --card: 225 12% 12%;
     --card-foreground: 0 0% 98%;
     --popover: 225 12% 11%;
     --popover-foreground: 0 0% 98%;
-    --primary: 217 52% 36%; /* #2C528D */
-    --primary-foreground: 0 0% 98%;
-    --secondary: 184 66% 58%; /* #4FD0D9 */
+    --primary: 217 60% 50%; /* Brighter Azure for Dark Mode */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 184 80% 60%; /* Brighter Teal for Dark Mode */
     --secondary-foreground: 225 12% 11%;
     --muted: 225 12% 16%;
-    --muted-foreground: 215 20% 65%;
-    --accent: 184 66% 58%;
+    --muted-foreground: 215 20% 70%;
+    --accent: 184 80% 60%;
     --accent-foreground: 225 12% 11%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
     --border: 225 12% 18%;
     --input: 225 12% 18%;
-    --ring: 184 66% 58%;
+    --ring: 184 80% 60%;
   }
 }
 
@@ -53,7 +53,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-body;
+    @apply bg-background text-foreground font-body transition-colors duration-300;
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-headline tracking-tight;
