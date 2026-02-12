@@ -8,14 +8,13 @@ const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GENAI_API_KEY);
 
 /**
  * Generates structured JSON output using the direct Google AI SDK.
- * Optimized for production reliability and stable JSON parsing.
+ * Uses gemini-1.5-flash for stable production usage in the free tier.
  */
 export async function generateJSON<T>(prompt: string): Promise<T> {
-  // Using gemini-1.5-flash for maximum reliability in free tier and structured output support
   const model = genAI.getGenerativeModel({
     model: "gemini-1.5-flash",
     generationConfig: {
-      temperature: 0.1, // Low temperature for high precision data matching
+      temperature: 0.1,
       responseMimeType: "application/json",
     },
   });

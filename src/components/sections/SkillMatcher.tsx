@@ -52,13 +52,13 @@ export default function SkillMatcher() {
         <div className="flex flex-col lg:flex-row gap-12 items-start">
           <div className="flex-1 space-y-8">
             <div className="inline-flex items-center gap-2 text-primary font-bold tracking-widest uppercase text-xs bg-primary/10 px-4 py-2 rounded-lg border border-primary/30">
-              <Sparkles className="h-4 w-4" /> AI Technical Auditor
+              <Sparkles className="h-4 w-4" /> Intelligence Engine
             </div>
             <h2 className="text-4xl md:text-6xl font-bold font-headline leading-tight text-white">
               Recruiter <span className="text-primary">Deep Scan</span>
             </h2>
             <p className="text-zinc-400 text-lg leading-relaxed max-w-xl">
-              Verified mapping of requirements to my <span className="text-white font-semibold">2.5+ years of experience</span> and <span className="text-white font-semibold">880+ DSA solved problems</span>.
+              Mapping your requirements to my <span className="text-white font-semibold">experience, certifications,</span> and <span className="text-white font-semibold">live code</span> in real-time.
             </p>
             
             <div className="space-y-4">
@@ -91,23 +91,23 @@ export default function SkillMatcher() {
           <div className="flex-1 w-full lg:sticky lg:top-24 min-h-[600px]">
             {result ? (
               <Card className="border-zinc-800 bg-zinc-900 shadow-2xl overflow-hidden animate-fade-in-up rounded-[2.5rem]">
-                <CardHeader className="bg-primary p-8">
+                <CardHeader className="bg-primary/10 border-b border-primary/20 p-8">
                   <div className="flex justify-between items-center text-white">
                     <div>
                       <CardTitle className="flex items-center gap-2 text-2xl font-bold">
-                        <CheckCircle2 className="h-6 w-6" /> Recruiter Cheat Sheet
+                        <CheckCircle2 className="h-6 w-6 text-primary" /> Recruiter Cheat Sheet
                       </CardTitle>
-                      <CardDescription className="text-white/80 font-medium">Tailored for Murari Komati</CardDescription>
+                      <CardDescription className="text-zinc-400 font-medium">Tailored for Murari Komati</CardDescription>
                     </div>
                     <div className="flex flex-col items-end">
-                      <div className="text-[10px] font-bold uppercase tracking-widest text-white/70 mb-1">Fit Score</div>
-                      <Badge className="bg-white text-primary font-black text-2xl px-4 py-2 rounded-xl shadow-lg border-none">
+                      <div className="text-[10px] font-bold uppercase tracking-widest text-primary mb-1">Fit Score</div>
+                      <Badge className="bg-primary text-white font-black text-2xl px-4 py-2 rounded-xl shadow-lg border-none">
                         {result.matchScore}%
                       </Badge>
                     </div>
                   </div>
                 </CardHeader>
-                <CardContent className="p-8 space-y-10 bg-zinc-900 max-h-[650px] overflow-y-auto custom-scrollbar">
+                <CardContent className="p-8 space-y-10 bg-zinc-900/80 max-h-[650px] overflow-y-auto custom-scrollbar">
                   <div className="space-y-3">
                     <h4 className="font-bold text-xs uppercase tracking-[0.2em] text-primary">Value Proposition</h4>
                     <p className="text-lg leading-relaxed text-white font-medium">{result.impactSummary}</p>
@@ -129,7 +129,7 @@ export default function SkillMatcher() {
                     <div className="space-y-4">
                       {result.matchedProjects.map((project, i) => (
                         <div key={i} className="bg-zinc-800/50 p-6 rounded-3xl border border-zinc-700/50 hover:border-primary/50 transition-all">
-                          <p className="font-bold text-lg mb-2 text-white">{project.title}</p>
+                          <p className="font-bold text-lg mb-2 text-primary">{project.title}</p>
                           <p className="text-sm text-zinc-300 leading-relaxed font-medium">{project.reason}</p>
                         </div>
                       ))}

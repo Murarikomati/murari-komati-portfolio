@@ -35,24 +35,24 @@ export async function matchSkillsToJobDescription(input: { jobDescription: strin
 Analyze the candidate's profile against the provided Job Description (JD).
 
 CRITICAL CONSTRAINTS (YOU MUST ADHERE TO THESE):
-1. **SENIORITY**: The candidate Murari Komati has **2.5+ YEARS of professional experience** building data platforms and AI systems. NEVER refer to him as a fresher, junior, or intern in your summary.
-2. **DSA MASTERY**: He has solved **880+ problems on LeetCode** (Top 17% worldwide). This is a top-tier differentiator for engineering roles.
+1. **SENIORITY**: Murari Komati has **2.5+ YEARS of professional experience** building data platforms. NEVER refer to him as a fresher or intern. He is a mid-level engineer.
+2. **DSA MASTERY**: He has solved **880+ problems on LeetCode** (Top 17% worldwide). This is a top-tier differentiator.
 3. **CORE PROJECTS**: 
    - 'Customer Service RAG Chatbot' (Python, FastAPI, LangChain, SQL)
    - 'Agentic AI Workflow Automation' (LangGraph, CrewAI, Databricks)
-   - Use these as the primary proof of impact.
+   - Focus on these as primary proof of technical impact.
 
 Candidate Profile Data:
 ${profileData}
 
-Job Description to Match:
+Job Description:
 ${input.jobDescription}
 
 TASK:
-1. Fit Score (0-100): Be realistic but highlight technical strengths.
-2. Impact Summary: Write a 4-5 sentence value proposition. START by highlighting the 2.5+ years of experience and the 880+ LeetCode mastery.
-3. Map Projects: Link his RAG and Agentic AI work to the specific requirements in the JD.
-4. Skills: Identify only the skills present in both the JD and the candidate's profile.
+1. Fit Score (0-100): High score if the JD matches Data Engineering or AI/LLM work.
+2. Impact Summary: Write a 4-5 sentence professional summary. MUST start by mentioning the 2.5+ years of experience and 880+ LeetCode mastery.
+3. Map Projects: Link his RAG and Agentic AI work to JD requirements.
+4. Skills: Identify matched skills from both JD and profile.
 
 Return ONLY JSON:
 {
