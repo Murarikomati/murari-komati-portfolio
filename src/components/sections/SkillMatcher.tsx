@@ -1,11 +1,11 @@
-"use client"
+'use client';
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Sparkles, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
+import { Sparkles, Loader2, CheckCircle2, ExternalLink, Award, Code, Linkedin } from "lucide-react";
 import { matchSkillsToJobDescription, type MatchSkillsToJobDescriptionOutput } from "@/ai/flows/match-skills-to-job-description";
 import { useToast } from "@/hooks/use-toast";
 
@@ -16,13 +16,12 @@ export default function SkillMatcher() {
   const { toast } = useToast();
 
   const handleMatch = async () => {
-    if (!jobDescription.trim()) {
-      toast({ title: "Input Required", description: "Please enter a job description to analyze.", variant: "destructive" });
-      return;
-    }
-
-    if (jobDescription.length < 50) {
-      toast({ title: "Too Short", description: "Please provide a more detailed job description for better analysis.", variant: "destructive" });
+    if (!jobDescription.trim() || jobDescription.length < 50) {
+      toast({ 
+        title: "More Detail Needed", 
+        description: "Please paste a complete job description (at least 50 characters) for an accurate deep scan.", 
+        variant: "destructive" 
+      });
       return;
     }
 
@@ -30,14 +29,9 @@ export default function SkillMatcher() {
     try {
       const output = await matchSkillsToJobDescription({ jobDescription });
       setResult(output);
-      toast({ title: "Analysis Complete", description: "Successfully matched your requirements to Murari's profile." });
+      toast({ title: "Deep Scan Complete", description: "Profile mapped to requirements successfully." });
     } catch (error: any) {
-      console.error("SkillMatcher Error:", error);
-      toast({ 
-        title: "Analysis Failed", 
-        description: error.message || "Failed to process matching. Please check your internet connection and try again.", 
-        variant: "destructive" 
-      });
+      toast({ title: "Analysis Failed", description: "Service busy. Please try again in a few seconds.", variant: "destructive" });
     } finally {
       setIsMatching(false);
     }
@@ -45,97 +39,162 @@ export default function SkillMatcher() {
 
   return (
     <section id="ai-matcher" className="py-24 px-4 bg-muted/30">
-      <div className="max-w-5xl mx-auto">
-        <div className="flex flex-col md:flex-row gap-12 items-start">
+      <div className="max-w-6xl mx-auto">
+        <div className="flex flex-col lg:flex-row gap-12 items-start">
           <div className="flex-1 space-y-6">
-            <div className="inline-flex items-center gap-2 text-accent font-semibold tracking-wider uppercase text-sm">
-              <Sparkles className="h-4 w-4" /> AI Recruitment Assistant
+            <div className="inline-flex items-center gap-2 text-accent font-semibold tracking-wider uppercase text-xs bg-accent/10 px-3 py-1 rounded-full">
+              <Sparkles className="h-3.5 w-3.5" /> Intelligence Engine
             </div>
-            <h2 className="text-4xl font-bold font-headline">Find the Perfect <span className="text-primary">Match</span></h2>
+            <h2 className="text-4xl md:text-5xl font-bold font-headline leading-tight">
+              Recruiter <span className="text-primary">Deep Scan</span>
+            </h2>
             <p className="text-muted-foreground text-lg leading-relaxed">
-              Recruiters: Paste your job description below, and my AI assistant will instantly highlight my most relevant skills and projects that align with your requirements.
+              Don't just read a resume. Use my AI Engine to instantly map your job requirements to my <span className="text-foreground font-medium">experience, certifications, and licenses</span>.
             </p>
             
             <div className="space-y-4">
               <Textarea 
-                placeholder="Example: We are looking for an Azure Data Engineer with experience in Databricks and GenAI..." 
-                className="min-h-[250px] bg-background border-border rounded-xl resize-none p-4 focus:ring-accent"
+                placeholder="Paste the full job description here (e.g. requirements, responsibilities)..." 
+                className="min-h-[300px] bg-background border-border rounded-2xl resize-none p-6 focus:ring-accent shadow-inner"
                 value={jobDescription}
                 onChange={(e) => setJobDescription(e.target.value)}
               />
               <Button 
                 onClick={handleMatch} 
                 disabled={isMatching}
-                className="w-full h-14 rounded-xl text-md font-bold shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform"
+                className="w-full h-16 rounded-2xl text-lg font-bold shadow-xl shadow-primary/20 hover:scale-[1.01] transition-transform"
               >
                 {isMatching ? (
                   <>
-                    <Loader2 className="mr-2 h-5 w-5 animate-spin" /> Analyzing Portfolio...
+                    <Loader2 className="mr-2 h-6 w-6 animate-spin" /> Analyzing Candidate Profile...
                   </>
                 ) : (
                   <>
-                    <Sparkles className="mr-2 h-5 w-5" /> Match Skills & Projects
+                    <Sparkles className="mr-2 h-6 w-6" /> Run Deep Scan Matcher
                   </>
                 )}
               </Button>
             </div>
           </div>
 
-          <div className="flex-1 w-full">
+          <div className="flex-1 w-full lg:sticky lg:top-24">
             {result ? (
-              <Card className="border-accent/20 bg-accent/5 overflow-hidden animate-fade-in-up">
-                <CardHeader className="bg-accent/10 border-b border-accent/10">
-                  <CardTitle className="flex items-center gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-accent" /> Match Result
-                  </CardTitle>
-                  <CardDescription>Generated specifically for this role</CardDescription>
-                </CardHeader>
-                <CardContent className="p-6 space-y-6">
-                  <div>
-                    <h4 className="font-semibold text-xs uppercase tracking-widest text-muted-foreground mb-3">Professional Fit</h4>
-                    <p className="text-sm leading-relaxed text-foreground/90">{result.summary}</p>
+              <Card className="border-accent/30 bg-card shadow-2xl overflow-hidden animate-fade-in-up">
+                <CardHeader className="bg-gradient-to-r from-accent/20 to-primary/20 border-b border-border p-8">
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <CardTitle className="flex items-center gap-2 text-2xl">
+                        <CheckCircle2 className="h-6 w-6 text-accent" /> Recruiter Cheat Sheet
+                      </CardTitle>
+                      <CardDescription className="text-foreground/70">Tailored analysis for Murari Komati</CardDescription>
+                    </div>
+                    <Badge variant="outline" className="bg-background/50">Match: Highly Likely</Badge>
                   </div>
+                </CardHeader>
+                <CardContent className="p-8 space-y-8">
+                  {/* Impact Summary */}
                   <div>
-                    <h4 className="font-semibold text-xs uppercase tracking-widest text-muted-foreground mb-3">Top Matching Skills</h4>
+                    <h4 className="font-bold text-[10px] uppercase tracking-[0.2em] text-primary mb-3">Pitch / Value Prop</h4>
+                    <p className="text-sm leading-relaxed text-foreground/90 font-medium">{result.impactSummary}</p>
+                  </div>
+
+                  {/* Skills Map */}
+                  <div>
+                    <h4 className="font-bold text-[10px] uppercase tracking-[0.2em] text-primary mb-3">Required Technical Stack</h4>
                     <div className="flex flex-wrap gap-2">
                       {result.matchedSkills.map((skill, i) => (
-                        <Badge key={i} variant="secondary" className="bg-background border shadow-sm">
+                        <Badge key={i} variant="secondary" className="bg-muted border py-1 px-3">
                           {skill}
                         </Badge>
                       ))}
                     </div>
                   </div>
+
+                  {/* Projects & Proof */}
                   <div>
-                    <h4 className="font-semibold text-xs uppercase tracking-widest text-muted-foreground mb-3">Relevant Case Studies</h4>
-                    <ul className="space-y-2">
+                    <h4 className="font-bold text-[10px] uppercase tracking-[0.2em] text-primary mb-3">Proof of Concept (Projects)</h4>
+                    <div className="space-y-4">
                       {result.matchedProjects.map((project, i) => (
-                        <li key={i} className="text-sm flex items-start gap-2">
-                          <div className="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent shrink-0" />
-                          <span className="text-foreground/80">{project}</span>
-                        </li>
+                        <div key={i} className="bg-muted/50 p-4 rounded-xl border border-border">
+                          <p className="font-bold text-sm mb-1">{project.title}</p>
+                          <p className="text-xs text-muted-foreground leading-relaxed">{project.reason}</p>
+                        </div>
                       ))}
-                    </ul>
+                    </div>
                   </div>
+
+                  {/* Certifications */}
+                  {result.relevantCertifications.length > 0 && (
+                    <div>
+                      <h4 className="font-bold text-[10px] uppercase tracking-[0.2em] text-primary mb-3">Verified Certifications</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {result.relevantCertifications.map((cert, i) => (
+                          <div key={i} className="flex items-center gap-2 text-xs bg-accent/5 text-accent border border-accent/20 px-3 py-1.5 rounded-lg">
+                            <Award className="h-3 w-3" /> {cert}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Direct Evidence Links */}
+                  <div>
+                    <h4 className="font-bold text-[10px] uppercase tracking-[0.2em] text-primary mb-3">Evidence & Verification</h4>
+                    <div className="grid grid-cols-1 gap-3">
+                      {result.recommendedLinks.map((link, i) => (
+                        <a 
+                          key={i} 
+                          href={link.url} 
+                          target="_blank" 
+                          className="group flex items-center justify-between p-3 rounded-xl border border-border bg-background hover:border-primary transition-all"
+                        >
+                          <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+                              {link.name === 'LeetCode' ? <Code className="h-4 w-4" /> : link.name === 'LinkedIn' ? <Linkedin className="h-4 w-4" /> : <ExternalLink className="h-4 w-4" />}
+                            </div>
+                            <div>
+                              <p className="text-xs font-bold">{link.name}</p>
+                              <p className="text-[10px] text-muted-foreground">{link.context}</p>
+                            </div>
+                          </div>
+                          <ExternalLink className="h-3 w-3 text-muted-foreground group-hover:text-primary" />
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+
                   <Button 
-                    variant="outline" 
-                    className="w-full rounded-lg"
+                    variant="ghost" 
+                    className="w-full rounded-xl text-xs"
                     onClick={() => {
                       setResult(null);
                       setJobDescription("");
                     }}
                   >
-                    New Analysis
+                    Reset & Start New Scan
                   </Button>
                 </CardContent>
               </Card>
             ) : (
-              <div className="h-full border-2 border-dashed rounded-2xl flex flex-col items-center justify-center p-12 text-center space-y-4 min-h-[400px] bg-card/10">
-                <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center">
-                  <Sparkles className="h-8 w-8 text-muted-foreground opacity-50" />
+              <div className="h-full border-2 border-dashed border-border rounded-[2.5rem] flex flex-col items-center justify-center p-12 text-center space-y-6 min-h-[500px] bg-card/10 backdrop-blur-sm">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-primary/20 blur-2xl rounded-full" />
+                  <div className="relative w-20 h-20 rounded-full bg-muted flex items-center justify-center">
+                    <Sparkles className="h-10 w-10 text-muted-foreground opacity-50" />
+                  </div>
                 </div>
-                <div className="space-y-2">
-                  <p className="font-semibold">Ready for Analysis</p>
-                  <p className="text-muted-foreground text-sm max-w-[250px]">Paste a job description to see how I can solve your data challenges.</p>
+                <div className="space-y-3">
+                  <p className="text-xl font-bold font-headline">Awaiting Scan Request</p>
+                  <p className="text-muted-foreground text-sm max-w-[300px]">
+                    Paste a JD to generate a real-time <span className="text-foreground">Recruiter Cheat Sheet</span> mapping certifications, code, and experience.
+                  </p>
+                </div>
+                <div className="flex gap-2 text-[10px] font-bold uppercase tracking-widest text-muted-foreground opacity-50">
+                  <span>Experience Scan</span>
+                  <span>•</span>
+                  <span>Cert Check</span>
+                  <span>•</span>
+                  <span>Repo Audit</span>
                 </div>
               </div>
             )}

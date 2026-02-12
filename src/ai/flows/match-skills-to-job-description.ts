@@ -1,6 +1,7 @@
 'use server';
 /**
- * @fileOverview An AI-powered skill matcher for recruiters.
+ * @fileOverview Deep-profile AI Matcher for Murari Komati.
+ * Scans Experience, Projects, Certifications, and Social links.
  */
 
 import { ai } from '@/ai/genkit';
@@ -12,9 +13,18 @@ const MatchSkillsToJobDescriptionInputSchema = z.object({
 export type MatchSkillsToJobDescriptionInput = z.infer<typeof MatchSkillsToJobDescriptionInputSchema>;
 
 const MatchSkillsToJobDescriptionOutputSchema = z.object({
-  matchedSkills: z.array(z.string()).describe('Top matching technical skills from the portfolio.'),
-  matchedProjects: z.array(z.string()).describe('Specific project titles from the portfolio that are relevant.'),
-  summary: z.string().describe('A professional summary of why the candidate is a fit for this role.'),
+  matchedSkills: z.array(z.string()).describe('Top matching technical skills.'),
+  matchedProjects: z.array(z.object({
+    title: z.string(),
+    reason: z.string().describe('Why this project proves the candidate can do the job.'),
+  })).describe('Specific projects with proof points.'),
+  relevantCertifications: z.array(z.string()).describe('Certifications that add credibility for this role.'),
+  impactSummary: z.string().describe('A high-impact pitch focusing on measurable results (e.g. 90% automation).'),
+  recommendedLinks: z.array(z.object({
+    name: z.string(),
+    url: z.string(),
+    context: z.string().describe('Why the recruiter should click this link (e.g. "Check my Python logic on LeetCode").'),
+  })).describe('Direct links to GitHub, LinkedIn, or LeetCode based on JD requirements.'),
 });
 export type MatchSkillsToJobDescriptionOutput = z.infer<typeof MatchSkillsToJobDescriptionOutputSchema>;
 
@@ -26,27 +36,38 @@ const prompt = ai.definePrompt({
   name: 'matchSkillsToJobDescriptionPrompt',
   input: { schema: MatchSkillsToJobDescriptionInputSchema },
   output: { schema: MatchSkillsToJobDescriptionOutputSchema },
-  system: "You are a specialized Recruitment AI Agent representing Murari Komati, an expert Data & AI Engineer. Your goal is to map job requirements to his specific expertise.",
+  system: "You are a Senior Technical Recruiter representing Murari Komati. Your task is to perform a Deep Scan of his entire profile and map it to the provided Job Description (JD).",
   prompt: `
-    CANDIDATE PROFILE (Murari Komati):
-    - Current Role: Data Engineer at Data Master Consulting.
-    - Education: B.Tech in Electronics and Telecommunication (WIT College, Solapur).
-    - Cloud Expertise: Azure (Expert - ADF, Databricks, Synapse, ADLS Gen2), GCP (BigQuery, Dataform), AWS.
-    - Data Engineering: PySpark, Spark SQL, Delta Lake (Medallion Architecture), Kafka, Spark Streaming, SQL Server, MySQL, SAP HANA Integration.
-    - AI & GenAI: LangGraph, LangChain, CrewAI, RAG Architecture, Agentic AI Workflows, Prompt Engineering, MLflow, Unity Catalog.
-    - Key Achievements: 90% reduction in manual data tasks, 4x faster data turnaround, processed 100GB+ daily transactional data.
-    - Projects: 
-      1. SQL ChatBot (Natural Language to SQL interface)
-      2. CrewAI Job Assistant (Autonomous multi-agent system)
-      3. Traffic Management System (Computer Vision/OpenCV)
+    CANDIDATE PROFILE DATA (Murari Komati):
+    
+    EXPERIENCE:
+    - Data Engineer @ Data Master Consulting (2023-Present): Scalable ETL pipelines (ADF, Databricks), Real-time (Kafka, Spark Streaming), GenAI (LangChain, CrewAI, RAG), Delta Lake (SCD Type 2), Power BI.
+    - Achievements: 90% reduction in manual tasks, processed 100GB+ daily data, 20% increase in user engagement via AI.
+    
+    PROJECTS:
+    1. SQL ChatBot: NLP to SQL interface via LangChain & Streamlit. Proves Python/SQL/LLM expertise.
+    2. CrewAI Assistant: Multi-agent automation for job search. Proves Agentic AI & orchestration.
+    3. Traffic Management: OpenCV & Python for real-time density. Proves Computer Vision & logic.
+    
+    CERTIFICATIONS:
+    - Databricks Fundamentals (2025)
+    - Databricks Generative AI Fundamentals (2025)
+    - Python Basics for Data Science (EDX)
+    
+    RESOURCES:
+    - GitHub: https://github.com/Murarikomati (Code quality, Project structure)
+    - LinkedIn: https://linkedin.com/in/komati-murari (Professional network, Endorsements)
+    - LeetCode: https://leetcode.com/u/komatimurari50/ (Problem-solving, DSA skills)
 
-    JOB DESCRIPTION TO ANALYZE:
+    JOB DESCRIPTION:
     {{{jobDescription}}}
 
     INSTRUCTIONS:
-    1. Extract exactly which technical skills from Murari's profile match this specific job.
-    2. Identify which of his 3 projects are most relevant to show proof of capability.
-    3. Write a high-impact, professional 2-sentence pitch explaining exactly why Murari is the ideal candidate for this specific role.
+    1. Analyze the JD for specific requirements (Azure, Spark, GenAI, Programming, etc.).
+    2. If the JD mentions "Coding", "Algorithms", or "Problem Solving", include the LeetCode link.
+    3. Map the Databricks/GenAI certifications if the JD is cloud or AI-focused.
+    4. Format the projects to explain exactly how they solve the JD's specific challenges.
+    5. Write the impact summary to highlight the 90% automation metric if the JD mentions "Efficiency" or "Scaling".
   `,
   config: {
     safetySettings: [
@@ -68,20 +89,16 @@ const matchSkillsToJobDescriptionFlow = ai.defineFlow(
   async (input) => {
     try {
       const { output } = await prompt(input);
-      
-      if (!output) {
-        throw new Error("No output from AI model");
-      }
-      
+      if (!output) throw new Error("No output from AI model");
       return output;
     } catch (error) {
-      console.error("AI Matcher Flow failed:", error);
-      
-      // Intelligent Fallback for production stability
+      console.error("AI Deep Scan failed:", error);
       return {
-        matchedSkills: ["Python", "SQL", "Azure Databricks", "Spark", "GenAI"],
-        matchedProjects: ["SQL ChatBot", "CrewAI Assistant"],
-        summary: "Murari's extensive background in building automated ETL pipelines and sophisticated AI agents directly aligns with the core requirements of this engineering role."
+        matchedSkills: ["Python", "SQL", "Databricks", "Azure", "LangChain"],
+        matchedProjects: [{ title: "SQL ChatBot", reason: "Demonstrates production-ready RAG architecture." }],
+        relevantCertifications: ["Databricks Generative AI Fundamentals"],
+        impactSummary: "Murari has a proven track record of reducing manual data tasks by 90% and building high-performance GenAI solutions.",
+        recommendedLinks: [{ name: "LinkedIn", url: "https://linkedin.com/in/komati-murari", context: "Connect for professional references." }],
       };
     }
   }
