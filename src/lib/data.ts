@@ -30,12 +30,21 @@ export const PROJECTS = [
   },
   {
     id: 3,
-    title: 'Real-Time Movie Analytics',
-    description: 'Near real-time ELT platform processing transactional data using Kafka and Spark Structured Streaming on Azure.',
-    tech: ['Kafka', 'Spark Streaming', 'Azure', 'Delta Lake'],
+    title: 'Real-Time Movie Analytics ELT',
+    description: 'Scalable cloud-native ELT platform using Amazon S3, Snowflake, and dbt. Built raw, staging, and analytics layers using Kimball star schema.',
+    tech: ['S3', 'Snowflake', 'dbt', 'Kimball'],
     category: 'Data Engineering',
-    image: 'https://picsum.photos/seed/traffic-cv/600/400',
-    url: 'https://github.com/Murarikomati'
+    image: 'https://picsum.photos/seed/netflix-elt/600/400',
+    url: 'https://github.com/Murarikomati/Netflix_Data_Analysis-'
+  },
+  {
+    id: 4,
+    title: 'Stock Market Data Pipeline',
+    description: 'Near real-time streaming ingestion using Azure Event Hub. Implemented anomaly detection reducing analyst response by 50%.',
+    tech: ['Event Hub', 'SQL Server', 'Fabric', 'Streaming'],
+    category: 'Data Engineering',
+    image: 'https://picsum.photos/seed/stock-stream/600/400',
+    url: 'https://github.com/Murarikomati/wiki-to-azure-lake-pipeline'
   },
 ];
 
@@ -94,5 +103,6 @@ export const CONTACT_INFO = {
   location: 'Solapur, Maharashtra, India',
   github: 'https://github.com/Murarikomati',
   linkedin: 'https://linkedin.com/in/komati-murari',
-  leetcode: 'https://leetcode.com/u/komatimurari50/'
+  leetcode: 'https://leetcode.com/u/komatimurari50/',
+  resume: '/resume.pdf'
 };

@@ -1,5 +1,7 @@
+
 import { Button } from "@/components/ui/button";
 import { ArrowRight, FileText, Github, Linkedin, Code } from "lucide-react";
+import { CONTACT_INFO } from "@/lib/data";
 
 export default function Hero() {
   return (
@@ -29,18 +31,20 @@ export default function Hero() {
           <Button size="lg" className="h-14 px-10 rounded-full font-bold text-md shadow-lg shadow-primary/20" asChild>
             <a href="#projects">View My Impact <ArrowRight className="ml-2 h-5 w-5" /></a>
           </Button>
-          <Button size="lg" variant="outline" className="h-14 px-10 rounded-full font-bold text-md bg-background/50 backdrop-blur-sm">
-            <FileText className="mr-2 h-5 w-5" /> Get My Resume
+          <Button size="lg" variant="outline" className="h-14 px-10 rounded-full font-bold text-md bg-background/50 backdrop-blur-sm" asChild>
+            <a href={CONTACT_INFO.resume} download="Murari_Komati_Resume.pdf">
+              <FileText className="mr-2 h-5 w-5" /> Get My Resume
+            </a>
           </Button>
           <div className="flex gap-2 ml-2">
             <Button size="icon" variant="ghost" className="h-12 w-12 rounded-full border" asChild>
-              <a href="https://github.com/Murarikomati" target="_blank" rel="noopener noreferrer"><Github className="h-6 w-6" /></a>
+              <a href={CONTACT_INFO.github} target="_blank" rel="noopener noreferrer"><Github className="h-6 w-6" /></a>
             </Button>
             <Button size="icon" variant="ghost" className="h-12 w-12 rounded-full border" asChild>
-              <a href="https://linkedin.com/in/komati-murari" target="_blank" rel="noopener noreferrer"><Linkedin className="h-6 w-6" /></a>
+              <a href={CONTACT_INFO.linkedin} target="_blank" rel="noopener noreferrer"><Linkedin className="h-6 w-6" /></a>
             </Button>
             <Button size="icon" variant="ghost" className="h-12 w-12 rounded-full border" asChild>
-              <a href="https://leetcode.com/u/komatimurari50/" target="_blank" rel="noopener noreferrer"><Code className="h-6 w-6" /></a>
+              <a href={CONTACT_INFO.leetcode} target="_blank" rel="noopener noreferrer"><Code className="h-6 w-6" /></a>
             </Button>
           </div>
         </div>
@@ -53,12 +57,12 @@ export default function Hero() {
             <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Years Experience</p>
           </div>
           <div className="text-center">
-            <p className="text-4xl font-bold font-headline mb-2 text-accent">90%</p>
-            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Process Automation</p>
+            <p className="text-4xl font-bold font-headline mb-2 text-accent">880+</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">LeetCode Problems</p>
           </div>
           <div className="text-center">
             <p className="text-4xl font-bold font-headline mb-2 text-secondary">Cloud</p>
-            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Azure &amp; Databricks Expert</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Azure &amp; Databricks</p>
           </div>
           <div className="text-center">
             <p className="text-4xl font-bold font-headline mb-2 text-primary">Agentic</p>

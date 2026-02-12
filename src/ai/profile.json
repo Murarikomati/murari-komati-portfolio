@@ -1,3 +1,4 @@
+
 {
   "name": "Murari Komati",
   "title": "Data Engineer & AI Solutions Architect",
@@ -39,7 +40,7 @@
       "Advanced Data Structures & Algorithms (DSA)"
     ],
     "data_engineering": [
-      "PySpark", "Apache Spark", "SQL", "Delta Lake", "Medallion Architecture", "ADF", "Databricks", "ETL/ELT"
+      "PySpark", "Apache Spark", "SQL", "Delta Lake", "Medallion Architecture", "ADF", "Databricks", "ETL/ELT", "Snowflake", "dbt"
     ],
     "ai_ml": [
       "RAG Systems", "Agentic AI", "LangChain", "LangGraph", "CrewAI", "Vector Databases"
@@ -55,8 +56,7 @@
       "technologies": ["Python", "FastAPI", "LangChain", "MS SQL", "FAISS"],
       "highlights": [
         "Built a natural language interface for enterprise MS SQL databases",
-        "Enabled context-aware Q&A over massive documentation using RAG",
-        "Optimized retrieval precision using semantic search"
+        "Enabled context-aware Q&A over massive documentation using RAG"
       ]
     },
     {
@@ -65,14 +65,26 @@
       "technologies": ["LangGraph", "CrewAI", "Python", "Databricks"],
       "highlights": [
         "Designed autonomous multi-agent systems for data reasoning",
-        "Automated complex data ingestion and validation workflows",
-        "Integrated LLMs with structured enterprise data"
+        "Automated complex data ingestion and validation workflows"
+      ]
+    },
+    {
+      "name": "Real-Time Movie Analytics ELT Platform",
+      "url": "https://github.com/Murarikomati/Netflix_Data_Analysis-",
+      "technologies": ["S3", "Snowflake", "dbt", "Kimball"],
+      "highlights": [
+        "Cloud-native ELT platform processing large-scale movie interaction data",
+        "Built staging and analytics layers using Kimball star schema"
+      ]
+    },
+    {
+      "name": "Real-Time Stock Market Data Pipeline",
+      "url": "https://github.com/Murarikomati/wiki-to-azure-lake-pipeline",
+      "technologies": ["Azure Event Hub", "SQL Server", "Microsoft Fabric"],
+      "highlights": [
+        "Streaming ingestion for high-frequency stock market data",
+        "Implemented anomaly detection reducing analyst response by 50%"
       ]
     }
-  ],
-  "socials": {
-    "github": "https://github.com/Murarikomati",
-    "linkedin": "https://linkedin.com/in/komati-murari",
-    "leetcode": "https://leetcode.com/u/komatimurari50/"
-  }
+  ]
 }

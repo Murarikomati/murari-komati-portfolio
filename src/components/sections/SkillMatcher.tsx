@@ -1,10 +1,11 @@
+
 'use client';
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Sparkles, Loader2, CheckCircle2, ExternalLink, Code, Linkedin, RefreshCw } from "lucide-react";
+import { Sparkles, Loader2, CheckCircle2, ExternalLink, Github, Linkedin, Code, RefreshCw } from "lucide-react";
 import { matchSkillsToJobDescription, type MatchSkillsToJobDescriptionOutput } from "@/ai/flows/match-skills-to-job-description";
 import { useToast } from "@/hooks/use-toast";
 import { TechPill } from "@/components/ui/TechPill";
@@ -42,6 +43,14 @@ export default function SkillMatcher() {
     } finally {
       setIsMatching(false);
     }
+  };
+
+  const getIcon = (name: string) => {
+    const lower = name.toLowerCase();
+    if (lower.includes('github')) return <Github className="h-6 w-6" />;
+    if (lower.includes('linkedin')) return <Linkedin className="h-6 w-6" />;
+    if (lower.includes('leetcode')) return <Code className="h-6 w-6" />;
+    return <ExternalLink className="h-6 w-6" />;
   };
 
   return (
@@ -107,7 +116,7 @@ export default function SkillMatcher() {
                     </div>
                   </div>
                 </CardHeader>
-                <CardContent className="p-8 space-y-10 bg-zinc-900/80 max-h-[650px] overflow-y-auto custom-scrollbar">
+                <CardContent className="p-8 space-y-8 bg-zinc-900/80 max-h-[650px] overflow-y-auto custom-scrollbar">
                   <div className="space-y-3">
                     <h4 className="font-bold text-xs uppercase tracking-[0.2em] text-primary">Value Proposition</h4>
                     <p className="text-lg leading-relaxed text-white font-medium">{result.impactSummary}</p>
@@ -147,7 +156,7 @@ export default function SkillMatcher() {
                         >
                           <div className="flex items-center gap-4">
                             <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all text-primary">
-                              {link.name.toLowerCase().includes('leetcode') || link.name.toLowerCase().includes('github') ? <Code className="h-6 w-6" /> : link.name.toLowerCase().includes('linkedin') ? <Linkedin className="h-6 w-6" /> : <ExternalLink className="h-6 w-6" />}
+                              {getIcon(link.name)}
                             </div>
                             <div>
                               <p className="text-sm font-bold text-white">{link.name}</p>
