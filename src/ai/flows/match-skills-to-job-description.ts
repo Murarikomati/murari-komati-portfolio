@@ -11,19 +11,11 @@
 import { ai } from '@/ai/genkit';
 import { z } from 'genkit';
 
-/* ===============================
-   INPUT SCHEMA
-================================ */
-
 const InputSchema = z.object({
   jobDescription: z.string().describe('The full text of the job description to analyze.'),
 });
 
 export type MatchSkillsToJobDescriptionInput = z.infer<typeof InputSchema>;
-
-/* ===============================
-   OUTPUT SCHEMA
-================================ */
 
 const OutputSchema = z.object({
   matchScore: z.number().min(0).max(100).default(0),
@@ -49,10 +41,6 @@ const OutputSchema = z.object({
 });
 
 export type MatchSkillsToJobDescriptionOutput = z.infer<typeof OutputSchema>;
-
-/* ===============================
-   PROMPT DEFINITION
-================================ */
 
 const prompt = ai.definePrompt({
   name: 'deepJdMatcherPrompt',
@@ -95,9 +83,9 @@ Core Skills:
 - AI: LangChain, CrewAI, RAG, Agentic AI, OpenCV
 
 Links:
-- GitHub: https://github.com/Murarikomati (Portfolio of data pipelines and AI agents)
-- LinkedIn: https://linkedin.com/in/komati-murari (Professional networking)
-- LeetCode: https://leetcode.com/u/komatimurari50/ (DSA and problem-solving proof)
+- GitHub: https://github.com/Murarikomati
+- LinkedIn: https://linkedin.com/in/komati-murari
+- LeetCode: https://leetcode.com/u/komatimurari50/
 
 =============================
 JOB DESCRIPTION
@@ -115,10 +103,6 @@ INSTRUCTIONS
 6. Create an impactSummary that explains exactly why Murari fits this specific role.
 `,
 });
-
-/* ===============================
-   FLOW WRAPPER
-================================ */
 
 export async function matchSkillsToJobDescription(
   input: MatchSkillsToJobDescriptionInput
@@ -139,14 +123,13 @@ const matchFlow = ai.defineFlow(
       return output;
     } catch (error) {
       console.error('Genkit Flow Error:', error);
-      // Fallback response to prevent UI crash
       return {
         matchScore: 85,
-        impactSummary: "Based on my background in Azure Databricks and GenAI, I have a strong foundation for this role. Let's discuss how my 90% automation track record can benefit your team.",
+        impactSummary: "Based on my background in Azure Databricks and GenAI, I have a strong foundation for this role. Let's discuss how my automation track record can benefit your team.",
         matchedSkills: ["Azure Data Factory", "Databricks", "Python", "SQL"],
         matchedProjects: [{ title: "ADF Pipeline Migration", reason: "Experience handling 100GB+ daily transaction data." }],
         relevantCertifications: ["Databricks Fundamentals"],
-        recommendedLinks: [{ name: "LinkedIn", url: "https://linkedin.com/in/komati-murari", context: "Full professional history and endorsements." }]
+        recommendedLinks: [{ name: "LinkedIn", url: "https://linkedin.com/in/komati-murari", context: "Professional history and endorsements." }]
       } as MatchSkillsToJobDescriptionOutput;
     }
   }

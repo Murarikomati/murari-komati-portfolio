@@ -19,11 +19,10 @@ export default function Experience() {
         </div>
 
         <div className="relative">
-          {/* Vertical line for desktop */}
           <div className="absolute left-0 md:left-[50%] top-0 bottom-0 w-px bg-gradient-to-b from-primary via-secondary to-transparent hidden md:block" />
 
           <div className="space-y-24">
-            {EXPERIENCE.map((exp: any, i) => (
+            {EXPERIENCE.map((exp, i) => (
               <div 
                 key={i} 
                 className={cn(
@@ -33,10 +32,8 @@ export default function Experience() {
                 onMouseEnter={() => setHoveredIndex(i)}
                 onMouseLeave={() => setHoveredIndex(null)}
               >
-                {/* Timeline Dot */}
                 <div className="absolute left-[-4px] md:left-1/2 md:ml-[-8px] w-4 h-4 rounded-full bg-primary border-4 border-background z-10 hidden md:block group-hover:scale-150 transition-transform shadow-[0_0_15px_rgba(var(--primary),0.5)]" />
 
-                {/* Date/Period */}
                 <div className={cn(
                   "hidden md:block w-1/2",
                   i % 2 !== 0 ? "text-left" : "text-right"
@@ -46,7 +43,6 @@ export default function Experience() {
                   </div>
                 </div>
 
-                {/* Content Card */}
                 <div className="w-full md:w-1/2">
                   <div className={cn(
                     "relative p-8 rounded-3xl border bg-card/40 backdrop-blur-md transition-all duration-500 hover:shadow-2xl hover:border-primary/30",
@@ -63,18 +59,16 @@ export default function Experience() {
                         <span className="md:hidden flex items-center gap-1"><Calendar className="h-3.5 w-3.5" /> {exp.period}</span>
                       </div>
 
-                      {/* Summary sneak peek */}
                       <p className="text-sm text-muted-foreground leading-relaxed">
                         {exp.summary}
                       </p>
 
-                      {/* Expandable highlights */}
                       <div className={cn(
                         "overflow-hidden transition-all duration-500 ease-in-out",
                         hoveredIndex === i ? "max-h-[500px] opacity-100 mt-6" : "max-h-0 opacity-0"
                       )}>
                         <div className="space-y-4 pt-4 border-t border-border/50">
-                          {exp.highlights?.map((highlight: string, j: number) => (
+                          {exp.highlights?.map((highlight, j) => (
                             <div key={j} className="flex gap-3 text-sm leading-relaxed text-foreground/90">
                               <ChevronRight className="h-4 w-4 shrink-0 text-primary mt-0.5" />
                               <span>{highlight}</span>
@@ -83,7 +77,6 @@ export default function Experience() {
                         </div>
                       </div>
 
-                      {/* Visual Indicator */}
                       <div className={cn(
                         "flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest transition-opacity duration-300",
                         hoveredIndex === i ? "opacity-0" : "opacity-50"

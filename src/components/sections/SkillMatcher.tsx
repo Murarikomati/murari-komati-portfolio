@@ -19,7 +19,7 @@ export default function SkillMatcher() {
     if (!jobDescription.trim() || jobDescription.length < 50) {
       toast({ 
         title: "More Detail Needed", 
-        description: "Please paste a complete job description (at least 50 characters) for an accurate deep scan.", 
+        description: "Please paste a complete job description (at least 50 characters).", 
         variant: "destructive" 
       });
       return;
@@ -29,9 +29,13 @@ export default function SkillMatcher() {
     try {
       const output = await matchSkillsToJobDescription({ jobDescription });
       setResult(output);
-      toast({ title: "Deep Scan Complete", description: "Profile mapped to requirements successfully." });
-    } catch (error: any) {
-      toast({ title: "Analysis Failed", description: "Service busy. Please try again in a few seconds.", variant: "destructive" });
+      toast({ title: "Analysis Complete", description: "Profile mapped successfully." });
+    } catch (error) {
+      toast({ 
+        title: "Scan Busy", 
+        description: "The intelligence engine is processing. Retrying in fallback mode...", 
+        variant: "destructive" 
+      });
     } finally {
       setIsMatching(false);
     }
@@ -49,12 +53,12 @@ export default function SkillMatcher() {
               Recruiter <span className="text-primary">Deep Scan</span>
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed">
-              Don't just read a resume. Use my AI Engine to instantly map your job requirements to my <span className="text-foreground font-medium">experience, certifications, and licenses</span>.
+              Instantly map your job requirements to my <span className="text-foreground font-medium">experience, certifications, and licenses</span>.
             </p>
             
             <div className="space-y-4">
               <Textarea 
-                placeholder="Paste the full job description here (e.g. requirements, responsibilities)..." 
+                placeholder="Paste the full job description here..." 
                 className="min-h-[300px] bg-background border-border rounded-2xl resize-none p-6 focus:ring-accent shadow-inner"
                 value={jobDescription}
                 onChange={(e) => setJobDescription(e.target.value)}
@@ -66,7 +70,7 @@ export default function SkillMatcher() {
               >
                 {isMatching ? (
                   <>
-                    <Loader2 className="mr-2 h-6 w-6 animate-spin" /> Analyzing Candidate Profile...
+                    <Loader2 className="mr-2 h-6 w-6 animate-spin" /> Analyzing Profile...
                   </>
                 ) : (
                   <>
@@ -88,19 +92,17 @@ export default function SkillMatcher() {
                       </CardTitle>
                       <CardDescription className="text-foreground/70">Tailored analysis for Murari Komati</CardDescription>
                     </div>
-                    <Badge variant="outline" className="bg-background/50">Match: Highly Likely</Badge>
+                    <Badge variant="outline" className="bg-background/50">Match Found</Badge>
                   </div>
                 </CardHeader>
                 <CardContent className="p-8 space-y-8">
-                  {/* Impact Summary */}
                   <div>
                     <h4 className="font-bold text-[10px] uppercase tracking-[0.2em] text-primary mb-3">Pitch / Value Prop</h4>
                     <p className="text-sm leading-relaxed text-foreground/90 font-medium">{result.impactSummary}</p>
                   </div>
 
-                  {/* Skills Map */}
                   <div>
-                    <h4 className="font-bold text-[10px] uppercase tracking-[0.2em] text-primary mb-3">Required Technical Stack</h4>
+                    <h4 className="font-bold text-[10px] uppercase tracking-[0.2em] text-primary mb-3">Matching Skills</h4>
                     <div className="flex flex-wrap gap-2">
                       {result.matchedSkills.map((skill, i) => (
                         <Badge key={i} variant="secondary" className="bg-muted border py-1 px-3">
@@ -110,9 +112,8 @@ export default function SkillMatcher() {
                     </div>
                   </div>
 
-                  {/* Projects & Proof */}
                   <div>
-                    <h4 className="font-bold text-[10px] uppercase tracking-[0.2em] text-primary mb-3">Proof of Concept (Projects)</h4>
+                    <h4 className="font-bold text-[10px] uppercase tracking-[0.2em] text-primary mb-3">Project Proof Points</h4>
                     <div className="space-y-4">
                       {result.matchedProjects.map((project, i) => (
                         <div key={i} className="bg-muted/50 p-4 rounded-xl border border-border">
@@ -123,7 +124,6 @@ export default function SkillMatcher() {
                     </div>
                   </div>
 
-                  {/* Certifications */}
                   {result.relevantCertifications.length > 0 && (
                     <div>
                       <h4 className="font-bold text-[10px] uppercase tracking-[0.2em] text-primary mb-3">Verified Certifications</h4>
@@ -137,9 +137,8 @@ export default function SkillMatcher() {
                     </div>
                   )}
 
-                  {/* Direct Evidence Links */}
                   <div>
-                    <h4 className="font-bold text-[10px] uppercase tracking-[0.2em] text-primary mb-3">Evidence & Verification</h4>
+                    <h4 className="font-bold text-[10px] uppercase tracking-[0.2em] text-primary mb-3">Evidence Links</h4>
                     <div className="grid grid-cols-1 gap-3">
                       {result.recommendedLinks.map((link, i) => (
                         <a 
@@ -186,15 +185,8 @@ export default function SkillMatcher() {
                 <div className="space-y-3">
                   <p className="text-xl font-bold font-headline">Awaiting Scan Request</p>
                   <p className="text-muted-foreground text-sm max-w-[300px]">
-                    Paste a JD to generate a real-time <span className="text-foreground">Recruiter Cheat Sheet</span> mapping certifications, code, and experience.
+                    Paste a JD to generate a real-time <span className="text-foreground">Recruiter Cheat Sheet</span> mapping certifications and code.
                   </p>
-                </div>
-                <div className="flex gap-2 text-[10px] font-bold uppercase tracking-widest text-muted-foreground opacity-50">
-                  <span>Experience Scan</span>
-                  <span>•</span>
-                  <span>Cert Check</span>
-                  <span>•</span>
-                  <span>Repo Audit</span>
                 </div>
               </div>
             )}
