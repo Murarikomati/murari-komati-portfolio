@@ -39,7 +39,7 @@ export default function Experience() {
                 {/* Timeline Dot */}
                 <div className="absolute left-4 md:left-1/2 w-4 h-4 rounded-full bg-background border-2 border-primary z-10 translate-x-[-7.5px] md:translate-x-[-7.5px] group-hover:scale-125 transition-all duration-300 group-hover:bg-primary group-hover:shadow-[0_0_15px_rgba(var(--primary),0.5)]" />
 
-                {/* Date Side (Desktop Only) - Summary Version */}
+                {/* Date Side (Desktop Only) */}
                 <div className={cn(
                   "hidden md:block w-1/2",
                   i % 2 !== 0 ? "text-left pl-12" : "text-right pr-12"
@@ -59,7 +59,7 @@ export default function Experience() {
                   </div>
                 </div>
 
-                {/* Content Side - Details Revealed on Hover */}
+                {/* Content Side */}
                 <div className="w-full md:w-1/2 pl-12 md:pl-0">
                   <div className={cn(
                     "p-8 rounded-[2.5rem] border bg-card/40 backdrop-blur-xl transition-all duration-500 cursor-pointer relative overflow-hidden",

@@ -4,7 +4,6 @@
  * @fileOverview Deep Scan AI Matcher Flow
  * 
  * - matchSkillsToJobDescription: Analyzes candidate fit against a JD.
- * - Optimized for Genkit v1 API stability.
  */
 
 import { ai } from '@/ai/genkit';
@@ -41,8 +40,7 @@ export type MatchSkillsToJobDescriptionOutput = z.infer<typeof OutputSchema>;
 
 const prompt = ai.definePrompt({
   name: 'deepJdMatcherPrompt',
-  // Using the stable model to match the global config
-  model: 'googleai/gemini-1.5-pro-002',
+  model: 'googleai/gemini-1.5-flash-latest',
   input: { schema: InputSchema },
   output: { schema: OutputSchema },
   
