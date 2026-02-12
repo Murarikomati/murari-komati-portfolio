@@ -3,7 +3,7 @@
 /**
  * @fileOverview Deep Scan AI Matcher Flow
  * 
- * - matchSkillsToJobDescription: Analyzes candidate fit against a JD.
+ * - matchSkillsToJobDescription: Analyzes candidate fit against a JD using forced stable v1 API.
  */
 
 import { ai } from '@/ai/genkit';
@@ -40,7 +40,7 @@ export type MatchSkillsToJobDescriptionOutput = z.infer<typeof OutputSchema>;
 
 const prompt = ai.definePrompt({
   name: 'deepJdMatcherPrompt',
-  model: 'googleai/gemini-1.5-flash-latest',
+  model: 'googleai/gemini-1.5-flash',
   input: { schema: InputSchema },
   output: { schema: OutputSchema },
   
@@ -55,8 +55,10 @@ const prompt = ai.definePrompt({
   },
 
   prompt: `
-    SYSTEM INSTRUCTIONS:
-    You are an elite Technical Recruiter. Analyze the JD against Murari Komati's profile.
+    INSTRUCTIONS:
+    You are an elite Technical Recruiter. Analyze the provided JD against Murari Komati's profile.
+    
+    CRITICAL OBJECTIVES:
     1. Impact Summary: A punchy pitch on why he is a strong technical fit.
     2. Projects: Map 1-2 specific projects from his portfolio to the JD.
     3. Certifications: Highlight his Databricks and Python certifications.
@@ -86,7 +88,7 @@ const prompt = ai.definePrompt({
     JOB DESCRIPTION:
     {{{jobDescription}}}
 
-    Produce a high-fidelity recruiter cheat sheet.
+    Produce a high-fidelity recruiter cheat sheet in structured JSON format.
   `,
 });
 
