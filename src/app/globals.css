@@ -4,47 +4,47 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 210 20% 98%;
     --foreground: 225 12% 11%;
     --card: 0 0% 100%;
     --card-foreground: 225 12% 11%;
     --popover: 0 0% 100%;
     --popover-foreground: 225 12% 11%;
-    --primary: 217 52% 36%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 184 66% 58%;
-    --secondary-foreground: 225 12% 11%;
-    --muted: 210 20% 96%;
+    --primary: 221 83% 53%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 199 89% 48%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 210 20% 92%;
     --muted-foreground: 215 16% 47%;
-    --accent: 184 66% 58%;
+    --accent: 184 66% 50%;
     --accent-foreground: 225 12% 11%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 217 52% 36%;
-    --radius: 0.75rem;
+    --border: 214 32% 85%;
+    --input: 214 32% 85%;
+    --ring: 221 83% 53%;
+    --radius: 1rem;
   }
   .dark {
-    --background: 225 12% 11%;
+    --background: 225 12% 6%;
     --foreground: 0 0% 98%;
-    --card: 225 12% 14%;
+    --card: 225 12% 9%;
     --card-foreground: 0 0% 98%;
-    --popover: 225 12% 11%;
+    --popover: 225 12% 6%;
     --popover-foreground: 0 0% 98%;
-    --primary: 217 52% 45%;
+    --primary: 217 91% 60%;
     --primary-foreground: 0 0% 98%;
-    --secondary: 184 66% 58%;
-    --secondary-foreground: 225 12% 11%;
-    --muted: 225 12% 20%;
+    --secondary: 199 89% 48%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 225 12% 14%;
     --muted-foreground: 215 20% 65%;
-    --accent: 184 66% 58%;
+    --accent: 184 66% 50%;
     --accent-foreground: 225 12% 11%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 225 12% 25%;
-    --input: 225 12% 25%;
-    --ring: 184 66% 58%;
+    --border: 225 12% 18%;
+    --input: 225 12% 18%;
+    --ring: 184 66% 50%;
   }
 }
 
@@ -58,4 +58,15 @@
   h1, h2, h3, h4, h5, h6 {
     @apply font-headline;
   }
+}
+
+.animate-gradient {
+  background-size: 300%;
+  animation: gradient 8s ease infinite;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }

@@ -3,8 +3,14 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: 'EngineerHub Portfolio | Data Engineer',
-  description: 'Professional portfolio showcasing expertise in Cloud Data Engineering, Big Data, and AI solutions.',
+  title: 'Murari Komati | Senior Data Engineer Portfolio',
+  description: 'Senior Data Engineer specializing in Azure, Databricks, Spark, and high-scale cloud data architecture. Explore my projects and professional impact.',
+  keywords: ['Data Engineer', 'Azure Data Engineer', 'Databricks', 'PySpark', 'ETL Architecture', 'Cloud Data Platforms'],
+  openGraph: {
+    title: 'Murari Komati | Senior Data Engineer',
+    description: 'Architecting Scalable Data Ecosystems',
+    images: ['https://picsum.photos/seed/portfolio-og/1200/630'],
+  }
 };
 
 export default function RootLayout({
@@ -13,13 +19,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="dark scroll-smooth">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
       </head>
-      <body className="font-body antialiased selection:bg-accent/30">
+      <body className="font-body antialiased selection:bg-accent/30 bg-background text-foreground">
         {children}
         <Toaster />
       </body>
