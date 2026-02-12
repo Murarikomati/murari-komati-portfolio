@@ -4,10 +4,10 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Sparkles, Loader2, CheckCircle2, ExternalLink, Code, Linkedin, RefreshCw } from "lucide-react";
 import { matchSkillsToJobDescription, type MatchSkillsToJobDescriptionOutput } from "@/ai/flows/match-skills-to-job-description";
 import { useToast } from "@/hooks/use-toast";
+import { TechPill } from "@/components/ui/TechPill";
 
 export default function SkillMatcher() {
   const [jobDescription, setJobDescription] = useState("");
@@ -101,9 +101,9 @@ export default function SkillMatcher() {
                     </div>
                     <div className="flex flex-col items-end">
                       <div className="text-[10px] font-bold uppercase tracking-widest text-primary mb-1">Fit Score</div>
-                      <Badge className="bg-primary text-white font-black text-2xl px-4 py-2 rounded-xl shadow-lg border-none">
+                      <div className="bg-primary text-white font-black text-2xl px-4 py-2 rounded-xl shadow-lg border-none">
                         {result.matchScore}%
-                      </Badge>
+                      </div>
                     </div>
                   </div>
                 </CardHeader>
@@ -113,18 +113,16 @@ export default function SkillMatcher() {
                     <p className="text-lg leading-relaxed text-white font-medium">{result.impactSummary}</p>
                   </div>
 
-                  <div className="space-y-4">
+                  <div className="space-y-3">
                     <h4 className="font-bold text-xs uppercase tracking-[0.2em] text-primary">Matching Skills</h4>
                     <div className="flex flex-wrap gap-2.5">
                       {result.matchedSkills.map((skill, i) => (
-                        <Badge key={i} className="bg-secondary/20 text-secondary border border-secondary/30 py-1.5 px-4 font-bold text-[10px] uppercase rounded-full tracking-wider">
-                          {skill}
-                        </Badge>
+                        <TechPill key={i} label={skill} />
                       ))}
                     </div>
                   </div>
 
-                  <div className="space-y-4">
+                  <div className="space-y-3">
                     <h4 className="font-bold text-xs uppercase tracking-[0.2em] text-primary">Evidence & Proof Points</h4>
                     <div className="space-y-4">
                       {result.matchedProjects.map((project, i) => (
@@ -136,7 +134,7 @@ export default function SkillMatcher() {
                     </div>
                   </div>
 
-                  <div className="space-y-4">
+                  <div className="space-y-3">
                     <h4 className="font-bold text-xs uppercase tracking-[0.2em] text-primary">Deep Dive Links</h4>
                     <div className="grid grid-cols-1 gap-3">
                       {result.recommendedLinks.map((link, i) => (

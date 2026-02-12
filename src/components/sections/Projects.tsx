@@ -3,10 +3,10 @@
 import { useState } from "react";
 import { PROJECTS } from "@/lib/data";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github } from "lucide-react";
 import Image from "next/image";
+import { TechPill } from "@/components/ui/TechPill";
 
 export default function Projects() {
   const [filter, setFilter] = useState("All");
@@ -57,7 +57,7 @@ export default function Projects() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-80" />
                 <div className="absolute bottom-4 left-4 z-10">
-                  <Badge className="bg-primary text-white font-black px-4 py-1.5 rounded-full border-none shadow-lg text-[10px] tracking-widest">{project.category.toUpperCase()}</Badge>
+                  <TechPill label={project.category} className="bg-primary text-white border-none shadow-lg px-4 py-1.5" />
                 </div>
               </div>
               <CardHeader className="relative pb-2">
@@ -69,9 +69,7 @@ export default function Projects() {
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((t) => (
-                    <Badge key={t} className="bg-secondary/20 text-secondary border border-secondary/30 py-1.5 px-4 font-bold text-[10px] uppercase rounded-full tracking-wider">
-                      {t}
-                    </Badge>
+                    <TechPill key={t} label={t} />
                   ))}
                 </div>
               </CardContent>
