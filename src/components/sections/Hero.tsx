@@ -4,7 +4,6 @@ import { ArrowRight, FileText, Github, Linkedin, Code } from "lucide-react";
 export default function Hero() {
   return (
     <section className="relative min-h-[95vh] flex flex-col items-center justify-center text-center px-4 overflow-hidden pt-20">
-      {/* Dynamic Background Elements */}
       <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/15 rounded-full blur-[100px] animate-pulse" />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/15 rounded-full blur-[120px] animate-pulse delay-700" />
       
@@ -14,16 +13,16 @@ export default function Hero() {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
           </span>
-          AI/ML & Data Engineer
+          Murari Komati | Data Engineer • Cloud Specialist
         </div>
         
         <h1 className="text-5xl md:text-8xl font-bold tracking-tighter mb-8 font-headline leading-[1.1]">
-          Architecting Scalable <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary animate-gradient">AI & Data Ecosystems</span>
+          Building Scalable <br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary animate-gradient">Data Pipelines</span>
         </h1>
         
         <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
-          I build high-performance data platforms and <span className="text-foreground font-medium">Agentic AI workflows</span> that transform raw data into strategic intelligence.
+          Specializing in architecting <span className="text-foreground font-medium">Cloud-based solutions</span> using Azure, Databricks, and Python to transform complex requirements into strategic value.
         </p>
         
         <div className="flex flex-wrap items-center justify-center gap-4">
@@ -31,7 +30,7 @@ export default function Hero() {
             <a href="#projects">View My Impact <ArrowRight className="ml-2 h-5 w-5" /></a>
           </Button>
           <Button size="lg" variant="outline" className="h-14 px-10 rounded-full font-bold text-md bg-background/50 backdrop-blur-sm">
-            <FileText className="mr-2 h-5 w-5" /> Download CV
+            <FileText className="mr-2 h-5 w-5" /> Download Resume
           </Button>
           <div className="flex gap-2 ml-2">
             <Button size="icon" variant="ghost" className="h-12 w-12 rounded-full border" asChild>
@@ -50,20 +49,20 @@ export default function Hero() {
       <div className="mt-24 w-full max-w-5xl px-4 animate-fade-in-up delay-300">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 p-10 rounded-3xl border bg-card/40 backdrop-blur-md shadow-2xl">
           <div className="text-center">
-            <p className="text-4xl font-bold font-headline mb-2 text-primary">1,000+</p>
-            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Documents Indexed</p>
+            <p className="text-4xl font-bold font-headline mb-2 text-primary">100GB+</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Daily Transaction Data</p>
           </div>
           <div className="text-center">
             <p className="text-4xl font-bold font-headline mb-2 text-accent">90%</p>
-            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Process Automation</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Automation Gained</p>
           </div>
           <div className="text-center">
-            <p className="text-4xl font-bold font-headline mb-2 text-secondary">4X</p>
-            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Faster Turnaround</p>
+            <p className="text-4xl font-bold font-headline mb-2 text-secondary">20%</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">User Engagement Boost</p>
           </div>
           <div className="text-center">
             <p className="text-4xl font-bold font-headline mb-2 text-primary">Azure</p>
-            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Primary Stack</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Databricks Expert</p>
           </div>
         </div>
       </div>

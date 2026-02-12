@@ -1,3 +1,22 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "chatbot-sql-data",
+      "description": "AI Chatbot interface for database queries",
+      "imageUrl": "https://images.unsplash.com/photo-1684493735679-359868df0e18?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxBSSUyMENoYXR8ZW58MHx8fHwxNzcwODkyMDU2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "AI Chat"
+    },
+    {
+      "id": "agent-job-search",
+      "description": "Multi-agent autonomous system for job search",
+      "imageUrl": "https://images.unsplash.com/photo-1768400730810-5c4398d58ae7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxSb2JvdCUyMEFnZW50fGVufDB8fHx8MTc3MDg5MjA1N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Robot Agent"
+    },
+    {
+      "id": "smart-traffic-vision",
+      "description": "Smart traffic management using computer vision",
+      "imageUrl": "https://images.unsplash.com/photo-1762028768745-f701dce6aa64?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxUcmFmZmljJTIwVmlzaW9ufGVufDB8fHx8MTc3MDg5MjA1N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Traffic Vision"
+    }
+  ]
 }

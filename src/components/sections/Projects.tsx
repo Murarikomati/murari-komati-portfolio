@@ -23,8 +23,8 @@ export default function Projects() {
           <div>
             <h2 className="text-4xl font-bold font-headline mb-4">Featured <span className="text-primary">Impact</span></h2>
             <p className="text-muted-foreground max-w-xl">
-              Real-world data engineering challenges solved with scalable architecture 
-              and production-ready pipelines.
+              Production-ready solutions ranging from SQL-integrated LLMs to real-time 
+              infrastructure optimization.
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -43,21 +43,21 @@ export default function Projects() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project) => (
-            <Card key={project.id} className="group border-border/50 overflow-hidden hover:border-primary/50 transition-all flex flex-col">
+            <Card key={project.id} className="group border-border/50 overflow-hidden hover:border-primary/50 transition-all flex flex-col bg-card/50 backdrop-blur-sm">
               <div className="relative aspect-video overflow-hidden">
                 <Image 
                   src={project.image} 
                   alt={project.title}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  data-ai-hint="Data Visualization"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  data-ai-hint={project.category}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
-                <div className="absolute bottom-4 left-4">
-                  <Badge className="bg-accent/90 text-accent-foreground hover:bg-accent">{project.category}</Badge>
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+                <div className="absolute bottom-4 left-4 z-10">
+                  <Badge className="bg-primary/90 text-primary-foreground hover:bg-primary backdrop-blur-sm">{project.category}</Badge>
                 </div>
               </div>
-              <CardHeader>
+              <CardHeader className="relative">
                 <CardTitle className="font-headline text-xl">{project.title}</CardTitle>
               </CardHeader>
               <CardContent className="flex-1">
@@ -66,18 +66,18 @@ export default function Projects() {
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((t) => (
-                    <Badge key={t} variant="secondary" className="text-[10px] font-bold tracking-tight bg-secondary/10">
+                    <Badge key={t} variant="secondary" className="text-[10px] font-bold tracking-tight bg-primary/5 border-primary/10">
                       {t}
                     </Badge>
                   ))}
                 </div>
               </CardContent>
               <CardFooter className="pt-0 flex gap-2">
-                <Button size="sm" variant="ghost" className="flex-1 rounded-lg">
+                <Button size="sm" variant="ghost" className="flex-1 rounded-lg hover:bg-primary/10 transition-colors">
                   <Github className="mr-2 h-4 w-4" /> Code
                 </Button>
-                <Button size="sm" className="flex-1 rounded-lg">
-                  <ExternalLink className="mr-2 h-4 w-4" /> Live Case Study
+                <Button size="sm" className="flex-1 rounded-lg shadow-lg shadow-primary/20">
+                  <ExternalLink className="mr-2 h-4 w-4" /> Case Study
                 </Button>
               </CardFooter>
             </Card>
