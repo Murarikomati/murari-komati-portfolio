@@ -1,10 +1,10 @@
-
 'use server';
 
 /**
- * @fileOverview Deep Scan AI Matcher Flow (Direct SDK Implementation)
+ * @fileOverview Deep Scan AI Matcher Flow (Production Ready)
  * 
- * - matchSkillsToJobDescription: Analyzes candidate fit against a JD using the official Google AI SDK for stability.
+ * - matchSkillsToJobDescription: Directly utilizes the Google Generative AI SDK to bypass Genkit versioning issues.
+ * - Extracts relevance between a Job Description and Murari Komati's profile.
  */
 
 import { GoogleGenerativeAI } from "@google/generative-ai";
@@ -45,6 +45,8 @@ export async function matchSkillsToJobDescription(
   input: MatchSkillsToJobDescriptionInput
 ): Promise<MatchSkillsToJobDescriptionOutput> {
   const genAI = new GoogleGenerativeAI(API_KEY);
+  
+  // Use gemini-1.5-flash for speed and free-tier compatibility
   const model = genAI.getGenerativeModel({ 
     model: "gemini-1.5-flash",
     generationConfig: {
@@ -53,15 +55,16 @@ export async function matchSkillsToJobDescription(
   });
 
   const prompt = `
-    Analyze the provided Job Description against Murari Komati's profile.
+    You are an expert technical recruiter. Analyze the provided Job Description against Murari Komati's engineering profile.
     
     CANDIDATE PROFILE:
     Name: Murari Komati
-    Education: B.Tech in Electronics and Telecommunication, WIT Solapur (2019-2023)
+    Current Role: Data Engineer @ Data Master Consulting
+    Technical Arsenal: Azure Databricks, Spark, ETL, Medallion Architecture, LangChain, CrewAI, LangGraph, Python, SQL.
+    Key Impact: Processed 100GB+ daily transactional data; built RAG architectures; optimized cloud ETL.
     
-    EXPERIENCE:
-    - Data Engineer @ Data Master Consulting (Aug 2023 – Present): Azure Databricks, Spark, ETL, Medallion Architecture. Ingested data from SAP HANA, processed 100GB+ daily.
-    - Intern @ Data Master Consulting (Jan 2023 – July 2023): Optimized cloud ETL and automated data quality checks.
+    EDUCATION:
+    - B.Tech in Electronics and Telecommunication, WIT Solapur (2019-2023)
     
     CERTIFICATIONS:
     - Databricks Fundamentals (2025)
@@ -76,23 +79,31 @@ export async function matchSkillsToJobDescription(
     JOB DESCRIPTION:
     ${input.jobDescription}
 
-    Return a JSON object with the following fields:
-    - matchScore: number (0-100)
-    - extractedKeywords: string[]
-    - matchedSkills: string[]
-    - matchedProjects: {title: string, reason: string}[]
-    - relevantCertifications: string[]
-    - impactSummary: string (Punchy recruiter pitch)
-    - recommendedLinks: {name: string, url: string, context: string}[] (Link GitHub for code, LeetCode for DSA, LinkedIn for contact)
+    INSTRUCTIONS:
+    1. Calculate a matchScore (0-100) based on skills and experience overlap.
+    2. Extract relevant keywords from the JD.
+    3. Identify specific matched skills from Murari's profile.
+    4. Link his projects (Customer Service ChatBot, CrewAI Job Assistant) to JD requirements.
+    5. Write a punchy impactSummary for a hiring manager.
+    6. Provide recommendedLinks with context (e.g., "Review his Spark implementation on GitHub").
+
+    Return valid JSON.
   `;
 
   try {
     const result = await model.generateContent(prompt);
     const response = await result.response;
-    const text = response.text();
-    return JSON.parse(text) as MatchSkillsToJobDescriptionOutput;
+    let text = response.text();
+    
+    // Clean up markdown code blocks if present
+    if (text.startsWith("```json")) {
+      text = text.replace(/```json|```/g, "").trim();
+    }
+    
+    const parsedData = JSON.parse(text);
+    return OutputSchema.parse(parsedData);
   } catch (error: any) {
-    console.error("AI SDK Error:", error);
-    throw new Error("Deep Scan failed. Please verify the JD and try again.");
+    console.error("AI SDK Production Error:", error);
+    throw new Error("The deep scan encountered an error. Please ensure the Job Description is valid and try again.");
   }
 }
