@@ -4,7 +4,7 @@
  * @fileOverview Deep Scan AI Matcher Flow
  * 
  * - matchSkillsToJobDescription: Main function to analyze candidate-to-JD fit.
- * - Handles mapping of certifications, experience, and social links (GitHub/LeetCode).
+ * - Handles mapping of certifications, experience, and social links.
  */
 
 import { ai } from '@/ai/genkit';
@@ -25,26 +25,26 @@ export type MatchSkillsToJobDescriptionInput = z.infer<typeof InputSchema>;
 ============================== */
 
 const OutputSchema = z.object({
-  matchScore: z.number().min(0).max(100),
-  extractedKeywords: z.array(z.string()),
-  matchedSkills: z.array(z.string()),
+  matchScore: z.number().describe('A score from 0-100 indicating fit.'),
+  extractedKeywords: z.array(z.string()).describe('Keywords found in the JD.'),
+  matchedSkills: z.array(z.string()).describe('Candidate skills that match the JD.'),
   matchedProjects: z.array(
     z.object({
       title: z.string(),
-      reason: z.string(),
+      reason: z.string().describe('Why this project proves fit for this role.'),
     })
-  ),
-  relevantCertifications: z.array(z.string()),
-  gapAnalysis: z.array(z.string()),
-  impactSummary: z.string(),
-  recruiterTalkingPoints: z.array(z.string()),
+  ).describe('1-2 specific projects from the candidate profile.'),
+  relevantCertifications: z.array(z.string()).describe('Certifications that validate candidate capability.'),
+  gapAnalysis: z.array(z.string()).describe('Skills or requirements missing or needed.'),
+  impactSummary: z.string().describe('A 2-sentence value proposition for a recruiter.'),
+  recruiterTalkingPoints: z.array(z.string()).describe('Key points to bring up in an interview.'),
   recommendedLinks: z.array(
     z.object({
       name: z.string(),
       url: z.string(),
-      context: z.string(),
+      context: z.string().describe('Why this link is relevant to this specific JD.'),
     })
-  ),
+  ).describe('Links to GitHub, LeetCode, or LinkedIn based on the JD needs.'),
 });
 
 export type MatchSkillsToJobDescriptionOutput = z.infer<typeof OutputSchema>;
@@ -56,7 +56,7 @@ export type MatchSkillsToJobDescriptionOutput = z.infer<typeof OutputSchema>;
 const prompt = ai.definePrompt({
   name: 'deepJdMatcherPrompt',
   input: { schema: InputSchema },
-  output: { format: 'json' },
+  output: { schema: OutputSchema },
   
   config: {
     safetySettings: [
@@ -70,8 +70,12 @@ const prompt = ai.definePrompt({
 
   system: `
     You are an elite Technical Recruiter and Headhunter specializing in Data Engineering and AI.
-    Analyze the Job Description against Murari Komati's profile.
-    Return ONLY valid JSON.
+    Your task is to analyze a Job Description (JD) against the profile of Murari Komati.
+    Provide a high-fidelity, professional analysis that maps his specific impact metrics, 
+    certifications, and project evidence to the role.
+    
+    If the JD mentions algorithms, data structures, or optimization, prioritize his LeetCode link.
+    If it mentions open-source or specific tech like Spark/Databricks, prioritize GitHub.
   `,
 
   prompt: `
@@ -99,30 +103,8 @@ const prompt = ai.definePrompt({
     - LinkedIn: https://linkedin.com/in/komati-murari
     - LeetCode: https://leetcode.com/u/komatimurari50/
 
-    JOB DESCRIPTION:
+    JOB DESCRIPTION TO ANALYZE:
     {{{jobDescription}}}
-
-    ANALYSIS REQUIREMENTS:
-    1. Calculate a matchScore (0-100).
-    2. Extract keywords from JD.
-    3. Match Murari's skills to JD requirements.
-    4. Pick 1-2 projects that prove his capability for this specific JD.
-    5. List certifications that validate his skills for this role.
-    6. If the JD mentions "Coding", "Algorithms", or "Optimization", include the LeetCode link.
-    7. Provide a concise impactSummary for the recruiter.
-
-    Return JSON matching this structure:
-    {
-      "matchScore": number,
-      "extractedKeywords": [string],
-      "matchedSkills": [string],
-      "matchedProjects": [{ "title": string, "reason": string }],
-      "relevantCertifications": [string],
-      "gapAnalysis": [string],
-      "impactSummary": string,
-      "recruiterTalkingPoints": [string],
-      "recommendedLinks": [{ "name": string, "url": string, "context": string }]
-    }
   `,
 });
 
@@ -139,14 +121,15 @@ export async function matchSkillsToJobDescription(
     const response = await prompt(validatedInput);
 
     if (!response.output) {
-      throw new Error("AI returned empty response");
+      throw new Error("The intelligence engine could not generate a response. This might be due to an invalid Job Description.");
     }
 
-    // Genkit 1.x response.output is already parsed if format is 'json'
-    const parsed = OutputSchema.parse(response.output);
-    return parsed;
+    return response.output;
   } catch (err: any) {
     console.error("AI MATCH FLOW ERROR:", err);
-    throw new Error(err.message || "Intelligence engine failed to process the request.");
+    if (err.message?.includes('API_KEY')) {
+      throw new Error("AI Configuration Error: Please ensure the GEMINI_API_KEY is correctly set in the environment.");
+    }
+    throw new Error(err.message || "The intelligence engine failed to process the request.");
   }
 }
