@@ -5,14 +5,14 @@
   "summary": "Data Engineer with 2.5+ years of professional experience building high-performance data architectures and autonomous AI systems. Expert in Azure Databricks, PySpark, and Agentic AI. Solved 880+ problems on LeetCode (Rating: 1650+).",
   "education": {
     "degree": "B.Tech in Electronics and Telecommunication Engineering",
-    "institution": "Walchand Institute of Technology, Maharashtra",
+    "institution": "Walchand Institute of Technology, Solapur",
     "year": "2019-2023"
   },
   "experience": [
     {
       "company": "Data Master Consulting Pvt Ltd",
       "role": "Data Engineer",
-      "duration": "Jan 2023 - Present",
+      "duration": "Aug 2023 - Present",
       "location": "Maharashtra, India",
       "responsibilities": [
         "Architected scalable ETL pipelines using Azure Data Factory and Databricks (Medallion Architecture)",
@@ -23,8 +23,8 @@
     },
     {
       "company": "EZData Advisory IT Services & Consulting",
-      "role": "Data Engineer Intern",
-      "duration": "June 2022 - Dec 2022",
+      "role": "Data Engineer Intern (Full-time)",
+      "duration": "Jan 2023 - July 2023",
       "location": "India",
       "responsibilities": [
         "Migrated legacy pipelines to PySpark frameworks",
@@ -40,7 +40,7 @@
       "Advanced Data Structures & Algorithms (DSA)"
     ],
     "data_engineering": [
-      "PySpark", "Apache Spark", "SQL", "Delta Lake", "Medallion Architecture", "ADF", "Databricks", "ETL/ELT", "Snowflake", "dbt"
+      "PySpark", "Apache Spark", "SQL", "Delta Lake", "Medallion Architecture", "ADF", "Databricks", "ETL/ELT", "Snowflake", "dbt", "Microsoft Fabric"
     ],
     "ai_ml": [
       "RAG Systems", "Agentic AI", "LangChain", "LangGraph", "CrewAI", "Vector Databases"
@@ -73,8 +73,8 @@
       "url": "https://github.com/Murarikomati/Netflix_Data_Analysis-",
       "technologies": ["S3", "Snowflake", "dbt", "Kimball"],
       "highlights": [
-        "Cloud-native ELT platform processing large-scale movie interaction data",
-        "Built staging and analytics layers using Kimball star schema"
+        "Cloud-native ELT platform processing large-scale movie ratings and ratings datasets",
+        "Built staging and analytics layers using Kimball star schema models"
       ]
     },
     {
@@ -82,8 +82,8 @@
       "url": "https://github.com/Murarikomati/wiki-to-azure-lake-pipeline",
       "technologies": ["Azure Event Hub", "SQL Server", "Microsoft Fabric"],
       "highlights": [
-        "Streaming ingestion for high-frequency stock market data",
-        "Implemented anomaly detection reducing analyst response by 50%"
+        "Developed streaming ingestion pipelines for high-frequency stock market data",
+        "Implemented anomaly detection reducing analyst response time by 50%"
       ]
     }
   ]

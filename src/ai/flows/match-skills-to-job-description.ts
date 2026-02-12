@@ -1,6 +1,7 @@
+
 'use server';
 
-import { generateJSON } from '@/ai/gemini';
+import { generateJSON } from '@/ai/llm';
 import { z } from 'zod';
 import fs from 'fs';
 import path from 'path';
@@ -31,16 +32,16 @@ export async function matchSkillsToJobDescription(input: { jobDescription: strin
   const profilePath = path.join(process.cwd(), 'src/ai/profile.json');
   const profileData = fs.readFileSync(profilePath, 'utf-8');
 
-  const prompt = `You are a Senior Technical Recruiter and Engineering Manager. 
-Analyze the candidate's profile against the provided Job Description (JD).
+  const prompt = `Analyze the candidate's profile against the provided Job Description (JD).
 
 CRITICAL CONSTRAINTS (YOU MUST ADHERE TO THESE):
-1. **SENIORITY**: Murari Komati has **2.5+ YEARS of professional experience** building data platforms. NEVER refer to him as a fresher or intern. He is a mid-level engineer.
-2. **DSA MASTERY**: He has solved **880+ problems on LeetCode** (Top 17% worldwide). This is a top-tier differentiator.
+1. **SENIORITY**: Murari Komati has **2.5+ YEARS of professional experience** (from Jan 2023 to Present). NEVER refer to him as a fresher or intern. He is a mid-level engineer.
+2. **DSA MASTERY**: He has solved **880+ problems on LeetCode** (Rating: 1650+). This is a top-tier differentiator.
 3. **CORE PROJECTS**: 
    - 'Customer Service RAG Chatbot' (Python, FastAPI, LangChain, SQL)
    - 'Agentic AI Workflow Automation' (LangGraph, CrewAI, Databricks)
-   - Focus on these as primary proof of technical impact.
+   - 'Real-Time Movie Analytics ELT' (Snowflake, dbt, S3)
+   - 'Real-Time Stock Market Data Pipeline' (Azure, Fabric)
 
 Candidate Profile Data:
 ${profileData}
@@ -49,9 +50,9 @@ Job Description:
 ${input.jobDescription}
 
 TASK:
-1. Fit Score (0-100): High score if the JD matches Data Engineering or AI/LLM work.
-2. Impact Summary: Write a 4-5 sentence professional summary. MUST start by mentioning the 2.5+ years of experience and 880+ LeetCode mastery.
-3. Map Projects: Link his RAG and Agentic AI work to JD requirements.
+1. Fit Score (0-100): High score if the JD matches Data Engineering, AI/LLM, or Python/FastAPI work.
+2. Impact Summary: Write a 4-5 sentence professional summary. MUST start by highlighting the 2.5+ years of experience and 880+ LeetCode mastery.
+3. Map Projects: Link his RAG, Agentic AI, and Cloud ELT work to JD requirements.
 4. Skills: Identify matched skills from both JD and profile.
 
 Return ONLY JSON:

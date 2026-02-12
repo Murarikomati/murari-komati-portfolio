@@ -31,7 +31,7 @@ export const PROJECTS = [
   {
     id: 3,
     title: 'Real-Time Movie Analytics ELT',
-    description: 'Scalable cloud-native ELT platform using Amazon S3, Snowflake, and dbt. Built raw, staging, and analytics layers using Kimball star schema.',
+    description: 'Scalable cloud-native ELT platform using Amazon S3, Snowflake, and dbt. Built staging and analytics-ready layers using Kimball star schema models.',
     tech: ['S3', 'Snowflake', 'dbt', 'Kimball'],
     category: 'Data Engineering',
     image: 'https://picsum.photos/seed/netflix-elt/600/400',
@@ -39,8 +39,8 @@ export const PROJECTS = [
   },
   {
     id: 4,
-    title: 'Stock Market Data Pipeline',
-    description: 'Near real-time streaming ingestion using Azure Event Hub. Implemented anomaly detection reducing analyst response by 50%.',
+    title: 'Real-Time Stock Market Data Pipeline',
+    description: 'Developed near real-time streaming ingestion pipelines using Azure Event Hub. Implemented anomaly detection reducing analyst response by 50%.',
     tech: ['Event Hub', 'SQL Server', 'Fabric', 'Streaming'],
     category: 'Data Engineering',
     image: 'https://picsum.photos/seed/stock-stream/600/400',
@@ -64,10 +64,10 @@ export const EXPERIENCE = [
   },
   {
     company: 'EZData Advisory IT Services',
-    role: 'Data Engineer Intern',
+    role: 'Data Engineer',
     period: 'Jan 2023 – July 2023',
     location: 'Maharashtra, India',
-    summary: 'Focused on cloud pipeline optimization and automated data quality assertions.',
+    summary: 'Focused on cloud pipeline optimization and automated data quality assertions for enterprise clients.',
     highlights: [
       'Migrated legacy ADF pipelines to high-performance PySpark frameworks.',
       'Built automated data quality checks for BigQuery/GCP environments.',
