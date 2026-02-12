@@ -17,7 +17,7 @@ export default function Projects() {
     : PROJECTS.filter(p => p.category === filter);
 
   return (
-    <section id="projects" className="py-24 px-4 bg-muted/10">
+    <section id="projects" className="py-24 px-4 bg-zinc-950">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
           <div>
@@ -26,8 +26,8 @@ export default function Projects() {
             </div>
             <h2 className="text-4xl md:text-5xl font-bold font-headline mb-4 text-white">Featured <span className="text-primary">Impact</span></h2>
             <p className="text-zinc-400 max-w-xl text-lg">
-              Production-ready solutions ranging from SQL-integrated LLMs to real-time 
-              infrastructure optimization.
+              Production-ready solutions ranging from SQL-integrated LLMs to autonomous 
+              multi-agent systems.
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -46,7 +46,7 @@ export default function Projects() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project) => (
-            <Card key={project.id} className="group border-zinc-800 overflow-hidden hover:border-primary/60 transition-all flex flex-col bg-zinc-900/50 backdrop-blur-sm shadow-xl rounded-[2.5rem]">
+            <Card key={project.id} className="group border-zinc-800 overflow-hidden hover:border-primary/60 transition-all flex flex-col bg-zinc-900/40 backdrop-blur-sm shadow-2xl rounded-[2.5rem]">
               <div className="relative aspect-video overflow-hidden">
                 <Image 
                   src={project.image} 
@@ -57,31 +57,31 @@ export default function Projects() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-80" />
                 <div className="absolute bottom-4 left-4 z-10">
-                  <Badge className="bg-primary text-white font-bold px-4 py-1.5 rounded-full border-none shadow-lg">{project.category}</Badge>
+                  <Badge className="bg-primary text-white font-black px-4 py-1.5 rounded-full border-none shadow-lg text-[10px] tracking-widest">{project.category.toUpperCase()}</Badge>
                 </div>
               </div>
               <CardHeader className="relative pb-2">
-                <CardTitle className="font-headline text-2xl font-bold text-white">{project.title}</CardTitle>
+                <CardTitle className="font-headline text-2xl font-bold text-white leading-tight">{project.title}</CardTitle>
               </CardHeader>
               <CardContent className="flex-1">
-                <p className="text-zinc-300 text-sm leading-relaxed mb-6 font-medium">
+                <p className="text-zinc-400 text-sm leading-relaxed mb-6 font-medium">
                   {project.description}
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((t) => (
-                    <Badge key={t} className="bg-primary text-white border-none py-1.5 px-4 font-bold shadow-md text-[11px] rounded-full">
+                    <Badge key={t} className="bg-secondary/20 text-secondary border border-secondary/30 py-1.5 px-4 font-bold text-[10px] uppercase rounded-full tracking-wider">
                       {t}
                     </Badge>
                   ))}
                 </div>
               </CardContent>
-              <CardFooter className="pt-4 flex gap-3">
-                <Button size="sm" variant="outline" className="flex-1 rounded-full border-zinc-800 hover:bg-zinc-800 text-white font-bold h-11" asChild>
+              <CardFooter className="pt-4 flex gap-3 pb-8 px-6">
+                <Button size="sm" variant="outline" className="flex-1 rounded-full border-zinc-800 hover:bg-zinc-800 text-white font-bold h-12 text-xs" asChild>
                   <a href={project.url} target="_blank" rel="noopener noreferrer">
                     <Github className="mr-2 h-4 w-4" /> Code
                   </a>
                 </Button>
-                <Button size="sm" className="flex-1 rounded-full shadow-lg shadow-primary/20 bg-primary text-white font-bold h-11 transition-transform hover:scale-[1.02]">
+                <Button size="sm" className="flex-1 rounded-full shadow-xl shadow-primary/30 bg-primary text-white font-bold h-12 text-xs transition-all hover:scale-[1.02]">
                   <ExternalLink className="mr-2 h-4 w-4" /> Case Study
                 </Button>
               </CardFooter>

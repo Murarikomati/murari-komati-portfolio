@@ -31,33 +31,35 @@ export async function matchSkillsToJobDescription(input: { jobDescription: strin
   const profilePath = path.join(process.cwd(), 'src/ai/profile.json');
   const profileData = fs.readFileSync(profilePath, 'utf-8');
 
-  const prompt = `You are a Senior AI & Data Engineering Recruiter. 
+  const prompt = `You are a Senior Technical Recruiter and Engineering Manager. 
 Analyze the candidate's profile against the provided Job Description (JD).
 
-CRITICAL CONTEXT (MUST BE HIGHLIGHTED):
-1. SENIORITY: The candidate has 2.5+ YEARS of professional experience. DO NOT refer to them as a fresher or junior.
-2. DSA MASTERY: The candidate has solved over 880+ problems on LeetCode. This is a primary differentiator.
-3. CORE PROJECTS: The candidate built the 'Customer Service RAG Chatbot' and 'Agentic AI Workflow Automation'. These are the flagship proofs of impact.
-4. TECH STACK: Python (Advanced), FastAPI, Azure Databricks, PySpark, and SQL.
+CRITICAL CONSTRAINTS (YOU MUST ADHERE TO THESE):
+1. **SENIORITY**: The candidate Murari Komati has **2.5+ YEARS of professional experience** building data platforms and AI systems. NEVER refer to him as a fresher, junior, or intern in your summary.
+2. **DSA MASTERY**: He has solved **880+ problems on LeetCode** (Top 17% worldwide). This is a top-tier differentiator for engineering roles.
+3. **CORE PROJECTS**: 
+   - 'Customer Service RAG Chatbot' (Python, FastAPI, LangChain, SQL)
+   - 'Agentic AI Workflow Automation' (LangGraph, CrewAI, Databricks)
+   - Use these as the primary proof of impact.
 
-Candidate Profile:
+Candidate Profile Data:
 ${profileData}
 
-Job Description:
+Job Description to Match:
 ${input.jobDescription}
 
 TASK:
-1. Calculate a Fit Score (0-100).
-2. Write a professional Value Proposition. START by mentioning the 2.5+ years of experience and the 880+ LeetCode achievement.
-3. Map the RAG Chatbot and Agentic AI projects specifically to JD requirements.
-4. Identify matching skills from the JD.
+1. Fit Score (0-100): Be realistic but highlight technical strengths.
+2. Impact Summary: Write a 4-5 sentence value proposition. START by highlighting the 2.5+ years of experience and the 880+ LeetCode mastery.
+3. Map Projects: Link his RAG and Agentic AI work to the specific requirements in the JD.
+4. Skills: Identify only the skills present in both the JD and the candidate's profile.
 
 Return ONLY JSON:
 {
   "matchScore": number,
-  "impactSummary": "Detailed summary (4-5 sentences) highlighting the 2.5+ years experience and 880+ LC mastery.",
+  "impactSummary": "Professional summary starting with 2.5+ years experience and 880+ LC mastery.",
   "matchedSkills": ["Skill 1", "Skill 2"],
-  "matchedProjects": [{"title": "Project Name", "reason": "Why it fits"}],
+  "matchedProjects": [{"title": "Project Name", "reason": "Why it fits this JD specifically"}],
   "relevantCertifications": ["Cert 1"],
   "recommendedLinks": [{"name": "GitHub/LinkedIn/LeetCode", "url": "url", "context": "What to look for"}]
 }`;

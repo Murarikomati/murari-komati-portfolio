@@ -1,4 +1,3 @@
-
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 if (!process.env.GOOGLE_GENAI_API_KEY) {
@@ -12,11 +11,11 @@ const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GENAI_API_KEY);
  * Optimized for production reliability and stable JSON parsing.
  */
 export async function generateJSON<T>(prompt: string): Promise<T> {
-  // Using gemini-2.5-flash (stable latest)
+  // Using gemini-1.5-flash for maximum reliability in free tier and structured output support
   const model = genAI.getGenerativeModel({
-    model: "gemini-2.5-flash",
+    model: "gemini-1.5-flash",
     generationConfig: {
-      temperature: 0.2,
+      temperature: 0.1, // Low temperature for high precision data matching
       responseMimeType: "application/json",
     },
   });
@@ -28,7 +27,10 @@ export async function generateJSON<T>(prompt: string): Promise<T> {
     
     if (!text) throw new Error("AI returned an empty response.");
     
-    return JSON.parse(text) as T;
+    // Clean potential markdown code blocks if AI returns them
+    const cleanText = text.replace(/```json/g, '').replace(/```/g, '').trim();
+    
+    return JSON.parse(cleanText) as T;
   } catch (error) {
     console.error("AI Generation Error:", error);
     throw new Error("The AI engine failed to produce a valid report. Please try again.");

@@ -117,7 +117,7 @@ export default function SkillMatcher() {
                     <h4 className="font-bold text-xs uppercase tracking-[0.2em] text-primary">Matching Skills</h4>
                     <div className="flex flex-wrap gap-2.5">
                       {result.matchedSkills.map((skill, i) => (
-                        <Badge key={i} className="bg-primary text-white border-none py-2 px-5 font-bold shadow-md text-sm rounded-full">
+                        <Badge key={i} className="bg-secondary/20 text-secondary border border-secondary/30 py-1.5 px-4 font-bold text-[10px] uppercase rounded-full tracking-wider">
                           {skill}
                         </Badge>
                       ))}
