@@ -3,8 +3,8 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: 'Murari Komati | Data Architect & AI Solutions Engineer',
-  description: 'Mid-level Data Engineer & AI Specialist focused on Azure Databricks, LangGraph, and Agentic AI. Turning complex data into scalable intelligence.',
+  title: 'Murari Komati | Engineering the Future of Data & Intelligence',
+  description: 'AI/ML & Data Engineer focused on Azure Databricks, LangGraph, and Agentic AI. Architecting scalable data backbones for autonomous intelligence.',
   keywords: [
     'Murari Komati', 
     'Data Engineer', 
@@ -13,7 +13,8 @@ export const metadata: Metadata = {
     'LangGraph', 
     'Data Architect', 
     'Agentic AI', 
-    'ETL Pipelines'
+    'ETL Pipelines',
+    'WIT Solapur'
   ],
   openGraph: {
     title: 'Murari Komati | Data & AI Engineering Portfolio',
@@ -28,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark scroll-smooth">
+    <html lang="en" className="dark scroll-smooth" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

@@ -1,51 +1,63 @@
 'use server';
 
 /**
- * @fileOverview Deep JD Matcher AI Flow.
+ * @fileOverview Deep Scan AI Matcher Flow
  * 
- * This flow analyzes a Job Description against Murari Komati's profile,
- * providing a recruiter cheat sheet with match scores, project evidence,
- * and relevant social proof (LinkedIn/LeetCode/GitHub).
+ * - matchSkillsToJobDescription: Main function to analyze candidate-to-JD fit.
+ * - Handles mapping of certifications, experience, and social links (GitHub/LeetCode).
  */
 
 import { ai } from '@/ai/genkit';
 import { z } from 'genkit';
 
+/* ==============================
+   INPUT SCHEMA
+============================== */
+
 const InputSchema = z.object({
-  jobDescription: z.string().describe('The full text of the job description to analyze.'),
+  jobDescription: z.string().min(50),
 });
 
 export type MatchSkillsToJobDescriptionInput = z.infer<typeof InputSchema>;
 
+/* ==============================
+   OUTPUT SCHEMA
+============================== */
+
 const OutputSchema = z.object({
-  matchScore: z.number().min(0).max(100).default(0),
-  extractedKeywords: z.array(z.string()).default([]),
-  matchedSkills: z.array(z.string()).default([]),
+  matchScore: z.number().min(0).max(100),
+  extractedKeywords: z.array(z.string()),
+  matchedSkills: z.array(z.string()),
   matchedProjects: z.array(
     z.object({
       title: z.string(),
       reason: z.string(),
     })
-  ).default([]),
-  relevantCertifications: z.array(z.string()).default([]),
-  gapAnalysis: z.array(z.string()).default([]),
-  impactSummary: z.string().default(''),
-  recruiterTalkingPoints: z.array(z.string()).default([]),
+  ),
+  relevantCertifications: z.array(z.string()),
+  gapAnalysis: z.array(z.string()),
+  impactSummary: z.string(),
+  recruiterTalkingPoints: z.array(z.string()),
   recommendedLinks: z.array(
     z.object({
       name: z.string(),
       url: z.string(),
       context: z.string(),
     })
-  ).default([]),
+  ),
 });
 
 export type MatchSkillsToJobDescriptionOutput = z.infer<typeof OutputSchema>;
 
+/* ==============================
+   PROMPT DEFINITION
+============================== */
+
 const prompt = ai.definePrompt({
   name: 'deepJdMatcherPrompt',
   input: { schema: InputSchema },
-  output: { schema: OutputSchema },
+  output: { format: 'json' },
+  
   config: {
     safetySettings: [
       { category: 'HARM_CATEGORY_HATE_SPEECH', threshold: 'BLOCK_NONE' },
@@ -55,82 +67,86 @@ const prompt = ai.definePrompt({
       { category: 'HARM_CATEGORY_CIVIC_INTEGRITY', threshold: 'BLOCK_NONE' },
     ],
   },
-  system: `You are a Senior Technical Recruiter specializing in Data & AI Engineering.
-Your goal is to evaluate candidate "Murari Komati" against a provided job description.
-Be objective but highlight Murari's strong suit: Scalable ETL, Azure Databricks, and Agentic AI.`,
+
+  system: `
+    You are an elite Technical Recruiter and Headhunter specializing in Data Engineering and AI.
+    Analyze the Job Description against Murari Komati's profile.
+    Return ONLY valid JSON.
+  `,
+
   prompt: `
-=============================
-CANDIDATE PROFILE: MURARI KOMATI
-=============================
+    CANDIDATE: Murari Komati
+    EDUCATION: B.Tech in Electronics and Telecommunication, WIT Solapur (Ahilyabai Holkar University)
+    
+    EXPERIENCE HIGHLIGHTS:
+    - Data Master Consulting: 2.5+ years building ETL (ADF, Databricks) and GenAI (LangChain, CrewAI).
+    - Reduced manual tasks by 90% via automated pipelines.
+    - Handled 100GB+ daily transactional data using Kafka & Spark.
+    - Expert in Medallion Architecture (Bronze/Silver/Gold).
+    
+    CORE TECH STACK:
+    - Cloud: Azure (ADF, Synapse, Databricks), AWS, GCP.
+    - AI: LangGraph, CrewAI, RAG Systems, OpenAI, Gemini.
+    - Data: PySpark, Delta Lake, SQL, Kafka, MLflow.
+    
+    CERTIFICATIONS:
+    - Databricks Fundamentals
+    - Databricks Generative AI Fundamentals
+    - EDX Python for Data Science
+    
+    EVIDENCE LINKS:
+    - GitHub: https://github.com/Murarikomati
+    - LinkedIn: https://linkedin.com/in/komati-murari
+    - LeetCode: https://leetcode.com/u/komatimurari50/
 
-Education:
-- B.Tech in Electronics and Telecommunication, WIT College, Solapur (2023) - 80.6%
+    JOB DESCRIPTION:
+    {{{jobDescription}}}
 
-Experience:
-- Data Engineer @ Data Master Consulting (Maharashtra, India)
-- Specialized in: Azure Data Factory (ADF), Databricks, Spark Structured Streaming.
-- Achievements: Daily processing of 100GB+ data, 90% reduction in manual tasks.
-- GenAI: Built RAG systems using LangChain, CrewAI, and LangGraph.
+    ANALYSIS REQUIREMENTS:
+    1. Calculate a matchScore (0-100).
+    2. Extract keywords from JD.
+    3. Match Murari's skills to JD requirements.
+    4. Pick 1-2 projects that prove his capability for this specific JD.
+    5. List certifications that validate his skills for this role.
+    6. If the JD mentions "Coding", "Algorithms", or "Optimization", include the LeetCode link.
+    7. Provide a concise impactSummary for the recruiter.
 
-Certifications:
-- Databricks Fundamentals (2025)
-- Databricks Generative AI Fundamentals (2025)
-- Python for Data Science (EDX)
-
-Core Skills:
-- Cloud: Azure (Expert), AWS (Proficient)
-- Data: PySpark, Delta Lake, Kafka, SQL
-- AI: LangChain, CrewAI, RAG, Agentic AI, OpenCV
-
-Links:
-- GitHub: https://github.com/Murarikomati
-- LinkedIn: https://linkedin.com/in/komati-murari
-- LeetCode: https://leetcode.com/u/komatimurari50/
-
-=============================
-JOB DESCRIPTION
-=============================
-{{{jobDescription}}}
-
-=============================
-INSTRUCTIONS
-=============================
-1. Analyze the JD and extract keywords.
-2. Provide a matchScore (0-100).
-3. Map Murari's specific projects (SQL Chatbot, CrewAI Assistant, Traffic System) to JD requirements.
-4. If the JD mentions "Coding", "Algorithms", or "DSA", prioritize the LeetCode link.
-5. If the JD mentions "Azure" or "Databricks", prioritize his ADF/Databricks experience and Certs.
-6. Create an impactSummary that explains exactly why Murari fits this specific role.
-`,
+    Return JSON matching this structure:
+    {
+      "matchScore": number,
+      "extractedKeywords": [string],
+      "matchedSkills": [string],
+      "matchedProjects": [{ "title": string, "reason": string }],
+      "relevantCertifications": [string],
+      "gapAnalysis": [string],
+      "impactSummary": string,
+      "recruiterTalkingPoints": [string],
+      "recommendedLinks": [{ "name": string, "url": string, "context": string }]
+    }
+  `,
 });
+
+/* ==============================
+   FLOW WRAPPER
+============================== */
 
 export async function matchSkillsToJobDescription(
   input: MatchSkillsToJobDescriptionInput
 ): Promise<MatchSkillsToJobDescriptionOutput> {
-  return matchFlow(input);
-}
+  const validatedInput = InputSchema.parse(input);
 
-const matchFlow = ai.defineFlow(
-  {
-    name: 'deepJdMatcherFlow',
-    inputSchema: InputSchema,
-    outputSchema: OutputSchema,
-  },
-  async (input) => {
-    try {
-      const { output } = await prompt(input);
-      if (!output) throw new Error('AI failed to produce structured analysis.');
-      return output;
-    } catch (error) {
-      console.error('Genkit Flow Error:', error);
-      return {
-        matchScore: 85,
-        impactSummary: "Based on my background in Azure Databricks and GenAI, I have a strong foundation for this role. Let's discuss how my automation track record can benefit your team.",
-        matchedSkills: ["Azure Data Factory", "Databricks", "Python", "SQL"],
-        matchedProjects: [{ title: "ADF Pipeline Migration", reason: "Experience handling 100GB+ daily transaction data." }],
-        relevantCertifications: ["Databricks Fundamentals"],
-        recommendedLinks: [{ name: "LinkedIn", url: "https://linkedin.com/in/komati-murari", context: "Professional history and endorsements." }]
-      } as MatchSkillsToJobDescriptionOutput;
+  try {
+    const response = await prompt(validatedInput);
+
+    if (!response.output) {
+      throw new Error("AI returned empty response");
     }
+
+    // Genkit 1.x response.output is already parsed if format is 'json'
+    const parsed = OutputSchema.parse(response.output);
+    return parsed;
+  } catch (err: any) {
+    console.error("AI MATCH FLOW ERROR:", err);
+    throw new Error(err.message || "Intelligence engine failed to process the request.");
   }
-);
+}

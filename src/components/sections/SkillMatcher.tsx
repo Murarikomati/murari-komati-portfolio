@@ -26,14 +26,17 @@ export default function SkillMatcher() {
     }
 
     setIsMatching(true);
+    setResult(null); // Clear previous result
+    
     try {
       const output = await matchSkillsToJobDescription({ jobDescription });
       setResult(output);
       toast({ title: "Analysis Complete", description: "Profile mapped successfully." });
-    } catch (error) {
+    } catch (error: any) {
+      console.error("Matcher Error:", error);
       toast({ 
-        title: "Scan Busy", 
-        description: "The intelligence engine is processing. Retrying in fallback mode...", 
+        title: "Scan Interrupted", 
+        description: error.message || "The model took too long to respond. Please try a shorter job description.", 
         variant: "destructive" 
       });
     } finally {
@@ -59,7 +62,7 @@ export default function SkillMatcher() {
             <div className="space-y-4">
               <Textarea 
                 placeholder="Paste the full job description here..." 
-                className="min-h-[300px] bg-background border-border rounded-2xl resize-none p-6 focus:ring-accent shadow-inner"
+                className="min-h-[300px] bg-background border-border rounded-2xl resize-none p-6 focus:ring-accent shadow-inner text-sm"
                 value={jobDescription}
                 onChange={(e) => setJobDescription(e.target.value)}
               />
@@ -70,7 +73,7 @@ export default function SkillMatcher() {
               >
                 {isMatching ? (
                   <>
-                    <Loader2 className="mr-2 h-6 w-6 animate-spin" /> Analyzing Profile...
+                    <Loader2 className="mr-2 h-6 w-6 animate-spin" /> Analyzing Deep Fit...
                   </>
                 ) : (
                   <>
@@ -81,7 +84,7 @@ export default function SkillMatcher() {
             </div>
           </div>
 
-          <div className="flex-1 w-full lg:sticky lg:top-24">
+          <div className="flex-1 w-full lg:sticky lg:top-24 min-h-[500px]">
             {result ? (
               <Card className="border-accent/30 bg-card shadow-2xl overflow-hidden animate-fade-in-up">
                 <CardHeader className="bg-gradient-to-r from-accent/20 to-primary/20 border-b border-border p-8">
@@ -92,10 +95,10 @@ export default function SkillMatcher() {
                       </CardTitle>
                       <CardDescription className="text-foreground/70">Tailored analysis for Murari Komati</CardDescription>
                     </div>
-                    <Badge variant="outline" className="bg-background/50">Match Found</Badge>
+                    <Badge variant="outline" className="bg-background/50 font-bold">{result.matchScore}% Match</Badge>
                   </div>
                 </CardHeader>
-                <CardContent className="p-8 space-y-8">
+                <CardContent className="p-8 space-y-8 max-h-[600px] overflow-y-auto custom-scrollbar">
                   <div>
                     <h4 className="font-bold text-[10px] uppercase tracking-[0.2em] text-primary mb-3">Pitch / Value Prop</h4>
                     <p className="text-sm leading-relaxed text-foreground/90 font-medium">{result.impactSummary}</p>
@@ -145,6 +148,7 @@ export default function SkillMatcher() {
                           key={i} 
                           href={link.url} 
                           target="_blank" 
+                          rel="noopener noreferrer"
                           className="group flex items-center justify-between p-3 rounded-xl border border-border bg-background hover:border-primary transition-all"
                         >
                           <div className="flex items-center gap-3">
