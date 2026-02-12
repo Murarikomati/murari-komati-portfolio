@@ -1,73 +1,74 @@
 export const SKILLS = [
+  // Cloud & Platforms
+  { name: 'Azure (ADF, Databricks, Synapse)', category: 'Cloud Platforms', icon: 'Cloud' },
+  { name: 'GCP (BigQuery, Dataform)', category: 'Cloud Platforms', icon: 'Globe' },
+  { name: 'AWS', category: 'Cloud Platforms', icon: 'Server' },
+  
   // Data Engineering
   { name: 'PySpark / Apache Spark', category: 'Data Engineering', icon: 'Zap' },
-  { name: 'dbt / Delta Lake', category: 'Data Engineering', icon: 'Database' },
-  { name: 'Delta Live Tables / Airflow', category: 'Data Engineering', icon: 'Workflow' },
+  { name: 'SQL / Spark SQL', category: 'Data Engineering', icon: 'Database' },
+  { name: 'Delta Lake / Medallion Architecture', category: 'Data Engineering', icon: 'Workflow' },
   { name: 'Kafka', category: 'Data Engineering', icon: 'Activity' },
   
-  // Cloud
-  { name: 'Azure (Databricks, ADF)', category: 'Cloud Platforms', icon: 'Cloud' },
-  { name: 'GCP (BigQuery, Dataform)', category: 'Cloud Platforms', icon: 'Globe' },
-  
-  // ML & MLOps
-  { name: 'MLflow / Unity Catalog', category: 'Machine Learning & MLOps', icon: 'Server' },
-  { name: 'Spark MLlib / Scikit-learn', category: 'Machine Learning & MLOps', icon: 'Brain' },
-  { name: 'Databricks Model Serving', category: 'Machine Learning & MLOps', icon: 'Cpu' },
-  
   // GenAI & Agentic AI
-  { name: 'RAG Systems / LangChain', category: 'GenAI & Agentic AI', icon: 'Bot' },
-  { name: 'LangGraph / Embeddings', category: 'GenAI & Agentic AI', icon: 'Sparkles' },
-  { name: 'Prompt Engineering / LoRA', category: 'GenAI & Agentic AI', icon: 'MessageSquare' },
+  { name: 'LangChain / CrewAI', category: 'GenAI & Agentic AI', icon: 'Bot' },
+  { name: 'LangGraph / RAG Systems', category: 'GenAI & Agentic AI', icon: 'Sparkles' },
+  { name: 'Prompt Engineering / LLMs', category: 'GenAI & Agentic AI', icon: 'MessageSquare' },
+  
+  // MLOps
+  { name: 'MLflow / Unity Catalog', category: 'Machine Learning & MLOps', icon: 'Cpu' },
 ];
 
 export const PROJECTS = [
   {
     id: 1,
-    title: 'Enterprise Document Analytics & RAG Platform',
-    description: 'Built an end-to-end document intelligence platform using Azure Databricks, LangChain, and Azure AI Search. Enabled semantic search and question answering across 1,000+ enterprise documents using embeddings and hybrid retrieval. Implemented chunking strategies and conversational memory to support business-facing analytical workflows.',
-    tech: ['Azure Databricks', 'LangChain', 'Azure AI Search', 'Embeddings', 'RAG'],
+    title: 'Customer Service ChatBot – SQL Interface',
+    description: 'Built a natural language interface for MS SQL databases using Python and LangChain. Translates user questions into SQL queries and returns results through a Streamlit UI, effectively bridging the gap between non-technical users and complex data.',
+    tech: ['LangChain', 'Python', 'Streamlit', 'FAISS', 'MySQL'],
     category: 'GenAI',
-    image: 'https://picsum.photos/seed/enterprise-rag/600/400',
+    image: 'https://picsum.photos/seed/sql-chatbot/600/400',
   },
   {
     id: 2,
-    title: 'Agentic AI Workflow Automation System',
-    description: 'Designed LangGraph-based agentic workflows for automated data ingestion, reasoning, validation, and reporting. Created a multi-step reasoning system that orchestrates tool execution and data validation, significantly reducing manual effort and turnaround time.',
-    tech: ['LangGraph', 'Agentic AI', 'Python', 'LLMs', 'Automation'],
+    title: 'CrewAI Job Search Assistant',
+    description: 'Autonomous multi-agent system built with CrewAI and LangChain. Automates job discovery, resume optimization, and interview preparation by orchestrating multiple specialized AI agents for deep market analysis.',
+    tech: ['CrewAI', 'LangChain', 'OpenAI API', 'Python', 'Pandas'],
     category: 'Agentic AI',
-    image: 'https://picsum.photos/seed/agentic-workflow/600/400',
+    image: 'https://picsum.photos/seed/crew-ai/600/400',
+  },
+  {
+    id: 3,
+    title: 'Intelligent Traffic Management System',
+    description: 'Computer vision-based system that dynamically adjusts traffic signals based on real-time density. Built with OpenCV to process video feeds and optimize urban flow, reducing congestion in simulated environments.',
+    tech: ['Python', 'OpenCV', 'Pygame', 'Numpy', 'Pandas'],
+    category: 'Computer Vision',
+    image: 'https://picsum.photos/seed/traffic-cv/600/400',
   },
 ];
 
 export const EXPERIENCE = [
   {
-    company: 'EZData Advisory IT Services and Consulting Pvt Ltd',
+    company: 'Data Master Consulting Pvt Ltd',
     role: 'Data Engineer - Full Time',
-    period: 'Nov 2025 – Dec 2025',
-    location: 'Uttar Pradesh, India',
+    period: 'Aug 2023 – Present',
+    location: 'Maharashtra, India',
     highlights: [
-      'Migrated legacy Azure Data Factory pipelines into scalable PySpark-based ETL frameworks on BigQuery and Incorta, enabling API-driven ingestion and fully automated refreshes.',
-      'Built reusable Dataform SQLX models with incremental logic and dependency management, reducing duplicated transformation effort and improving consistency.',
-      'Implemented data quality checks covering uniqueness, null handling, and referential integrity, significantly reducing downstream analytics issues.',
-      'Delivered curated, analytics-ready datasets integrated with Looker, improving dashboard performance and analyst productivity.'
+      'Designed and implemented scalable ETL pipelines using Azure Data Factory and Databricks, ingesting data from SAP HANA and APIs into ADLS Gen2.',
+      'Built near real-time pipelines with Kafka and Spark Structured Streaming, processing 100GB+ transactional data daily.',
+      'Developed an end-to-end GenAI chatbot using LangChain and CrewAI, enabling context-aware Q&A via RAG architecture.',
+      'Applied Delta Lake and SCD Type 2 logic for historical tracking and regulatory reporting.',
+      'Created interactive Power BI dashboards surfacing Gold-layer data for executive insights.',
+      'Integrated ML models into production using MLflow for versioning and deployment, increasing user engagement by 20%.'
     ],
   },
   {
     company: 'Data Master Consulting Pvt Ltd',
-    role: 'Data Engineer - Full Time',
-    period: 'Nov 2023 – Oct 2025',
+    role: 'Data Engineer Intern',
+    period: 'Jan 2023 – July 2023',
     location: 'Maharashtra, India',
     highlights: [
-      'Designed and operated large-scale batch and near real-time data pipelines using Azure Data Factory, Databricks, Delta Live Tables, dbt, and Kafka.',
-      'Ingested data from SAP HANA, APIs, SFTP, and enterprise systems into ADLS Gen2 with end-to-end automation.',
-      'Architected Medallion (Bronze-Silver-Gold) data models with optimized partitioning, clustering, and caching, supporting 500K+ daily records.',
-      'Built Spark ML pipelines on Azure Databricks for feature engineering, model training, and inference over 100GB+ datasets.',
-      'Performed distributed hyperparameter tuning using Optuna and Ray Tune integrated with Spark ML workflows.',
-      'Applied LoRA-based fine-tuning to adapt large language models for domain-specific document intelligence use cases.',
-      'Designed Agentic AI workflows using LangGraph to orchestrate multi-step reasoning, tool execution, and data validation.',
-      'Tracked experiments and model versions using MLflow and governed lifecycle management with Unity Catalog.',
-      'Deployed models using Databricks Model Serving and Spark-based batch inference pipelines.',
-      'Implemented CI/CD pipelines, monitoring, alerts, and SLA checks to ensure data reliability and production stability.'
+      'Assisted in the development of automated data pipelines and basic data quality checks.',
+      'Gained hands-on experience with Azure cloud services and SQL query optimization.'
     ],
   },
 ];
@@ -80,33 +81,24 @@ export const CERTIFICATIONS = [
     link: '#',
   },
   {
-    name: 'Machine Learning at Scale',
+    name: 'Databricks Generative AI Fundamentals',
     issuer: 'Databricks',
     date: '2025',
     link: '#',
   },
   {
-    name: 'Advanced Machine Learning Operations',
-    issuer: 'Databricks',
-    date: '2025',
-    link: '#',
-  },
-  {
-    name: 'Generative AI',
-    issuer: 'Databricks',
-    date: '2025',
-    link: '#',
-  },
-  {
-    name: 'Microsoft Fabric Training',
-    issuer: 'Microsoft',
-    date: '2024',
-    link: '#',
-  },
-  {
-    name: 'Azure Data Engineer Associate',
-    issuer: 'Microsoft',
-    date: 'In Progress',
+    name: 'Python Basics for Data Science',
+    issuer: 'EDX Certification',
+    date: '2022',
     link: '#',
   },
 ];
+
+export const CONTACT_INFO = {
+  email: 'murarikomati199ds@gmail.com',
+  phone: '+91-9579345054',
+  location: 'Solapur, Maharashtra, India',
+  github: 'https://github.com/Murarikomati',
+  linkedin: 'https://linkedin.com/in/komati-murari',
+  leetcode: 'https://leetcode.com/u/komatimurari50/'
+};
