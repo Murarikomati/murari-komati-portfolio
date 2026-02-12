@@ -2,17 +2,17 @@ import { genkit } from 'genkit';
 import { googleAI } from '@genkit-ai/google-genai';
 
 /**
- * Genkit initialization forced to v1 API for maximum stability.
- * Using googleai/gemini-1.5-flash as the primary stable model.
+ * Genkit initialization using v1beta.
+ * v1beta is required for structured output (Zod schemas) as it supports 'responseMimeType'.
  */
 export const ai = genkit({
   plugins: [
     googleAI({
       apiKey: 'AIzaSyAfV2naMhnrAntUKM7fWD66tL9CeQQ16Ow',
-      apiVersion: 'v1', // 🔥 FORCE v1 (CRITICAL)
+      // Removed apiVersion: 'v1' because structured JSON output requires v1beta features
     }),
   ],
-  model: 'googleai/gemini-1.5-flash', // ✅ this works on v1
+  model: 'googleai/gemini-1.5-flash',
   config: {
     temperature: 0.7,
   },

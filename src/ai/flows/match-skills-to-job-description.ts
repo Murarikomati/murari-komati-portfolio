@@ -3,7 +3,7 @@
 /**
  * @fileOverview Deep Scan AI Matcher Flow
  * 
- * - matchSkillsToJobDescription: Analyzes candidate fit against a JD using forced stable v1 API.
+ * - matchSkillsToJobDescription: Analyzes candidate fit against a JD using structured output.
  */
 
 import { ai } from '@/ai/genkit';
