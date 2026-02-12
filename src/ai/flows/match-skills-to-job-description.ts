@@ -10,10 +10,6 @@
 import { ai } from '@/ai/genkit';
 import { z } from 'genkit';
 
-/* ==============================
-   SCHEMAS
-============================== */
-
 const InputSchema = z.object({
   jobDescription: z.string().min(50),
 });
@@ -43,10 +39,6 @@ const OutputSchema = z.object({
 
 export type MatchSkillsToJobDescriptionOutput = z.infer<typeof OutputSchema>;
 
-/* ==============================
-   PROMPT
-============================== */
-
 const prompt = ai.definePrompt({
   name: 'deepJdMatcherPrompt',
   input: { schema: InputSchema },
@@ -63,14 +55,12 @@ const prompt = ai.definePrompt({
   },
 
   system: `
-    You are an elite Technical Recruiter specializing in AI and Data Engineering.
-    Analyze the provided Job Description against Murari Komati's profile.
+    You are an elite Technical Recruiter. Analyze the JD against Murari Komati's profile.
     
-    CRITICAL INSTRUCTIONS:
-    1. Provide a professional 'Impact Summary' (pitch).
-    2. Map 1-2 specific projects that prove he can do the job.
-    3. Include his Databricks certifications if they relate to Cloud/AI.
-    4. If the JD mentions algorithms, programming, or specific tech, provide the relevant Evidence Link.
+    1. Impact Summary: A short pitch on why he fits.
+    2. Map 1-2 specific projects.
+    3. Include Databricks certifications.
+    4. If the JD mentions DSA, algorithms, or code, provide the LeetCode link.
   `,
 
   prompt: `
@@ -97,29 +87,10 @@ const prompt = ai.definePrompt({
   `,
 });
 
-/* ==============================
-   FLOW
-============================== */
-
 export async function matchSkillsToJobDescription(
   input: MatchSkillsToJobDescriptionInput
 ): Promise<MatchSkillsToJobDescriptionOutput> {
-  try {
-    const { output } = await prompt(input);
-
-    if (!output) {
-      throw new Error("No analysis generated. Ensure the JD is relevant to engineering.");
-    }
-
-    return output;
-  } catch (err: any) {
-    console.error("AI MATCH ERROR:", err);
-    
-    // Explicitly check for API key errors to help the user
-    if (err.message?.includes('API key not found') || err.message?.includes('API_KEY')) {
-      throw new Error("AI Configuration Error: Please ensure you have added your GEMINI_API_KEY to the project environment variables.");
-    }
-    
-    throw new Error(err.message || "The intelligence engine encountered a server-side error.");
-  }
+  const { output } = await prompt(input);
+  if (!output) throw new Error("AI analysis failed to generate. Check your JD and try again.");
+  return output;
 }

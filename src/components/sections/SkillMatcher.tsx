@@ -26,7 +26,7 @@ export default function SkillMatcher() {
     }
 
     setIsMatching(true);
-    setResult(null); // Clear previous result
+    setResult(null);
     
     try {
       const output = await matchSkillsToJobDescription({ jobDescription });
@@ -36,7 +36,7 @@ export default function SkillMatcher() {
       console.error("Matcher Error:", error);
       toast({ 
         title: "Scan Interrupted", 
-        description: error.message || "The model took too long to respond. Please try a shorter job description.", 
+        description: error.message || "An error occurred during analysis.", 
         variant: "destructive" 
       });
     } finally {
