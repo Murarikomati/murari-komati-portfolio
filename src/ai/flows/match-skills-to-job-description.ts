@@ -41,6 +41,7 @@ export type MatchSkillsToJobDescriptionOutput = z.infer<typeof OutputSchema>;
 
 const prompt = ai.definePrompt({
   name: 'deepJdMatcherPrompt',
+  model: 'googleai/gemini-1.5-flash',
   input: { schema: InputSchema },
   output: { schema: OutputSchema },
   
@@ -61,6 +62,7 @@ const prompt = ai.definePrompt({
     2. Map 1-2 specific projects.
     3. Include Databricks certifications.
     4. If the JD mentions DSA, algorithms, or code, provide the LeetCode link.
+    5. Always return a valid JSON object matching the requested schema.
   `,
 
   prompt: `
@@ -91,6 +93,6 @@ export async function matchSkillsToJobDescription(
   input: MatchSkillsToJobDescriptionInput
 ): Promise<MatchSkillsToJobDescriptionOutput> {
   const { output } = await prompt(input);
-  if (!output) throw new Error("AI analysis failed to generate. Check your JD and try again.");
+  if (!output) throw new Error("AI analysis failed to generate. Please check your network or try a different JD.");
   return output;
 }
