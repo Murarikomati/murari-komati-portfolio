@@ -12,5 +12,6 @@ export const ai = genkit({
       apiKey: 'AIzaSyAfV2naMhnrAntUKM7fWD66tL9CeQQ16Ow',
     }),
   ],
+  // Set the default model globally to ensure consistent routing
   model: 'googleai/gemini-1.5-flash',
 });

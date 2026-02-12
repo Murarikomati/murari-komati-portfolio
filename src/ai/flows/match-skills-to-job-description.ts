@@ -41,6 +41,7 @@ export type MatchSkillsToJobDescriptionOutput = z.infer<typeof OutputSchema>;
 
 const prompt = ai.definePrompt({
   name: 'deepJdMatcherPrompt',
+  // Use the fully qualified model name recognized by the Google AI plugin
   model: 'googleai/gemini-1.5-flash',
   input: { schema: InputSchema },
   output: { schema: OutputSchema },
