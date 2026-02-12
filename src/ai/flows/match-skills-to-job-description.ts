@@ -1,15 +1,11 @@
+
 'use server';
 
-/**
- * @fileOverview AI Utility to match job descriptions to candidate profile using direct Google AI SDK.
- */
-
 import { generateJSON } from '@/ai/gemini';
-import { z } from 'zod'; // Use standard zod
+import { z } from 'zod';
 import fs from 'fs';
 import path from 'path';
 
-// Schema for validation and typing
 const MatchSkillsToJobDescriptionOutputSchema = z.object({
   matchScore: z.number(),
   impactSummary: z.string(),
@@ -36,7 +32,12 @@ export async function matchSkillsToJobDescription(input: { jobDescription: strin
   const profilePath = path.join(process.cwd(), 'src/ai/profile.json');
   const profileData = fs.readFileSync(profilePath, 'utf-8');
 
-  const prompt = `You are an expert technical recruiter analyzing a candidate's profile against a Job Description.
+  const prompt = `You are an elite technical recruiter. Analyze the following candidate profile against a Job Description.
+
+CORE CANDIDATE STRENGTHS TO PRIORITIZE:
+1. EXPERIENCE: 2.5+ years of Data Engineering (Azure/Databricks focus). Do NOT refer to them as a fresher.
+2. PROBLEM SOLVING: 880+ LeetCode problems solved. This is a massive competitive advantage.
+3. PROJECTS: "Customer Service RAG Chatbot" and "Agentic AI Workflow Automation". These showcase modern AI mastery.
 
 Candidate Profile (JSON):
 ${profileData}
@@ -44,27 +45,28 @@ ${profileData}
 Job Description:
 ${input.jobDescription}
 
-Analyze the alignment and generate a "Recruiter Cheat Sheet". 
-Be honest but highlight the candidate's strengths.
-Ensure the matchScore reflects real technical overlap (0-100).
-Limit matchedSkills to the 6 most relevant ones.
-Only include projects and certifications that are actually relevant to the JD.
+INSTRUCTIONS:
+- Generate a "Recruiter Cheat Sheet" that highlights why this specific candidate is a top-tier fit.
+- The "Value Proposition" must mention their 2.5+ years of experience and high LeetCode achievement.
+- matchedSkills: Top 6 technical skills.
+- matchedProjects: Match their specific Chatbot and Agentic AI projects if the JD mentions Python, AI, or Automation.
+- matchScore: 0-100 based on technical alignment.
 
-Return the output in the following JSON structure:
+Return exactly this JSON format:
 {
   "matchScore": number,
-  "impactSummary": "2-sentence pitch",
+  "impactSummary": "2-3 sentence high-impact summary",
   "matchedSkills": ["Skill 1", "Skill 2"],
-  "matchedProjects": [{"title": "Name", "reason": "Why relevant"}],
+  "matchedProjects": [{"title": "Project Name", "reason": "Why it matches"}],
   "relevantCertifications": ["Cert 1"],
-  "recommendedLinks": [{"name": "LinkedIn/GitHub", "url": "link", "context": "Evidence description"}]
+  "recommendedLinks": [{"name": "GitHub/LinkedIn/LeetCode", "url": "url", "context": "What to look for"}]
 }`;
 
   try {
     const output = await generateJSON<MatchSkillsToJobDescriptionOutput>(prompt);
     return MatchSkillsToJobDescriptionOutputSchema.parse(output);
   } catch (error: any) {
-    console.error("Match Skills Error:", error);
-    throw new Error("AI failed to generate a matching report. Please check your network and try again.");
+    console.error("Match Flow Error:", error);
+    throw new Error("Analysis engine encountered an error. Please try a different Job Description.");
   }
 }

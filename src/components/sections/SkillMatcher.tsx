@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from "react";
@@ -16,10 +17,10 @@ export default function SkillMatcher() {
   const { toast } = useToast();
 
   const handleMatch = async () => {
-    if (!jobDescription.trim() || jobDescription.length < 50) {
+    if (!jobDescription.trim() || jobDescription.length < 30) {
       toast({ 
         title: "More Detail Needed", 
-        description: "Please paste a complete job description (at least 50 characters).", 
+        description: "Please paste a job description (at least 30 characters).", 
         variant: "destructive" 
       });
       return;
@@ -31,12 +32,12 @@ export default function SkillMatcher() {
     try {
       const output = await matchSkillsToJobDescription({ jobDescription });
       setResult(output);
-      toast({ title: "Analysis Complete", description: "Recruiter Cheat Sheet generated." });
+      toast({ title: "Analysis Complete", description: "Deep Scan report generated." });
     } catch (error: any) {
       console.error("Matcher Error:", error);
       toast({ 
         title: "Scan Interrupted", 
-        description: "AI analysis failed. Please check your network and try again.", 
+        description: "The AI engine is currently busy. Please try again in a few seconds.", 
         variant: "destructive" 
       });
     } finally {
@@ -59,12 +60,12 @@ export default function SkillMatcher() {
               Recruiter <span className="text-primary">Deep Scan</span>
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed max-w-xl">
-              Mapping your requirements to my <span className="text-foreground font-semibold">experience, certifications, and live code</span> in real-time.
+              Mapping your requirements to my <span className="text-foreground font-semibold">2.5+ years of experience</span> and <span className="text-foreground font-semibold">880+ DSA solved problems</span>.
             </p>
             
             <div className="space-y-4">
               <Textarea 
-                placeholder="Paste the full job description here..." 
+                placeholder="Paste the Job Description (JD) here to verify fit..." 
                 className="min-h-[300px] bg-card border-border/60 rounded-2xl resize-none p-6 focus:ring-accent shadow-xl text-base text-foreground placeholder:text-muted-foreground"
                 value={jobDescription}
                 onChange={(e) => setJobDescription(e.target.value)}
@@ -78,11 +79,11 @@ export default function SkillMatcher() {
               >
                 {isMatching ? (
                   <>
-                    <Loader2 className="mr-2 h-6 w-6 animate-spin" /> Analyzing Technical Fit...
+                    <Loader2 className="mr-2 h-6 w-6 animate-spin" /> Performing Technical Audit...
                   </>
                 ) : (
                   <>
-                    <Sparkles className="mr-2 h-6 w-6" /> Generate Matcher Report
+                    <Sparkles className="mr-2 h-6 w-6" /> Run Deep Scan Analysis
                   </>
                 )}
               </Button>
@@ -91,34 +92,34 @@ export default function SkillMatcher() {
 
           <div className="flex-1 w-full lg:sticky lg:top-24 min-h-[600px]">
             {result ? (
-              <Card className="border-primary/40 bg-card shadow-[0_32px_64px_-12px_rgba(0,0,0,0.6)] overflow-hidden animate-fade-in-up">
-                <CardHeader className="bg-gradient-to-r from-primary/30 to-accent/30 border-b border-border/50 p-8">
+              <Card className="border-primary/40 bg-zinc-900 shadow-[0_32px_64px_-12px_rgba(0,0,0,0.8)] overflow-hidden animate-fade-in-up">
+                <CardHeader className="bg-gradient-to-r from-primary/40 to-accent/40 border-b border-border/50 p-8">
                   <div className="flex justify-between items-center">
                     <div>
-                      <CardTitle className="flex items-center gap-2 text-2xl font-bold text-foreground">
+                      <CardTitle className="flex items-center gap-2 text-2xl font-bold text-white">
                         <CheckCircle2 className="h-6 w-6 text-accent" /> Recruiter Cheat Sheet
                       </CardTitle>
-                      <CardDescription className="text-foreground/90 font-medium">Tailored for Murari Komati</CardDescription>
+                      <CardDescription className="text-zinc-100 font-medium">Tailored Analysis for Murari Komati</CardDescription>
                     </div>
                     <div className="flex flex-col items-end">
-                      <div className="text-[10px] font-bold uppercase tracking-widest text-accent mb-1">Fit Score</div>
-                      <Badge className="bg-accent text-accent-foreground font-black text-lg px-4 py-1.5 rounded-xl shadow-lg shadow-accent/30">
+                      <div className="text-[10px] font-bold uppercase tracking-widest text-accent mb-1">Compatibility</div>
+                      <Badge className="bg-accent text-accent-foreground font-black text-xl px-4 py-2 rounded-xl shadow-lg shadow-accent/40">
                         {result.matchScore}%
                       </Badge>
                     </div>
                   </div>
                 </CardHeader>
-                <CardContent className="p-8 space-y-10 max-h-[650px] overflow-y-auto custom-scrollbar">
+                <CardContent className="p-8 space-y-10 max-h-[650px] overflow-y-auto custom-scrollbar bg-zinc-900">
                   <div className="space-y-3">
                     <h4 className="font-bold text-xs uppercase tracking-[0.2em] text-accent">Value Proposition</h4>
-                    <p className="text-base leading-relaxed text-foreground font-medium">{result.impactSummary}</p>
+                    <p className="text-base leading-relaxed text-zinc-100 font-medium">{result.impactSummary}</p>
                   </div>
 
                   <div className="space-y-4">
-                    <h4 className="font-bold text-xs uppercase tracking-[0.2em] text-accent">Matching Skills</h4>
+                    <h4 className="font-bold text-xs uppercase tracking-[0.2em] text-accent">Matching Core Competencies</h4>
                     <div className="flex flex-wrap gap-2.5">
                       {result.matchedSkills.map((skill, i) => (
-                        <Badge key={i} className="bg-primary text-primary-foreground border-none py-2 px-5 font-bold hover:bg-primary/90 transition-colors shadow-md text-sm">
+                        <Badge key={i} className="bg-primary text-white border-none py-2 px-5 font-bold hover:bg-primary/80 transition-colors shadow-md text-sm">
                           {skill}
                         </Badge>
                       ))}
@@ -126,32 +127,19 @@ export default function SkillMatcher() {
                   </div>
 
                   <div className="space-y-4">
-                    <h4 className="font-bold text-xs uppercase tracking-[0.2em] text-accent">Evidence & Proof Points</h4>
+                    <h4 className="font-bold text-xs uppercase tracking-[0.2em] text-accent">Technical Proof Points</h4>
                     <div className="space-y-4">
                       {result.matchedProjects.map((project, i) => (
-                        <div key={i} className="bg-primary/10 p-5 rounded-2xl border border-primary/30 hover:border-accent/40 transition-all group">
+                        <div key={i} className="bg-white/5 p-6 rounded-2xl border border-white/10 hover:border-accent/40 transition-all group">
                           <p className="font-bold text-base mb-2 text-primary group-hover:text-accent transition-colors">{project.title}</p>
-                          <p className="text-sm text-foreground/80 leading-relaxed font-medium">{project.reason}</p>
+                          <p className="text-sm text-zinc-300 leading-relaxed font-medium">{project.reason}</p>
                         </div>
                       ))}
                     </div>
                   </div>
 
-                  {result.relevantCertifications.length > 0 && (
-                    <div className="space-y-4">
-                      <h4 className="font-bold text-xs uppercase tracking-[0.2em] text-accent">Validated Credentials</h4>
-                      <div className="flex flex-wrap gap-2.5">
-                        {result.relevantCertifications.map((cert, i) => (
-                          <div key={i} className="flex items-center gap-2.5 text-xs bg-accent/20 text-accent border border-accent/40 px-4 py-2 rounded-xl font-bold shadow-sm">
-                            <Award className="h-3.5 w-3.5" /> {cert}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
                   <div className="space-y-4">
-                    <h4 className="font-bold text-xs uppercase tracking-[0.2em] text-accent">Deep Dive Links</h4>
+                    <h4 className="font-bold text-xs uppercase tracking-[0.2em] text-accent">Deep Dive Evidence</h4>
                     <div className="grid grid-cols-1 gap-3">
                       {result.recommendedLinks.map((link, i) => (
                         <a 
@@ -159,18 +147,18 @@ export default function SkillMatcher() {
                           href={link.url} 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="group flex items-center justify-between p-4 rounded-2xl border border-border/50 bg-background/50 hover:border-accent hover:bg-accent/5 transition-all shadow-sm"
+                          className="group flex items-center justify-between p-5 rounded-2xl border border-white/10 bg-white/5 hover:border-accent hover:bg-accent/10 transition-all shadow-sm"
                         >
                           <div className="flex items-center gap-4">
-                            <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-accent group-hover:text-accent-foreground transition-all">
-                              {link.name === 'LeetCode' ? <Code className="h-5 w-5" /> : link.name === 'LinkedIn' ? <Linkedin className="h-5 w-5" /> : <ExternalLink className="h-5 w-5" />}
+                            <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center group-hover:bg-accent group-hover:text-accent-foreground transition-all">
+                              {link.name.includes('LeetCode') ? <Code className="h-6 w-6" /> : link.name.includes('LinkedIn') ? <Linkedin className="h-6 w-6" /> : <ExternalLink className="h-6 w-6" />}
                             </div>
                             <div>
-                              <p className="text-xs font-bold text-foreground">{link.name}</p>
-                              <p className="text-[10px] text-muted-foreground font-medium">{link.context}</p>
+                              <p className="text-sm font-bold text-white">{link.name}</p>
+                              <p className="text-[11px] text-zinc-400 font-medium">{link.context}</p>
                             </div>
                           </div>
-                          <ExternalLink className="h-4 w-4 text-muted-foreground group-hover:text-accent transition-colors" />
+                          <ExternalLink className="h-4 w-4 text-zinc-500 group-hover:text-accent transition-colors" />
                         </a>
                       ))}
                     </div>
@@ -178,7 +166,7 @@ export default function SkillMatcher() {
 
                   <Button 
                     variant="ghost" 
-                    className="w-full rounded-2xl text-xs hover:text-accent hover:bg-accent/10 py-6 font-bold uppercase tracking-widest transition-colors border border-dashed border-border/50"
+                    className="w-full rounded-2xl text-xs text-zinc-400 hover:text-accent hover:bg-accent/10 py-8 font-bold uppercase tracking-widest transition-colors border border-dashed border-white/10"
                     onClick={() => {
                       setResult(null);
                       setJobDescription("");
@@ -197,9 +185,9 @@ export default function SkillMatcher() {
                   </div>
                 </div>
                 <div className="space-y-3">
-                  <p className="text-2xl font-bold font-headline text-foreground">Ready for Deep Scan</p>
+                  <p className="text-2xl font-bold font-headline text-foreground">Awaiting Technical Input</p>
                   <p className="text-muted-foreground text-sm max-w-[320px] mx-auto leading-relaxed">
-                    Paste a job description to generate a real-time <span className="text-primary font-semibold">Recruiter Cheat Sheet</span> mapping technical mastery.
+                    Paste a job description to trigger a <span className="text-primary font-semibold">Technical Audit</span> of my engineering capabilities and DSA mastery.
                   </p>
                 </div>
               </div>
