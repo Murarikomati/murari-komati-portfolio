@@ -3,22 +3,21 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: 'Murari Komati | AI/ML & Data Engineer',
-  description: 'AI/ML and Data Engineer specializing in Azure Databricks, GenAI, and Agentic AI workflows. Architecting scalable data platforms and LLM-powered solutions.',
+  title: 'Murari Komati | Data Architect & AI Solutions Engineer',
+  description: 'Mid-level Data Engineer & AI Specialist focused on Azure Databricks, LangGraph, and Agentic AI. Turning complex data into scalable intelligence.',
   keywords: [
     'Murari Komati', 
     'Data Engineer', 
-    'AI Engineer', 
+    'AI Solutions Engineer', 
     'Azure Databricks', 
     'LangGraph', 
-    'PySpark', 
+    'Data Architect', 
     'Agentic AI', 
-    'MLOps', 
-    'Data Architect'
+    'ETL Pipelines'
   ],
   openGraph: {
-    title: 'Murari Komati | AI/ML & Data Engineer Portfolio',
-    description: 'Architecting Scalable AI & Data Ecosystems',
+    title: 'Murari Komati | Data & AI Engineering Portfolio',
+    description: 'Engineering Scalable Foundations for the AI Era',
     images: ['https://picsum.photos/seed/murari-og/1200/630'],
   }
 };

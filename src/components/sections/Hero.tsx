@@ -13,16 +13,16 @@ export default function Hero() {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
           </span>
-          Murari Komati | AI/ML & Data Engineer
+          Murari Komati | Data & AI Solutions Architect
         </div>
         
         <h1 className="text-5xl md:text-8xl font-bold tracking-tighter mb-8 font-headline leading-[1.1]">
-          Architecting Scalable <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary animate-gradient">AI & Data Systems</span>
+          Engineering the Future <br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary animate-gradient">of Data & Intelligence</span>
         </h1>
         
         <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
-          Specializing in building production-grade <span className="text-foreground font-medium">Data Platforms</span>, Databricks ML systems, and <span className="text-foreground font-medium">Agentic AI</span> workflows.
+          I build the <span className="text-foreground font-medium">Data Backbone</span> that powers the next generation of <span className="text-foreground font-medium">Autonomous AI</span>. Scalable, high-performance, and production-ready.
         </p>
         
         <div className="flex flex-wrap items-center justify-center gap-4">
@@ -30,7 +30,7 @@ export default function Hero() {
             <a href="#projects">View My Impact <ArrowRight className="ml-2 h-5 w-5" /></a>
           </Button>
           <Button size="lg" variant="outline" className="h-14 px-10 rounded-full font-bold text-md bg-background/50 backdrop-blur-sm">
-            <FileText className="mr-2 h-5 w-5" /> Download Resume
+            <FileText className="mr-2 h-5 w-5" /> Get My Resume
           </Button>
           <div className="flex gap-2 ml-2">
             <Button size="icon" variant="ghost" className="h-12 w-12 rounded-full border" asChild>
@@ -49,20 +49,20 @@ export default function Hero() {
       <div className="mt-24 w-full max-w-5xl px-4 animate-fade-in-up delay-300">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 p-10 rounded-3xl border bg-card/40 backdrop-blur-md shadow-2xl">
           <div className="text-center">
-            <p className="text-4xl font-bold font-headline mb-2 text-primary">90%</p>
-            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Manual Effort Reduced</p>
+            <p className="text-4xl font-bold font-headline mb-2 text-primary">2.5+</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Years Experience</p>
           </div>
           <div className="text-center">
-            <p className="text-4xl font-bold font-headline mb-2 text-accent">4x</p>
-            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Faster Turnaround</p>
+            <p className="text-4xl font-bold font-headline mb-2 text-accent">90%</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Process Automation</p>
           </div>
           <div className="text-center">
-            <p className="text-4xl font-bold font-headline mb-2 text-secondary">500K+</p>
-            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Daily Data Records</p>
+            <p className="text-4xl font-bold font-headline mb-2 text-secondary">Cloud</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Azure &amp; Databricks Expert</p>
           </div>
           <div className="text-center">
-            <p className="text-4xl font-bold font-headline mb-2 text-primary">MLOps</p>
-            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Unity Catalog Expert</p>
+            <p className="text-4xl font-bold font-headline mb-2 text-primary">Agentic</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">AI Workflow Developer</p>
           </div>
         </div>
       </div>
