@@ -1,98 +1,67 @@
-'use client';
+"use client"
 
 import { EXPERIENCE } from "@/lib/data";
-import { MapPin, Calendar, ChevronRight, Briefcase, Sparkles } from "lucide-react";
-import { useState } from "react";
-import { cn } from "@/lib/utils";
+import { Badge } from "@/components/ui/badge";
+import { Calendar, MapPin, CheckCircle2 } from "lucide-react";
 
 export default function Experience() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
   return (
-    <section id="experience" className="py-24 px-4 overflow-hidden bg-background">
-      <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/15 text-primary text-xs font-bold uppercase tracking-widest mb-4 border border-primary/20">
-            <Briefcase className="h-3 w-3" /> Career Path
-          </div>
-          <h2 className="text-4xl md:text-5xl font-bold font-headline mb-6">Professional <span className="text-primary">Journey</span></h2>
-          <p className="text-foreground/80 max-w-2xl mx-auto text-lg leading-relaxed">
-            A chronological narrative of building enterprise data backbones and autonomous AI systems.
+    <section id="experience" className="py-32 px-4">
+      <div className="max-w-4xl mx-auto">
+        <div className="text-center mb-20 space-y-4">
+          <Badge className="bg-primary/20 text-primary border-primary/30 px-4 py-1 mb-2">Career Journey</Badge>
+          <h2 className="text-4xl md:text-5xl font-bold font-headline">Professional <span className="text-primary italic">Trajectory</span></h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            Architecting scalable data foundations and AI systems for high-performance enterprises.
           </p>
         </div>
 
-        <div className="relative">
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary via-accent to-transparent md:translate-x-[-0.5px] opacity-40" />
-
-          <div className="space-y-16">
-            {EXPERIENCE.map((exp, i) => (
-              <div 
-                key={i} 
-                className={cn(
-                  "relative flex flex-col md:flex-row items-start gap-8 md:gap-16 group transition-all duration-500",
-                  i % 2 !== 0 ? "md:flex-row-reverse" : ""
-                )}
-                onMouseEnter={() => setHoveredIndex(i)}
-                onMouseLeave={() => setHoveredIndex(null)}
-              >
-                <div className="absolute left-4 md:left-1/2 w-4 h-4 rounded-full bg-background border-2 border-primary z-10 translate-x-[-7.5px] group-hover:scale-125 transition-all duration-300 group-hover:bg-primary" />
-
-                <div className={cn(
-                  "hidden md:block w-1/2",
-                  i % 2 !== 0 ? "text-left pl-12" : "text-right pr-12"
-                )}>
-                  <div className="sticky top-24">
-                    <span className="inline-flex items-center gap-2 text-sm font-bold text-primary bg-primary/10 px-4 py-2 rounded-full border border-primary/30">
-                      <Calendar className="h-4 w-4" /> {exp.period}
-                    </span>
-                    <p className="mt-4 text-xs font-bold uppercase tracking-widest text-foreground/70">{exp.location}</p>
-                  </div>
-                </div>
-
-                <div className="w-full md:w-1/2 pl-12 md:pl-0">
-                  <div className={cn(
-                    "p-8 rounded-[2.5rem] border bg-card shadow-xl transition-all duration-500 cursor-pointer relative overflow-hidden",
-                    hoveredIndex === i ? "border-primary/50 -translate-y-2" : "border-border/60"
-                  )}>
-                    <div className="relative z-10 space-y-4">
-                      <div className="flex flex-col gap-1">
-                        <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">{exp.role}</span>
-                        <h3 className="text-2xl md:text-3xl font-bold font-headline">{exp.company}</h3>
-                      </div>
-                      
-                      <div className="flex flex-wrap items-center gap-4 text-sm text-foreground/70">
-                        <span className="flex items-center gap-1.5 md:hidden font-medium text-primary"><Calendar className="h-4 w-4" /> {exp.period}</span>
-                        <span className="flex items-center gap-1.5"><MapPin className="h-4 w-4" /> {exp.location}</span>
-                      </div>
-
-                      <p className="text-base text-foreground/90 leading-relaxed font-medium">
-                        {exp.summary}
-                      </p>
-
-                      <div className={cn(
-                        "grid transition-all duration-500 ease-in-out",
-                        hoveredIndex === i ? "grid-rows-[1fr] opacity-100 mt-6 pt-6 border-t border-primary/20" : "grid-rows-[0fr] opacity-0"
-                      )}>
-                        <div className="overflow-hidden space-y-4">
-                          <h4 className="text-xs font-bold uppercase tracking-widest text-primary flex items-center gap-2">
-                            <Sparkles className="h-3 w-3" /> Core Contributions
-                          </h4>
-                          <div className="space-y-4">
-                            {exp.highlights?.map((highlight, j) => (
-                              <div key={j} className="flex gap-3 text-sm leading-relaxed text-foreground/90 group/item">
-                                <ChevronRight className="h-5 w-5 shrink-0 text-primary transition-transform group-hover/item:translate-x-1" />
-                                <span className="font-medium">{highlight}</span>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+        <div className="relative space-y-16 before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-border before:to-transparent">
+          {EXPERIENCE.map((exp, index) => (
+            <div key={index} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100">
+              {/* Dot */}
+              <div className="flex items-center justify-center w-10 h-10 rounded-full border border-border bg-card text-primary shadow-xl shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 absolute left-0 md:left-1/2 -translate-x-1/2 z-10 transition-transform group-hover:scale-125 duration-300">
+                <CheckCircle2 className="w-6 h-6" />
               </div>
-            ))}
-          </div>
+
+              {/* Card */}
+              <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 rounded-3xl border border-border/50 bg-card hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-300">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+                  <div className="space-y-1">
+                    <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">{exp.role}</h3>
+                    <div className="text-primary font-bold">{exp.company}</div>
+                  </div>
+                  <Badge variant="outline" className="w-fit border-primary/30 text-primary bg-primary/5 font-bold">
+                    {exp.period}
+                  </Badge>
+                </div>
+
+                <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-6">
+                  <span className="flex items-center gap-1.5 font-medium text-foreground/80">
+                    <Calendar className="w-4 h-4 text-primary" />
+                    {exp.period}
+                  </span>
+                  <span className="flex items-center gap-1.5 font-medium text-foreground/80">
+                    <MapPin className="w-4 h-4 text-primary" />
+                    {exp.location}
+                  </span>
+                </div>
+
+                <p className="text-foreground/90 leading-relaxed mb-6 font-medium text-base">
+                  {exp.summary}
+                </p>
+
+                <ul className="space-y-3">
+                  {exp.highlights.map((highlight, hIndex) => (
+                    <li key={hIndex} className="flex items-start gap-3 text-sm text-foreground/80 bg-muted/30 p-3 rounded-xl border border-border/20">
+                      <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 shrink-0" />
+                      <span className="font-medium">{highlight}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

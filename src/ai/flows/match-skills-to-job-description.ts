@@ -1,79 +1,64 @@
 'use server';
 
 /**
- * @fileOverview AI Flow to match job descriptions to candidate profile using direct Google AI SDK.
+ * @fileOverview Refactored AI Flow using direct Gemini SDK for maximum reliability.
  */
 
 import { generateJSON } from '@/ai/gemini';
-import { z } from 'zod';
 import fs from 'fs';
 import path from 'path';
 
-const MatchSkillsToJobDescriptionOutputSchema = {
-  type: "object",
-  properties: {
-    matchScore: { type: "number", description: "A percentage score from 0-100 indicating fit." },
-    impactSummary: { type: "string", description: "A concise 2-sentence pitch for the candidate." },
-    matchedSkills: { type: "array", items: { type: "string" }, description: "Top technical skills that overlap." },
-    matchedProjects: {
-      type: "array",
-      items: {
-        type: "object",
-        properties: {
-          title: { type: "string" },
-          reason: { type: "string" }
-        },
-        required: ["title", "reason"]
-      }
-    },
-    relevantCertifications: { type: "array", items: { type: "string" } },
-    recommendedLinks: {
-      type: "array",
-      items: {
-        type: "object",
-        properties: {
-          name: { type: "string" },
-          url: { type: "string" },
-          context: { type: "string" }
-        },
-        required: ["name", "url", "context"]
-      }
-    }
-  },
-  required: ["matchScore", "impactSummary", "matchedSkills", "matchedProjects", "relevantCertifications", "recommendedLinks"]
-};
+export interface MatchSkillsToJobDescriptionInput {
+  jobDescription: string;
+}
 
-export type MatchSkillsToJobDescriptionOutput = {
+export interface MatchSkillsToJobDescriptionOutput {
   matchScore: number;
   impactSummary: string;
   matchedSkills: string[];
-  matchedProjects: { title: string; reason: string }[];
+  matchedProjects: {
+    title: string;
+    reason: string;
+  }[];
   relevantCertifications: string[];
-  recommendedLinks: { name: string; url: string; context: string }[];
-};
+  recommendedLinks: {
+    name: string;
+    url: string;
+    context: string;
+  }[];
+}
 
-export async function matchSkillsToJobDescription(input: { jobDescription: string }): Promise<MatchSkillsToJobDescriptionOutput> {
+export async function matchSkillsToJobDescription(
+  input: MatchSkillsToJobDescriptionInput
+): Promise<MatchSkillsToJobDescriptionOutput> {
   const profilePath = path.join(process.cwd(), 'src/ai/profile.json');
   const profileData = fs.readFileSync(profilePath, 'utf-8');
 
-  const prompt = `You are an expert technical recruiter. Analyze the alignment between this Candidate Profile and the Job Description.
+  const prompt = `You are an expert technical recruiter. Analyze the candidate's profile against the provided Job Description.
   
   Candidate Profile:
   ${profileData}
-
+  
   Job Description:
   ${input.jobDescription}
-
-  Generate a "Recruiter Cheat Sheet" in JSON format. 
-  Limit matchedSkills to the 6 most relevant. 
-  Ensure matchScore is realistic. 
-  Only include projects and certifications that are relevant.`;
+  
+  Return a JSON object with the following structure:
+  {
+    "matchScore": number (0-100),
+    "impactSummary": "2-sentence high-impact pitch",
+    "matchedSkills": ["Skill 1", "Skill 2", ...],
+    "matchedProjects": [{"title": "Project Name", "reason": "Why it's relevant"}],
+    "relevantCertifications": ["Cert 1", ...],
+    "recommendedLinks": [{"name": "Link Name", "url": "URL", "context": "Why visit this"}]
+  }
+  
+  Limit matchedSkills to 6. Only include relevant data. Be concise and professional.`;
 
   try {
-    const output = await generateJSON<MatchSkillsToJobDescriptionOutput>(prompt, MatchSkillsToJobDescriptionOutputSchema);
-    return output;
+    const result = await generateJSON<MatchSkillsToJobDescriptionOutput>(prompt);
+    return result;
   } catch (error) {
-    console.error("Match Skills Error:", error);
-    throw new Error("AI analysis failed. Please try a more detailed job description.");
+    console.error("AI SDK Matcher Error:", error);
+    throw new Error("Deep Scan failed. Please check the Job Description and try again.");
   }
 }
