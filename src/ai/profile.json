@@ -1,0 +1,190 @@
+{
+    "name": "Murari Komati",
+    "title": "Data Engineer",
+  
+    "education": {
+      "degree": "B.Tech in Electronics and Telecommunication Engineering",
+      "institution": "Walchand Institute of Technology, Maharashtra",
+      "year": "2019-2023",
+      "percentage": "80.2%"
+    },
+  
+    "experience": [
+      {
+        "company": "EZData Advisory IT Services & Consulting Pvt Ltd",
+        "role": "Data Engineer",
+        "duration": "Nov 2025 - Dec 2025",
+        "location": "Uttar Pradesh, India",
+        "responsibilities": [
+          "Migrated legacy ADF pipelines to PySpark ELT frameworks",
+          "Built Dataform SQLX models with dependency management",
+          "Implemented data quality checks (uniqueness, null, referential integrity)",
+          "Delivered curated datasets to BigQuery integrated with Looker",
+          "Enabled API-driven ingestion frameworks",
+          "Reduced duplicate transformation logic by 40%",
+          "Improved dashboard query performance by 30%"
+        ]
+      },
+      {
+        "company": "Data Master Consulting Pvt Ltd",
+        "role": "Data Engineer",
+        "duration": "Nov 2023 - Oct 2025",
+        "location": "Maharashtra, India",
+        "responsibilities": [
+          "Designed batch and real-time pipelines using ADF, Databricks, DBT, Delta Live Tables, Kafka",
+          "Ingested data from SAP HANA, REST APIs, SFTP, Microsoft 365, Event Hub",
+          "Built Medallion Architecture (Bronze-Silver-Gold)",
+          "Processed 100GB+ datasets using PySpark and Spark SQL",
+          "Implemented SCD Type 1 and Type 2 pipelines",
+          "Optimized Spark workloads (broadcast joins, predicate pushdown)",
+          "Implemented CI/CD using Azure DevOps YAML",
+          "Built Power BI dashboards",
+          "Automated monitoring via ADF triggers and ServiceNow",
+          "Implemented dbt freshness checks",
+          "Built Spark ML pipelines on Databricks",
+          "Performed distributed hyperparameter tuning using Optuna and Ray Tune",
+          "Applied LoRA-based fine-tuning",
+          "Designed Agentic AI workflows using LangGraph",
+          "Deployed models via Databricks Model Serving"
+        ]
+      }
+    ],
+  
+    "skills": {
+      "data_engineering": [
+        "PySpark",
+        "Apache Spark",
+        "Spark SQL",
+        "Scala",
+        "Hadoop",
+        "Delta Lake",
+        "Delta Live Tables",
+        "dbt",
+        "Airflow",
+        "Snowflake",
+        "Azure Synapse",
+        "BigQuery",
+        "Dataform"
+      ],
+      "cloud": {
+        "azure": [
+          "Azure Databricks",
+          "Azure Data Factory",
+          "ADLS Gen2",
+          "Azure SQL",
+          "Azure Synapse",
+          "Azure DevOps",
+          "Azure Event Hub",
+          "Azure Functions",
+          "Key Vault",
+          "Managed Identity"
+        ],
+        "gcp": [
+          "BigQuery",
+          "Dataproc",
+          "Dataform"
+        ],
+        "aws": [
+          "Amazon S3"
+        ]
+      },
+      "streaming": [
+        "Kafka",
+        "Azure Event Hub",
+        "REST APIs",
+        "SAP HANA",
+        "SFTP"
+      ],
+      "data_modeling": [
+        "Medallion Architecture",
+        "Kimball Modeling",
+        "Star Schema",
+        "SCD Type 1",
+        "SCD Type 2",
+        "Data Lineage",
+        "Auditing",
+        "Reconciliation",
+        "Data Quality Assertions"
+      ],
+      "machine_learning": [
+        "Spark MLlib",
+        "Scikit-learn",
+        "MLflow",
+        "Unity Catalog",
+        "Databricks Model Serving",
+        "Optuna",
+        "Ray Tune"
+      ],
+      "genai": [
+        "RAG Systems",
+        "LangChain",
+        "LangGraph",
+        "Prompt Engineering",
+        "Embeddings",
+        "LoRA Fine-Tuning"
+      ],
+      "programming": [
+        "Python",
+        "SQL",
+        "Git",
+        "GitHub",
+        "Terraform",
+        "Power BI",
+        "Looker"
+      ]
+    },
+  
+    "projects": [
+      {
+        "name": "Real-Time Movie Analytics ELT Platform",
+        "technologies": ["Amazon S3", "Snowflake", "dbt"],
+        "highlights": [
+          "Implemented Kimball star schema",
+          "Built raw to analytics layered architecture",
+          "Applied governance and data quality tests"
+        ]
+      },
+      {
+        "name": "Real-Time Stock Market Data Pipeline",
+        "technologies": ["Azure Event Hub", "Databricks", "SQL Server", "Microsoft Fabric"],
+        "highlights": [
+          "Implemented anomaly detection",
+          "Integrated streaming data with analytical storage"
+        ]
+      },
+      {
+        "name": "Enterprise Document Analytics and RAG Platform",
+        "technologies": ["Azure Databricks", "LangChain", "Embeddings"],
+        "highlights": [
+          "Enabled semantic search over 1000+ documents",
+          "Implemented hybrid retrieval architecture"
+        ]
+      },
+      {
+        "name": "Agentic AI Workflow Automation System",
+        "technologies": ["LangGraph", "Databricks"],
+        "highlights": [
+          "Automated ingestion, reasoning, and validation workflows",
+          "Reduced manual effort by 90%"
+        ]
+      },
+      {
+        "name": "Real-Time BFSI Streaming Pipeline",
+        "technologies": ["Azure Event Hub", "Databricks"],
+        "highlights": [
+          "Processed high-frequency transactional data",
+          "Implemented anomaly detection and alerting"
+        ]
+      }
+    ],
+  
+    "certifications": [
+      "Databricks Fundamentals",
+      "Machine Learning at Scale",
+      "Advanced Machine Learning Operations",
+      "Generative AI",
+      "Microsoft Fabric Training",
+      "Azure Data Engineer Associate (In Progress)"
+    ]
+  }
+  

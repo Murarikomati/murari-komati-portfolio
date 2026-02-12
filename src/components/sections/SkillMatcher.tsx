@@ -65,6 +65,7 @@ export default function SkillMatcher() {
                 className="min-h-[300px] bg-background border-border rounded-2xl resize-none p-6 focus:ring-accent shadow-inner text-sm"
                 value={jobDescription}
                 onChange={(e) => setJobDescription(e.target.value)}
+                suppressHydrationWarning
               />
               <Button 
                 onClick={handleMatch} 
@@ -95,20 +96,20 @@ export default function SkillMatcher() {
                       </CardTitle>
                       <CardDescription className="text-foreground/70">Tailored analysis for Murari Komati</CardDescription>
                     </div>
-                    <Badge variant="outline" className="bg-background/50 font-bold">{result.matchScore}% Match</Badge>
+                    <Badge className="bg-accent text-accent-foreground font-bold px-4 py-1.5 rounded-full">{result.matchScore}% Match</Badge>
                   </div>
                 </CardHeader>
                 <CardContent className="p-8 space-y-8 max-h-[600px] overflow-y-auto custom-scrollbar">
                   <div>
-                    <h4 className="font-bold text-[10px] uppercase tracking-[0.2em] text-primary mb-3">Pitch / Value Prop</h4>
-                    <p className="text-sm leading-relaxed text-foreground/90 font-medium">{result.impactSummary}</p>
+                    <h4 className="font-bold text-[10px] uppercase tracking-[0.2em] text-accent mb-3">Pitch / Value Prop</h4>
+                    <p className="text-sm leading-relaxed text-foreground font-medium">{result.impactSummary}</p>
                   </div>
 
                   <div>
-                    <h4 className="font-bold text-[10px] uppercase tracking-[0.2em] text-primary mb-3">Matching Skills</h4>
+                    <h4 className="font-bold text-[10px] uppercase tracking-[0.2em] text-accent mb-3">Matching Skills</h4>
                     <div className="flex flex-wrap gap-2">
                       {result.matchedSkills.map((skill, i) => (
-                        <Badge key={i} variant="secondary" className="bg-muted border py-1 px-3">
+                        <Badge key={i} variant="outline" className="bg-accent/10 text-accent border-accent/20 py-1.5 px-4 font-semibold">
                           {skill}
                         </Badge>
                       ))}
@@ -116,11 +117,11 @@ export default function SkillMatcher() {
                   </div>
 
                   <div>
-                    <h4 className="font-bold text-[10px] uppercase tracking-[0.2em] text-primary mb-3">Project Proof Points</h4>
+                    <h4 className="font-bold text-[10px] uppercase tracking-[0.2em] text-accent mb-3">Project Proof Points</h4>
                     <div className="space-y-4">
                       {result.matchedProjects.map((project, i) => (
-                        <div key={i} className="bg-muted/50 p-4 rounded-xl border border-border">
-                          <p className="font-bold text-sm mb-1">{project.title}</p>
+                        <div key={i} className="bg-accent/5 p-4 rounded-xl border border-accent/10 hover:border-accent/30 transition-colors">
+                          <p className="font-bold text-sm mb-1 text-foreground">{project.title}</p>
                           <p className="text-xs text-muted-foreground leading-relaxed">{project.reason}</p>
                         </div>
                       ))}
@@ -129,10 +130,10 @@ export default function SkillMatcher() {
 
                   {result.relevantCertifications.length > 0 && (
                     <div>
-                      <h4 className="font-bold text-[10px] uppercase tracking-[0.2em] text-primary mb-3">Verified Certifications</h4>
+                      <h4 className="font-bold text-[10px] uppercase tracking-[0.2em] text-accent mb-3">Verified Certifications</h4>
                       <div className="flex flex-wrap gap-2">
                         {result.relevantCertifications.map((cert, i) => (
-                          <div key={i} className="flex items-center gap-2 text-xs bg-accent/5 text-accent border border-accent/20 px-3 py-1.5 rounded-lg">
+                          <div key={i} className="flex items-center gap-2 text-xs bg-accent/5 text-accent border border-accent/20 px-3 py-1.5 rounded-lg font-medium">
                             <Award className="h-3 w-3" /> {cert}
                           </div>
                         ))}
@@ -141,7 +142,7 @@ export default function SkillMatcher() {
                   )}
 
                   <div>
-                    <h4 className="font-bold text-[10px] uppercase tracking-[0.2em] text-primary mb-3">Evidence Links</h4>
+                    <h4 className="font-bold text-[10px] uppercase tracking-[0.2em] text-accent mb-3">Evidence Links</h4>
                     <div className="grid grid-cols-1 gap-3">
                       {result.recommendedLinks.map((link, i) => (
                         <a 
@@ -149,18 +150,18 @@ export default function SkillMatcher() {
                           href={link.url} 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="group flex items-center justify-between p-3 rounded-xl border border-border bg-background hover:border-primary transition-all"
+                          className="group flex items-center justify-between p-4 rounded-xl border border-border bg-background/50 hover:border-accent hover:bg-accent/5 transition-all"
                         >
                           <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+                            <div className="w-9 h-9 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent group-hover:text-white transition-colors">
                               {link.name === 'LeetCode' ? <Code className="h-4 w-4" /> : link.name === 'LinkedIn' ? <Linkedin className="h-4 w-4" /> : <ExternalLink className="h-4 w-4" />}
                             </div>
                             <div>
-                              <p className="text-xs font-bold">{link.name}</p>
+                              <p className="text-xs font-bold text-foreground">{link.name}</p>
                               <p className="text-[10px] text-muted-foreground">{link.context}</p>
                             </div>
                           </div>
-                          <ExternalLink className="h-3 w-3 text-muted-foreground group-hover:text-primary" />
+                          <ExternalLink className="h-3.5 w-3.5 text-muted-foreground group-hover:text-accent" />
                         </a>
                       ))}
                     </div>
@@ -168,7 +169,7 @@ export default function SkillMatcher() {
 
                   <Button 
                     variant="ghost" 
-                    className="w-full rounded-xl text-xs"
+                    className="w-full rounded-xl text-xs hover:text-accent hover:bg-accent/5"
                     onClick={() => {
                       setResult(null);
                       setJobDescription("");
