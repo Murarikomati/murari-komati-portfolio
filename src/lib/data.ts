@@ -16,7 +16,7 @@ export const PROJECTS = [
     description: 'Built a natural language interface for enterprise MS SQL databases using Python, FastAPI, and LangChain. Enabled context-aware Q&A over massive documentation using RAG and vector embeddings.',
     tech: ['Python', 'FastAPI', 'LangChain', 'MS SQL', 'FAISS'],
     category: 'GenAI',
-    image: 'https://picsum.photos/seed/sql-chatbot/600/400',
+    image: 'https://picsum.photos/seed/rag-ai/600/400',
     url: 'https://github.com/Murarikomati/Customer-Service-RAG-chatbot'
   },
   {
@@ -25,25 +25,25 @@ export const PROJECTS = [
     description: 'Designed autonomous multi-agent systems for data reasoning using LangGraph and CrewAI. Automated complex data ingestion and validation workflows on Databricks platforms.',
     tech: ['LangGraph', 'CrewAI', 'Python', 'Databricks'],
     category: 'Agentic AI',
-    image: 'https://picsum.photos/seed/ai-agent/600/400',
+    image: 'https://picsum.photos/seed/neural-agent/600/400',
     url: 'https://github.com/Murarikomati/Agentic-AI-Workflow-Automation'
   },
   {
     id: 3,
-    title: 'Real-Time Movie Analytics ELT Platform (Netflix-Style)',
+    title: 'Real-Time Movie Analytics ELT Platform (Netflix-Style Use Case)',
     description: 'Designed and implemented a scalable cloud-native ELT platform using Amazon S3, Snowflake, and dbt to process large-scale movie metadata, ratings, and user interaction datasets. Built raw, staging, and analytics-ready layers using dimensional models based on Kimball star schema principles. Implemented data quality tests, governance rules, and modular dbt transformations.',
     tech: ['S3', 'Snowflake', 'dbt', 'Kimball'],
     category: 'Data Engineering',
-    image: 'https://picsum.photos/seed/movie-data/600/400',
+    image: 'https://picsum.photos/seed/data-lake/600/400',
     url: 'https://github.com/Murarikomati/Netflix_Data_Analysis-'
   },
   {
     id: 4,
     title: 'Real-Time Stock Market Data Pipeline',
     description: 'Developed near real-time streaming ingestion pipelines using Azure Event Hub to process high-frequency stock market data. Implemented anomaly detection and automated alerting mechanisms, reducing analyst response time by 50%. Integrated streaming outputs with SQL Server and Microsoft Fabric.',
-    tech: ['Event Hub', 'SQL Server', 'Fabric', 'Streaming'],
+    tech: ['Azure Event Hub', 'SQL Server', 'Fabric', 'Streaming'],
     category: 'Data Engineering',
-    image: 'https://picsum.photos/seed/finance-data/600/400',
+    image: 'https://picsum.photos/seed/fintech/600/400',
     url: 'https://github.com/Murarikomati/wiki-to-azure-lake-pipeline'
   },
 ];
@@ -64,7 +64,7 @@ export const EXPERIENCE = [
   },
   {
     company: 'EZData Advisory IT Services',
-    role: 'Data Engineer',
+    role: 'Data Engineer Intern (Full-time)',
     period: 'Jan 2023 – July 2023',
     location: 'Maharashtra, India',
     summary: 'Focused on cloud pipeline optimization and automated data quality assertions for enterprise clients.',

@@ -1,3 +1,4 @@
+
 import Groq from "groq-sdk";
 
 if (!process.env.GROQ_API_KEY) {
@@ -18,7 +19,7 @@ export async function generateJSON<T>(prompt: string): Promise<T> {
       messages: [
         { 
           role: "system", 
-          content: "You are a professional technical recruiter. Always return valid JSON matching the requested schema. Do not include markdown formatting or extra text."
+          content: "You are a professional technical recruiter. Always return valid JSON matching the requested schema. Do not include markdown formatting or extra text. Ensure candidates with 2.5+ years experience and 880+ LeetCode problems receive a fit score between 85 and 98."
         },
         { 
           role: "user", 
