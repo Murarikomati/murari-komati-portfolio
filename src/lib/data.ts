@@ -12,7 +12,7 @@ export const PROJECTS = [
   {
     id: 1,
     title: 'Customer Service RAG Chatbot',
-    description: 'Enterprise-grade RAG system providing a natural language interface to MS SQL databases. Built with FastAPI, LangChain, and FAISS for context-aware Q&A.',
+    description: 'Built a natural language interface for enterprise MS SQL databases using Python, FastAPI, and LangChain. Enabled context-aware Q&A over massive documentation using RAG and vector embeddings.',
     tech: ['Python', 'FastAPI', 'LangChain', 'MS SQL', 'FAISS'],
     category: 'GenAI',
     image: 'https://picsum.photos/seed/sql-chatbot/600/400',
@@ -21,7 +21,7 @@ export const PROJECTS = [
   {
     id: 2,
     title: 'Agentic AI Workflow Automation',
-    description: 'Autonomous multi-agent architecture using LangGraph and CrewAI to automate enterprise data ingestion, validation, and reasoning tasks on Databricks.',
+    description: 'Designed autonomous multi-agent systems for data reasoning using LangGraph and CrewAI. Automated complex data ingestion and validation workflows on Databricks platforms.',
     tech: ['LangGraph', 'CrewAI', 'Python', 'Databricks'],
     category: 'Agentic AI',
     image: 'https://picsum.photos/seed/crew-ai/600/400',
@@ -29,8 +29,8 @@ export const PROJECTS = [
   },
   {
     id: 3,
-    title: 'Real-Time Movie Analytics ELT Platform',
-    description: 'Designed and implemented a scalable cloud-native ELT platform using Amazon S3, Snowflake, and dbt to process large-scale movie metadata, ratings, and user interaction datasets. Built raw, staging, and analytics-ready layers using dimensional models based on Kimball star schema principles to enable high-performance analytics.',
+    title: 'Real-Time Movie Analytics ELT Platform (Netflix-Style Use Case)',
+    description: 'Designed and implemented a scalable cloud-native ELT platform using Amazon S3, Snowflake, and dbt. Built raw, staging, and analytics-ready layers using Kimball star schema principles to enable high-performance analytics. Implemented data quality tests, governance rules, and modular dbt transformations.',
     tech: ['S3', 'Snowflake', 'dbt', 'Kimball'],
     category: 'Data Engineering',
     image: 'https://picsum.photos/seed/netflix-elt/600/400',
@@ -39,7 +39,7 @@ export const PROJECTS = [
   {
     id: 4,
     title: 'Real-Time Stock Market Data Pipeline',
-    description: 'Developed near real-time streaming ingestion pipelines using Azure Event Hub to process high-frequency stock market data. Implemented anomaly detection and automated alerting mechanisms, reducing analyst response time by 50%. Integrated streaming outputs with SQL Server and Microsoft Fabric to ensure analytics-ready reporting.',
+    description: 'Developed near real-time streaming ingestion pipelines using Azure Event Hub to process high-frequency stock market data. Implemented anomaly detection and automated alerting mechanisms, reducing analyst response time by 50%. Integrated streaming outputs with SQL Server and Microsoft Fabric.',
     tech: ['Event Hub', 'SQL Server', 'Fabric', 'Streaming'],
     category: 'Data Engineering',
     image: 'https://picsum.photos/seed/stock-stream/600/400',
