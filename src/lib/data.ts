@@ -1,3 +1,4 @@
+
 export const SKILLS = [
   { name: 'Azure Databricks / ADF', category: 'Cloud Platforms', icon: 'Cloud' },
   { name: 'PySpark / Spark SQL', category: 'Data Engineering', icon: 'Zap' },
@@ -24,16 +25,16 @@ export const PROJECTS = [
     description: 'Designed autonomous multi-agent systems for data reasoning using LangGraph and CrewAI. Automated complex data ingestion and validation workflows on Databricks platforms.',
     tech: ['LangGraph', 'CrewAI', 'Python', 'Databricks'],
     category: 'Agentic AI',
-    image: 'https://picsum.photos/seed/crew-ai/600/400',
+    image: 'https://picsum.photos/seed/ai-agent/600/400',
     url: 'https://github.com/Murarikomati/Agentic-AI-Workflow-Automation'
   },
   {
     id: 3,
-    title: 'Real-Time Movie Analytics ELT Platform (Netflix-Style Use Case)',
-    description: 'Designed and implemented a scalable cloud-native ELT platform using Amazon S3, Snowflake, and dbt. Built raw, staging, and analytics-ready layers using Kimball star schema principles to enable high-performance analytics. Implemented data quality tests, governance rules, and modular dbt transformations.',
+    title: 'Real-Time Movie Analytics ELT Platform (Netflix-Style)',
+    description: 'Designed and implemented a scalable cloud-native ELT platform using Amazon S3, Snowflake, and dbt to process large-scale movie metadata, ratings, and user interaction datasets. Built raw, staging, and analytics-ready layers using dimensional models based on Kimball star schema principles. Implemented data quality tests, governance rules, and modular dbt transformations.',
     tech: ['S3', 'Snowflake', 'dbt', 'Kimball'],
     category: 'Data Engineering',
-    image: 'https://picsum.photos/seed/netflix-elt/600/400',
+    image: 'https://picsum.photos/seed/movie-data/600/400',
     url: 'https://github.com/Murarikomati/Netflix_Data_Analysis-'
   },
   {
@@ -42,7 +43,7 @@ export const PROJECTS = [
     description: 'Developed near real-time streaming ingestion pipelines using Azure Event Hub to process high-frequency stock market data. Implemented anomaly detection and automated alerting mechanisms, reducing analyst response time by 50%. Integrated streaming outputs with SQL Server and Microsoft Fabric.',
     tech: ['Event Hub', 'SQL Server', 'Fabric', 'Streaming'],
     category: 'Data Engineering',
-    image: 'https://picsum.photos/seed/stock-stream/600/400',
+    image: 'https://picsum.photos/seed/finance-data/600/400',
     url: 'https://github.com/Murarikomati/wiki-to-azure-lake-pipeline'
   },
 ];

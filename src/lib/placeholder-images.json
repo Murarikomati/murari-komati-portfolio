@@ -1,22 +1,28 @@
 {
   "placeholderImages": [
     {
-      "id": "chatbot-sql-data",
-      "description": "AI Chatbot interface for database queries",
-      "imageUrl": "https://images.unsplash.com/photo-1684493735679-359868df0e18?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxBSSUyMENoYXR8ZW58MHx8fHwxNzcwODkyMDU2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "id": "sql-chatbot",
+      "description": "Abstract AI Chatbot interface for database queries",
+      "imageUrl": "https://images.unsplash.com/photo-1677442136019-21780ecad995?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxBSSUyMENoYXR8ZW58MHx8fHwxNzcwODkyMDU2fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "AI Chat"
     },
     {
-      "id": "agent-job-search",
-      "description": "Multi-agent autonomous system for job search",
-      "imageUrl": "https://images.unsplash.com/photo-1768400730810-5c4398d58ae7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxSb2JvdCUyMEFnZW50fGVufDB8fHx8MTc3MDg5MjA1N3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "Robot Agent"
+      "id": "agent-workflow",
+      "description": "Multi-agent autonomous system and neural networks",
+      "imageUrl": "https://images.unsplash.com/photo-1676277791608-ac54525aa94d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxBSSUyMEFnZW50fGVufDB8fHx8MTc3MDg5MjA1N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "AI Neural"
     },
     {
-      "id": "smart-traffic-vision",
-      "description": "Smart traffic management using computer vision",
-      "imageUrl": "https://images.unsplash.com/photo-1762028768745-f701dce6aa64?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxUcmFmZmljJTIwVmlzaW9ufGVufDB8fHx8MTc3MDg5MjA1N3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "Traffic Vision"
+      "id": "movie-analytics",
+      "description": "Cloud data architecture and analytics dashboard",
+      "imageUrl": "https://images.unsplash.com/photo-1551288049-bbbda540d3ad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxEYXRhJTIwQW5hbHl0aWNzfGVufDB8fHx8MTc3MDg5MjA1N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Data Dashboard"
+    },
+    {
+      "id": "stock-pipeline",
+      "description": "Real-time stock market data visualization",
+      "imageUrl": "https://images.unsplash.com/photo-1611974717484-788cff6b4200?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxTdG9jayUyME1hcmtldHxlbnwwfHx8fDE3NzA4OTIwNTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Finance Chart"
     }
   ]
 }
