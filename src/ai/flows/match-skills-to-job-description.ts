@@ -2,8 +2,8 @@
 
 import { generateJSON } from '@/ai/llm';
 import { z } from 'zod';
-import fs from 'fs';
-import path from 'path';
+import profileData from '@/ai/profile.json';
+
 
 const MatchSkillsToJobDescriptionOutputSchema = z.object({
   matchScore: z.number(),
@@ -28,9 +28,6 @@ const MatchSkillsToJobDescriptionOutputSchema = z.object({
 export type MatchSkillsToJobDescriptionOutput = z.infer<typeof MatchSkillsToJobDescriptionOutputSchema>;
 
 export async function matchSkillsToJobDescription(input: { jobDescription: string }): Promise<MatchSkillsToJobDescriptionOutput> {
-  const profilePath = path.join(process.cwd(), 'src/ai/profile.json');
-  const profileData = fs.readFileSync(profilePath, 'utf-8');
-
   const prompt = `
 You are a senior technical recruiter performing a structured relevance audit.
 
@@ -76,7 +73,7 @@ DO NOT:
 - Return long paragraphs
 
 Candidate Profile:
-${profileData}
+${JSON.stringify(profileData)}
 
 Job Description:
 ${input.jobDescription}
