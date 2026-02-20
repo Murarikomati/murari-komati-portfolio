@@ -69,6 +69,11 @@ export async function matchSkillsToJobDescription(input: { jobDescription: strin
 
   const output = await generateJSON<MatchSkillsToJobDescriptionOutput>(prompt);
 
+  // Log the raw AI output before validation to help with debugging.
+  console.log("--- RAW AI OUTPUT ---");
+  console.log(JSON.stringify(output, null, 2));
+  console.log("--- END RAW AI OUTPUT ---");
+
   const validation = MatchSkillsToJobDescriptionOutputSchema.safeParse(output);
 
   if (!validation.success) {
