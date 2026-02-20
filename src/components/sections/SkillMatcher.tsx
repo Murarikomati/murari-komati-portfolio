@@ -5,7 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Sparkles, Loader2, CheckCircle2, ExternalLink, Github, Linkedin, Code, RefreshCw } from "lucide-react";
-import { matchSkillsToJobDescription, type MatchSkillsToJobDescriptionOutput } from "@/ai/flows/match-skills-to-job-description";
+import { matchSkillsAction } from "@/app/actions"; // Import the new Server Action
+import { type MatchSkillsToJobDescriptionOutput } from "@/ai/flows/match-skills-to-job-description";
 import { useToast } from "@/hooks/use-toast";
 import { TechPill } from "@/components/ui/TechPill";
 
@@ -29,7 +30,8 @@ export default function SkillMatcher() {
     setResult(null);
     
     try {
-      const output = await matchSkillsToJobDescription({ jobDescription });
+      // Use the Server Action instead of the direct function call
+      const output = await matchSkillsAction(jobDescription);
       setResult(output);
       toast({ title: "Scan Complete", description: "Your Recruiter Cheat Sheet is ready." });
     } catch (error: any) {
