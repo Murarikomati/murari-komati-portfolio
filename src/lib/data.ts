@@ -57,7 +57,7 @@ export const PROJECTS = [
     description: 'Designed a cloud-native ELT platform using S3, Snowflake, and dbt. Built staging and analytics layers using Kimball star schema models to enable high-performance analytics with production-grade modular transformations.',
     tech: ['S3', 'Snowflake', 'dbt', 'Kimball'],
     category: 'Data Engineering',
-    image: 'https://images.unsplash.com/photo-1551288049-bbbda540d3ad?q=80&w=1000',
+    image: '/assets/real-time-movie-analytics-elt-platform.png',
     url: 'https://github.com/Murarikomati/Netflix_Data_Analysis-'
   },
   {
