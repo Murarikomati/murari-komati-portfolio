@@ -2,6 +2,7 @@ import { z } from 'zod';
 import profileData from '@/ai/profile.json';
 import { generateJSON } from '@/ai/gemini';
 
+// CORRECTED SCHEMA: Removed 'relevantCertifications' as it is not requested from the AI.
 const MatchSkillsToJobDescriptionOutputSchema = z.object({
   matchScore: z.number().describe('The match score between 60 and 98'),
   impactSummary: z.string().describe('Concise JD-aligned summary (max 4 lines)'),
@@ -12,8 +13,6 @@ const MatchSkillsToJobDescriptionOutputSchema = z.object({
       reason: z.string().describe('1-line JD alignment explanation'),
     })
   ),
-  // This field was removed from the prompt but is still required by the schema.
-  relevantCertifications: z.array(z.string()).describe('Only if explicitly relevant'),
   recommendedLinks: z.array(
     z.object({
       name: z.string(),
@@ -66,13 +65,11 @@ export async function matchSkillsToJobDescription(input: { jobDescription: strin
 
   const output = await generateJSON<MatchSkillsToJobDescriptionOutput>(prompt);
 
-  // Make the 'relevantCertifications' field optional to prevent validation errors
-  const validation = MatchSkillsToJobDescriptionOutputSchema.extend({
-    relevantCertifications: z.array(z.string()).optional(),
-  }).safeParse(output);
+  // CORRECTED VALIDATION: Directly parse against the corrected schema.
+  const validation = MatchSkillsToJobDescriptionOutputSchema.safeParse(output);
 
   if (!validation.success) {
-    // Pass the detailed validation error back to the client
+    // The error now includes detailed validation issues for easier debugging if it ever fails again.
     const errorMessage = `AI output validation failed: ${JSON.stringify(validation.error, null, 2)}`;
     console.error(errorMessage);
     throw new Error(errorMessage);

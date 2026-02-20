@@ -1,4 +1,3 @@
-
 {
   "name": "Murari Komati",
   "title": "Data Engineer & AI Solutions Architect",
@@ -33,22 +32,14 @@
       ]
     }
   ],
-  "skills": {
-    "problem_solving": [
-      "880+ LeetCode Problems Solved",
-      "LeetCode Rating: 1652 (Top 17%)",
-      "Advanced Data Structures & Algorithms (DSA)"
-    ],
-    "data_engineering": [
-      "PySpark", "Azure Databricks", "BigQuery", "Dataform", "ADF", "dbt", "Delta Lake", "Medallion Architecture", "Microsoft Fabric", "Snowflake"
-    ],
-    "ai_ml": [
-      "Agentic AI", "LangGraph", "CrewAI", "RAG Systems", "LangChain", "Vector Databases"
-    ],
-    "programming": [
-      "Python (Advanced)", "FastAPI", "Terraform", "Git", "CI/CD"
-    ]
-  },
+  "skills": [
+    "880+ LeetCode Problems Solved",
+    "LeetCode Rating: 1652 (Top 17%)",
+    "Advanced Data Structures & Algorithms (DSA)",
+    "PySpark", "Azure Databricks", "BigQuery", "Dataform", "ADF", "dbt", "Delta Lake", "Medallion Architecture", "Microsoft Fabric", "Snowflake",
+    "Agentic AI", "LangGraph", "CrewAI", "RAG Systems", "LangChain", "Vector Databases",
+    "Python (Advanced)", "FastAPI", "Terraform", "Git", "CI/CD"
+  ],
   "projects": [
     {
       "name": "Customer Service RAG Chatbot",
