@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import profileData from '@/ai/profile.json';
-import { generateJSON } from '@/ai/gemini'; // Use the existing helper
+import { generateJSON } from '@/ai/gemini';
 
 const MatchSkillsToJobDescriptionOutputSchema = z.object({
   matchScore: z.number().describe('The match score between 60 and 98'),
@@ -12,6 +12,7 @@ const MatchSkillsToJobDescriptionOutputSchema = z.object({
       reason: z.string().describe('1-line JD alignment explanation'),
     })
   ),
+  // This field was removed from the prompt but is still required by the schema.
   relevantCertifications: z.array(z.string()).describe('Only if explicitly relevant'),
   recommendedLinks: z.array(
     z.object({
@@ -63,14 +64,18 @@ export async function matchSkillsToJobDescription(input: { jobDescription: strin
     Provide your analysis in the specified JSON format.
   `;
 
-  // The generateJSON function already handles JSON parsing and error handling.
   const output = await generateJSON<MatchSkillsToJobDescriptionOutput>(prompt);
 
-  const validation = MatchSkillsToJobDescriptionOutputSchema.safeParse(output);
+  // Make the 'relevantCertifications' field optional to prevent validation errors
+  const validation = MatchSkillsToJobDescriptionOutputSchema.extend({
+    relevantCertifications: z.array(z.string()).optional(),
+  }).safeParse(output);
 
   if (!validation.success) {
-    console.error("AI output validation failed:", validation.error);
-    throw new Error("AI returned data in an unexpected format.");
+    // Pass the detailed validation error back to the client
+    const errorMessage = `AI output validation failed: ${JSON.stringify(validation.error, null, 2)}`;
+    console.error(errorMessage);
+    throw new Error(errorMessage);
   }
   
   return validation.data;
