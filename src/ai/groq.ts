@@ -12,6 +12,13 @@ const groq = process.env.GROQ_API_KEY
  * Uses the specified Llama 3.3 70B model.
  */
 export async function generateJSON<T>(prompt: string): Promise<T> {
+  // VERCEL DEBUGGING: Log all environment variable keys to see what is available.
+  console.log("--- VERCEL RUNTIME LOG ---");
+  console.log("Checking for GROQ_API_KEY...");
+  console.log("Is key present?", process.env.GROQ_API_KEY ? "Yes" : "No");
+  console.log("Available ENV Keys:", Object.keys(process.env));
+  console.log("--- END VERCEL RUNTIME LOG ---");
+
   // Provide a clear error message if the API key is missing.
   if (!groq) {
     throw new Error(
@@ -31,9 +38,6 @@ export async function generateJSON<T>(prompt: string): Promise<T> {
           content: prompt,
         },
       ],
-      // Using the exact model name you specified.
-      // If this model name is incorrect, it will cause a runtime error.
-      // The standard model name on Groq for Llama 3 70B is 'llama3-70b-8192'.
       model: 'llama-3.3-70b-versatile',
       response_format: { type: 'json_object' },
       temperature: 0.1,
