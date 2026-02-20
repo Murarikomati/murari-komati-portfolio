@@ -1,13 +1,18 @@
-import { genkit } from 'genkit';
-import { googleAI } from '@genkit-ai/google-genai';
+import { configureGenkit } from '@genkit-ai/core';
+import { googleAI } from '@genkit-ai/googleai';
+
+export const ai = configureGenkit({
+  plugins: [
+    googleAI({ apiVersion: 'v1beta' }),
+  ],
+  logSinks: ['json'], 
+  enableTracingAndMetrics: true, 
+});
 
 /**
- * Genkit initialization with Google AI plugin.
- * Uses v1beta to support structured output (responseMimeType).
+ * Ensures that Genkit resources are properly shut down after an operation.
+ * This is CRITICAL in a serverless environment like Vercel.
  */
-export const ai = genkit({
-  plugins: [
-    googleAI(),
-  ],
-  model: 'googleai/gemini-1.5-flash',
-});
+export async function shutdown() {
+  await ai.shutdown();
+}
