@@ -3,7 +3,7 @@ export const SKILLS = [
   { 
     category: 'Azure Ecosystem', 
     icon: 'Cloud', 
-    skills: ['Azure Databricks', 'Azure Data Factory', 'Azure DevOps', 'Azure Event Hub'] 
+    skills: ['Azure Databricks', 'Azure Data Factory', 'Azure DevOps', 'Azure Event Hub', 'Microsoft Fabric'] 
   },
   { 
     category: 'GCP & AWS', 
@@ -13,7 +13,7 @@ export const SKILLS = [
   { 
     category: 'Data Engineering Core', 
     icon: 'Zap', 
-    skills: ['PySpark', 'Spark SQL', 'Medallion Architecture', 'Delta Lake', 'dbt', 'Snowflake', 'Microsoft Fabric'] 
+    skills: ['PySpark', 'Spark SQL', 'Medallion Architecture', 'Delta Lake', 'dbt', 'Snowflake', 'Kimball Star Schema'] 
   },
   { 
     category: 'Agentic AI & LLMs', 
@@ -23,12 +23,12 @@ export const SKILLS = [
   { 
     category: 'Programming & DevTools', 
     icon: 'Code', 
-    skills: ['Python (OOP)', 'FastAPI', 'REST APIs', 'Terraform', 'Git', 'Pytest', 'CI/CD'] 
+    skills: ['Python (Advanced)', 'FastAPI', 'REST APIs', 'Terraform', 'Git', 'Pytest', 'CI/CD'] 
   },
   { 
     category: 'Problem Solving', 
     icon: 'Terminal', 
-    skills: ['880+ LeetCode Solved', 'DSA Proficiency', 'Top 17% Rating', 'System Design'] 
+    skills: ['880+ LeetCode Problems', 'DSA Proficiency', 'Top 17% Rating', 'System Design'] 
   },
 ];
 
@@ -54,7 +54,7 @@ export const PROJECTS = [
   {
     id: 3,
     title: 'Real-Time Movie Analytics ELT Platform',
-    description: 'Designed and implemented a scalable cloud-native ELT platform using Amazon S3, Snowflake, and dbt to process large-scale movie metadata and user interaction datasets. Built staging and analytics layers using Kimball star schema models.',
+    description: 'Designed and implemented a scalable cloud-native ELT platform using Amazon S3, Snowflake, and dbt to process large-scale movie metadata, ratings, and user interaction datasets. Built raw, staging, and analytics-ready layers using dimensional models based on Kimball star schema principles to enable high-performance analytics. Implemented data quality tests, governance rules, and modular dbt transformations to deliver trusted, production-grade analytical datasets.',
     tech: ['S3', 'Snowflake', 'dbt', 'Kimball'],
     category: 'Data Engineering',
     image: 'https://images.unsplash.com/photo-1551288049-bbbda540d3ad?q=80&w=1000',
@@ -63,7 +63,7 @@ export const PROJECTS = [
   {
     id: 4,
     title: 'Real-Time Stock Market Data Pipeline',
-    description: 'Developed near real-time streaming ingestion pipelines using Azure Event Hub to process high-frequency stock market data. Implemented anomaly detection and automated alerting mechanisms, reducing response time by 50%.',
+    description: 'Developed near real-time streaming ingestion pipelines using Azure Event Hub to process high-frequency stock market data. Implemented anomaly detection and automated alerting mechanisms, reducing response time by 50%. Integrated streaming outputs with SQL Server and Microsoft Fabric to ensure analytics-ready reporting.',
     tech: ['Azure Event Hub', 'SQL Server', 'Fabric', 'Streaming'],
     category: 'Data Engineering',
     image: 'https://images.unsplash.com/photo-1611974717484-788cff6b4200?q=80&w=1000',
