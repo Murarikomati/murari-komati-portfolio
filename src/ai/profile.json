@@ -2,7 +2,7 @@
 {
   "name": "Murari Komati",
   "title": "Data Engineer & AI Solutions Architect",
-  "summary": "Data Engineer with 2.5+ years of professional experience building high-performance data architectures and autonomous AI systems. Expert in Azure Databricks, PySpark, and Agentic AI. Solved 880+ problems on LeetCode (Rating: 1650+).",
+  "summary": "Data Engineer with 2.5+ years of professional experience building high-performance data architectures and autonomous AI systems. Expert in Azure Databricks, PySpark, BigQuery, and Agentic AI. Solved 880+ problems on LeetCode (Rating: 1650+).",
   "education": {
     "degree": "B.Tech in Electronics and Telecommunication Engineering",
     "institution": "Walchand Institute of Technology, Solapur",
@@ -10,26 +10,26 @@
   },
   "experience": [
     {
-      "company": "Data Master Consulting Pvt Ltd",
+      "company": "EZData Advisory IT Services",
       "role": "Data Engineer",
-      "duration": "Aug 2023 - Present",
-      "location": "Maharashtra, India",
+      "duration": "Nov 2025 - Dec 2025",
       "responsibilities": [
-        "Architected scalable ETL pipelines using Azure Data Factory and Databricks (Medallion Architecture)",
-        "Processed 100GB+ daily transactional data using PySpark and Spark SQL",
-        "Optimized Spark workloads reducing processing time by 40%",
-        "Integrated Agentic AI workflows using LangGraph and CrewAI for data automation"
+        "Migrated legacy pipelines to PySpark-based ETL on BigQuery/Incorta",
+        "Built Dataform SQLX models reducing logic duplication by 40%",
+        "Implemented DQ checks reducing data issues by 35%",
+        "Improved Looker dashboard performance by 30%"
       ]
     },
     {
-      "company": "EZData Advisory IT Services & Consulting",
-      "role": "Data Engineer Intern (Full-time)",
-      "duration": "Jan 2023 - July 2023",
-      "location": "India",
+      "company": "Data Master Consulting Pvt Ltd",
+      "role": "Data Engineer",
+      "duration": "Nov 2023 - Oct 2025",
       "responsibilities": [
-        "Migrated legacy pipelines to PySpark frameworks",
-        "Built automated data quality auditing systems",
-        "Optimized complex SQL queries for high-throughput reporting"
+        "Architected Medallion Architecture on Azure Databricks for 500K+ daily transactions",
+        "Integrated Agentic AI workflows using LangGraph and CrewAI for data reasoning",
+        "Optimized Spark compute costs by 30% through predicate pushdown and caching",
+        "Automated CI/CD pipelines using Azure DevOps YAML",
+        "Automated SLA monitoring using ServiceNow and ADF triggers"
       ]
     }
   ],
@@ -40,64 +40,25 @@
       "Advanced Data Structures & Algorithms (DSA)"
     ],
     "data_engineering": [
-      "PySpark", "Apache Spark", "Hive", "Hadoop", "Scoop", "Kafka", "SQL", "Delta Lake", "Medallion Architecture", "ADF", "Databricks", "ETL/ELT", "Snowflake", "dbt", "Microsoft Fabric"
+      "PySpark", "Azure Databricks", "BigQuery", "Dataform", "ADF", "dbt", "Delta Lake", "Medallion Architecture", "Microsoft Fabric", "Snowflake"
     ],
     "ai_ml": [
-      "RAG Systems", "Agentic AI", "LangChain", "LangGraph", "CrewAI", "Vector Databases"
+      "Agentic AI", "LangGraph", "CrewAI", "RAG Systems", "LangChain", "Vector Databases"
     ],
     "programming": [
-      "Python (Advanced)",
-      "FastAPI",
-      "Object Oriented Programming (OOP)",
-      "Terraform",
-      "Git",
-      "REST APIs"
-    ],
-    "testing": [
-      "Pytest",
-      "Unit Testing",
-      "Integration Testing",
-      "Test Automation",
-      "CI/CD Pipelines",
-      "GitHub Actions"
+      "Python (Advanced)", "FastAPI", "Terraform", "Git", "CI/CD"
     ]
   },
   "projects": [
     {
       "name": "Customer Service RAG Chatbot",
-      "url": "https://github.com/Murarikomati/Customer-Service-RAG-chatbot",
-      "technologies": ["Python", "FastAPI", "LangChain", "MS SQL", "FAISS"],
-      "highlights": [
-        "Built a natural language interface for enterprise MS SQL databases",
-        "Enabled context-aware Q&A over massive documentation using RAG"
-      ]
+      "technologies": ["Python", "FastAPI", "LangChain", "MS SQL"],
+      "highlights": ["Context-aware Q&A over enterprise databases using RAG"]
     },
     {
       "name": "Agentic AI Workflow Automation",
-      "url": "https://github.com/Murarikomati/Agentic-AI-Workflow-Automation",
       "technologies": ["LangGraph", "CrewAI", "Python", "Databricks"],
-      "highlights": [
-        "Designed autonomous multi-agent systems for data reasoning",
-        "Automated complex data ingestion and validation workflows"
-      ]
-    },
-    {
-      "name": "Real-Time Movie Analytics ELT Platform",
-      "url": "https://github.com/Murarikomati/Netflix_Data_Analysis-",
-      "technologies": ["S3", "Snowflake", "dbt", "Kimball"],
-      "highlights": [
-        "Cloud-native ELT platform processing large-scale movie ratings and ratings datasets",
-        "Built staging and analytics layers using Kimball star schema models"
-      ]
-    },
-    {
-      "name": "Real-Time Stock Market Data Pipeline",
-      "url": "https://github.com/Murarikomati/wiki-to-azure-lake-pipeline",
-      "technologies": ["Azure Event Hub", "SQL Server", "Microsoft Fabric"],
-      "highlights": [
-        "Developed streaming ingestion pipelines for high-frequency stock market data",
-        "Implemented anomaly detection reducing analyst response time by 50%"
-      ]
+      "highlights": ["Autonomous multi-agent systems for automated data reasoning"]
     }
   ]
 }

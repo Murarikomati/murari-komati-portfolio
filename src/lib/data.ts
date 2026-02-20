@@ -54,7 +54,7 @@ export const PROJECTS = [
   {
     id: 3,
     title: 'Real-Time Movie Analytics ELT Platform',
-    description: 'Designed and implemented a scalable cloud-native ELT platform using Amazon S3, Snowflake, and dbt to process large-scale movie metadata, ratings, and user interaction datasets. Built raw, staging, and analytics-ready layers using dimensional models based on Kimball star schema principles to enable high-performance analytics. Implemented data quality tests, governance rules, and modular dbt transformations.',
+    description: 'Designed a cloud-native ELT platform using S3, Snowflake, and dbt. Built staging and analytics layers using Kimball star schema models to enable high-performance analytics with production-grade modular transformations.',
     tech: ['S3', 'Snowflake', 'dbt', 'Kimball'],
     category: 'Data Engineering',
     image: 'https://images.unsplash.com/photo-1551288049-bbbda540d3ad?q=80&w=1000',
@@ -63,7 +63,7 @@ export const PROJECTS = [
   {
     id: 4,
     title: 'Real-Time Stock Market Data Pipeline',
-    description: 'Developed near real-time streaming ingestion pipelines using Azure Event Hub to process high-frequency stock market data. Implemented anomaly detection and automated alerting mechanisms, reducing analyst response time by 50%. Integrated streaming outputs with SQL Server and Microsoft Fabric to ensure analytics-ready reporting.',
+    description: 'Developed streaming ingestion pipelines using Azure Event Hub to process high-frequency stock data. Integrated outputs with SQL Server and Microsoft Fabric, reducing response time by 50%.',
     tech: ['Azure Event Hub', 'SQL Server', 'Fabric', 'Streaming'],
     category: 'Data Engineering',
     image: 'https://images.unsplash.com/photo-1611974717484-788cff6b4200?q=80&w=1000',
@@ -73,26 +73,40 @@ export const PROJECTS = [
 
 export const EXPERIENCE = [
   {
+    company: 'EZData Advisory IT Services',
+    role: 'Data Engineer',
+    period: 'Nov 2025 – Dec 2025',
+    location: 'Uttar Pradesh, India',
+    summary: 'Modernized enterprise data modeling on BigQuery and Looker, eliminating manual maintenance and standardizing transformation logic.',
+    highlights: [
+      'Migrated legacy ADF pipelines to PySpark/BigQuery, eliminating 100% of manual maintenance.',
+      'Built reusable Dataform SQLX models and dependency chains, reducing logic duplication by 40%.',
+      'Implemented automated DQ checks (uniqueness, referential integrity), reducing downstream issues by 35%.',
+      'Delivered curated datasets to Looker, improving dashboard query performance by 30%.'
+    ],
+  },
+  {
     company: 'Data Master Consulting Pvt Ltd',
     role: 'Data Engineer',
-    period: 'Aug 2023 – Present',
+    period: 'Nov 2023 – Oct 2025',
     location: 'Maharashtra, India',
-    summary: 'Architecting high-performance data backbones and integrating autonomous AI agents for enterprise automation.',
+    summary: 'Architected high-scale Medallion platforms on Azure and integrated Agentic AI for autonomous data reasoning.',
     highlights: [
-      'Engineered scalable ETL pipelines using Databricks Medallion Architecture.',
-      'Developed Agentic AI workflows reducing manual data auditing by 90%.',
-      'Processed 100GB+ daily transactional data with Spark Structured Streaming.',
-      'Optimized Delta Lake performance, reducing job latency by 40%.'
+      'Architected Azure Databricks Medallion pipelines supporting 500K+ daily transactions with 70% query speedup.',
+      'Integrated Agentic AI workflows using LangGraph and CrewAI to automate 90% of data auditing tasks.',
+      'Optimized Spark workloads (liquid clustering, broadcast joins), reducing cloud compute costs by 30%.',
+      'Implemented CI/CD via Azure DevOps YAML, reducing deployment effort by 45% across Dev/QA/Prod.',
+      'Automated SLA monitoring using ADF triggers and ServiceNow, ensuring 100% pipeline reliability.'
     ],
   },
   {
     company: 'EZData Advisory IT Services',
-    role: 'Data Engineer Intern (Full-time)',
+    role: 'Data Engineer Intern',
     period: 'Jan 2023 – July 2023',
     location: 'Maharashtra, India',
-    summary: 'Focused on cloud pipeline optimization and automated data quality assertions for enterprise clients.',
+    summary: 'Focused on cloud pipeline optimization and automated data quality assertions.',
     highlights: [
-      'Migrated legacy ADF pipelines to high-performance PySpark frameworks.',
+      'Migrated legacy pipelines to high-performance PySpark frameworks.',
       'Built automated data quality checks for BigQuery/GCP environments.',
       'Authored complex Spark SQL queries for regulatory reporting modules.'
     ],
