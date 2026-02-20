@@ -6,6 +6,24 @@ import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "./ThemeToggle";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import * as React from 'react';
+
+const MkLogo = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    width="24" 
+    height="24" 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="2" 
+    strokeLinecap="round" 
+    strokeLinejoin="round"
+    {...props}
+  >
+    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+  </svg>
+);
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -30,9 +48,9 @@ export default function Navbar() {
       isScrolled ? "py-4 bg-background/80 backdrop-blur-md border-b" : "py-6 bg-transparent"
     )}>
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <Link href="#" className="flex items-center gap-2">
-          <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center font-bold text-white font-headline">EH</div>
-          <span className="font-bold text-xl font-headline tracking-tight hidden sm:block">EngineerHub</span>
+        <Link href="#" className="flex items-center gap-2 text-foreground">
+          <MkLogo className="h-10 w-10" />
+          <span className="font-bold text-xl font-headline tracking-tight hidden sm:block">Murari Komati</span>
         </Link>
 
         <div className="hidden md:flex items-center gap-8">
@@ -49,7 +67,7 @@ export default function Navbar() {
 
         <div className="flex items-center gap-2">
           <ThemeToggle />
-          <Button asChild className="hidden sm:flex rounded-full px-6"><Link href="#">Let's Connect</Link></Button>
+          <Button asChild className="hidden sm:flex rounded-full px-6"><Link href="#contact">Let's Connect</Link></Button>
           <Button 
             variant="ghost" 
             size="icon" 
@@ -75,7 +93,7 @@ export default function Navbar() {
                 {link.name}
               </Link>
             ))}
-            <Button asChild className="w-full rounded-full py-6 mt-2"><Link href="#">Let's Connect</Link></Button>
+            <Button asChild className="w-full rounded-full py-6 mt-2"><Link href="#contact">Let's Connect</Link></Button>
           </div>
         </div>
       )}

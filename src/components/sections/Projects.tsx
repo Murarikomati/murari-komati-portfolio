@@ -53,7 +53,7 @@ export default function Projects() {
                   src={project.image} 
                   alt={project.title}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="object-contain group-hover:scale-105 transition-transform duration-700"
                   data-ai-hint={project.category}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80" />

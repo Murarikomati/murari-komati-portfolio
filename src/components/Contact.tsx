@@ -54,7 +54,7 @@ function ContactForm() {
 
 export default function ContactSection() {
   return (
-    <div className="py-20 md:py-32">
+    <div id="contact" className="py-20 md:py-32">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-primary">Ready to Scale Your Data Vision?</h2>

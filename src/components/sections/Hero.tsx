@@ -14,16 +14,16 @@ export default function Hero() {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
           </span>
-          Murari Komati | Data & AI Solutions Architect
+          Focus: Production-Ready Data Pipelines for BI & AI
         </div>
         
         <h1 className="text-5xl md:text-8xl font-bold tracking-tighter mb-8 font-headline leading-[1.1]">
-          Engineering the Future <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary animate-gradient">of Data & Intelligence</span>
+          Data Engineer & <br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary animate-gradient">Solutions Architect</span>
         </h1>
         
         <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
-          I build the <span className="text-foreground font-medium">Data Backbone</span> that powers the next generation of <span className="text-foreground font-medium">Autonomous AI</span>. Scalable, high-performance, and production-ready.
+          I architect and build scalable ETL/ELT pipelines that power downstream BI analytics and AI applications. My expertise lies in Azure, Databricks, and building production-grade data systems.
         </p>
         
         <div className="flex flex-wrap items-center justify-center gap-4">
@@ -64,8 +64,8 @@ export default function Hero() {
             <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Azure &amp; Databricks</p>
           </div>
           <div className="text-center">
-            <p className="text-4xl font-bold font-headline mb-2 text-primary">Agentic</p>
-            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">AI Workflow Developer</p>
+            <p className="text-4xl font-bold font-headline mb-2 text-primary">ETL/ELT</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Pipeline Developer</p>
           </div>
         </div>
       </div>

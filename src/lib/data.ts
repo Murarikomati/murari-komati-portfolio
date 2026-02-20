@@ -1,4 +1,3 @@
-
 export const SKILLS = [
   { 
     category: 'Azure', 
@@ -16,17 +15,17 @@ export const SKILLS = [
     skills: ['S3', 'Glue', 'EC2'] 
   },
   { 
-    category: 'Data Engineering Core', 
+    category: 'Core Data Engineering', 
     icon: 'Zap', 
     skills: ['PySpark', 'Spark SQL', 'Medallion Architecture', 'Delta Lake', 'dbt', 'Snowflake', 'Kimball Star Schema'] 
   },
   { 
-    category: 'Agentic AI & LLMs', 
+    category: 'AI & LLM Specialization', 
     icon: 'Bot', 
     skills: ['LangGraph', 'CrewAI', 'LangChain', 'RAG Systems', 'Vector Databases', 'FAISS'] 
   },
   { 
-    category: 'Programming & DevTools', 
+    category: 'Programming & DevOps', 
     icon: 'Code', 
     skills: ['Python (Advanced)', 'FastAPI', 'REST APIs', 'Terraform', 'Git', 'Pytest', 'CI/CD'] 
   },
@@ -66,25 +65,12 @@ export const PROJECTS = [
     description: 'Developed streaming ingestion pipelines using Azure Event Hub to process high-frequency stock data. Integrated outputs with SQL Server and Microsoft Fabric, reducing response time by 50%.',
     tech: ['Azure Event Hub', 'SQL Server', 'Fabric', 'Streaming'],
     category: 'Data Engineering',
-    image: 'https://images.unsplash.com/photo-1611974717484-788cff6b4200?q=80&w=1000',
+    image: '/assets/real-time-stock-market-data-pipeline.png',
     url: 'https://github.com/Murarikomati/wiki-to-azure-lake-pipeline'
   },
 ];
 
 export const EXPERIENCE = [
-  {
-    company: 'EZData Advisory IT Services',
-    role: 'Data Engineer',
-    period: 'Nov 2025 – Dec 2025',
-    location: 'Uttar Pradesh, India',
-    summary: 'Modernized enterprise data modeling on BigQuery and Looker, eliminating manual maintenance and standardizing transformation logic.',
-    highlights: [
-      'Migrated legacy ADF pipelines to PySpark/BigQuery, eliminating 100% of manual maintenance.',
-      'Built reusable Dataform SQLX models and dependency chains, reducing logic duplication by 40%.',
-      'Implemented automated DQ checks (uniqueness, referential integrity), reducing downstream issues by 35%.',
-      'Delivered curated datasets to Looker, improving dashboard query performance by 30%.'
-    ],
-  },
   {
     company: 'Data Master Consulting Pvt Ltd',
     role: 'Data Engineer',
@@ -100,36 +86,37 @@ export const EXPERIENCE = [
     ],
   },
   {
-    company: 'EZData Advisory IT Services',
-    role: 'Data Engineer Intern',
-    period: 'Jan 2023 – July 2023',
-    location: 'Maharashtra, India',
-    summary: 'Focused on cloud pipeline optimization and automated data quality assertions.',
+    company: 'EZData Advisory IT Services and Consulting Pvt Ltd',
+    role: 'Data Engineer',
+    period: 'Nov 2025 – Dec 2025',
+    location: 'Uttar Pradesh, India',
+    summary: 'Modernized enterprise data modeling on BigQuery and Looker, eliminating manual maintenance and standardizing transformation logic.',
     highlights: [
-      'Migrated legacy pipelines to high-performance PySpark frameworks.',
-      'Built automated data quality checks for BigQuery/GCP environments.',
-      'Authored complex Spark SQL queries for regulatory reporting modules.'
+      'Migrated legacy ADF pipelines to PySpark/BigQuery, eliminating 100% of manual maintenance.',
+      'Built reusable Dataform SQLX models and dependency chains, reducing logic duplication by 40%.',
+      'Implemented automated DQ checks (uniqueness, referential integrity), reducing downstream issues by 35%.',
+      'Delivered curated datasets to Looker, improving dashboard query performance by 30%.'
     ],
-  },
+  }
 ];
 
 export const CERTIFICATIONS = [
   {
     name: 'Databricks Generative AI Fundamentals',
     issuer: 'Databricks',
-    date: '2025',
+    date: '2023',
     link: '#',
   },
   {
     name: 'Azure Data Engineer Associate',
     issuer: 'Microsoft',
-    date: '2024',
+    date: '2022',
     link: '#',
   },
   {
     name: 'Databricks Fundamentals',
     issuer: 'Databricks',
-    date: '2025',
+    date: '2023',
     link: '#',
   },
 ];
