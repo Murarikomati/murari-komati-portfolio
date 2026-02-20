@@ -31,36 +31,74 @@ export async function matchSkillsToJobDescription(input: { jobDescription: strin
   const profilePath = path.join(process.cwd(), 'src/ai/profile.json');
   const profileData = fs.readFileSync(profilePath, 'utf-8');
 
-  const prompt = `Analyze Murari Komati's profile against the provided Job Description (JD).
+  const prompt = `
+You are a senior technical recruiter performing a structured relevance audit.
 
-CRITICAL CONSTRAINTS (MANDATORY):
-1. **SENIORITY**: Murari has **2.5+ YEARS of professional experience** (Jan 2023 - Present). NEVER refer to him as a fresher.
-2. **DSA MASTERY**: He has solved **880+ LeetCode problems** (Rating: 1650+). Highlight this as top-tier engineering talent.
-3. **FLAGSHIP PROJECTS**: 
-   - 'Customer Service RAG Chatbot' (Python, FastAPI, LangChain)
-   - 'Agentic AI Workflow Automation' (LangGraph, CrewAI, Databricks)
-   - 'Real-Time Movie Analytics ELT Platform' (Snowflake, dbt, S3)
-   - 'Real-Time Stock Market Data Pipeline' (Azure, Fabric)
-4. **FIT SCORE**: Because of his specialized Data/AI seniority and DSA skills, the **matchScore MUST be between 85 and 98** for any technical role.
+OBJECTIVE:
+Deliver a concise, JD-specific evaluation optimized for recruiters scanning in under 5 seconds.
 
-Candidate Data:
+STRICT ANALYSIS PROCESS:
+
+STEP 1 — Extract Top Technical Requirements
+Identify the top 10 core technical requirements from the Job Description.
+
+STEP 2 — Skill Relevance Mapping
+From the candidate profile:
+- Select ONLY skills directly matching the JD.
+- Do NOT include unrelated skills.
+- If testing, CI/CD, backend, or automation is mentioned — include Pytest, Unit Testing, CI/CD if relevant.
+
+STEP 3 — Project Scoring & Ranking
+- Evaluate ALL projects.
+- Score each project (0–10) based on direct JD alignment.
+- Rank projects in descending order.
+- Return minimum 3 most relevant projects.
+- If fewer than 3 are strongly aligned, include moderately aligned ones.
+
+STEP 4 — Realistic Fit Score
+- Calculate realistic overlap percentage.
+- DO NOT inflate score.
+- Range 60–98 depending on relevance.
+
+STEP 5 — Executive Summary
+- Maximum 4 short lines.
+- No fluff.
+- No generic praise.
+- Direct JD alignment language.
+- Start with years of experience.
+- Mention DSA only if role is engineering-heavy.
+
+DO NOT:
+- Add technologies not in profile.json
+- Use exaggerated language
+- Repeat static phrases
+- Mention skills not in JD
+- Return long paragraphs
+
+Candidate Profile:
 ${profileData}
 
 Job Description:
 ${input.jobDescription}
 
-Return ONLY JSON:
+Return STRICT JSON ONLY:
+
 {
-  "matchScore": number (85-98),
-  "impactSummary": "Professional summary starting with 2.5+ years experience and 880+ LC mastery.",
-  "matchedSkills": ["Skill 1", "Skill 2"],
-  "matchedProjects": [{"title": "Project Name", "reason": "Specific JD alignment"}],
-  "relevantCertifications": ["Cert 1"],
+  "matchScore": number,
+  "impactSummary": "Concise JD-aligned summary (max 4 lines).",
+  "matchedSkills": ["Top relevant skills only (max 8)"],
+  "matchedProjects": [
+    {"title": "Most relevant project first", "reason": "1-line JD alignment explanation"}
+  ],
+  "relevantCertifications": ["Only if explicitly relevant"],
   "recommendedLinks": [
-    {"name": "GitHub", "url": "https://github.com/Murarikomati", "context": "Technical proof"},
-    {"name": "LeetCode", "url": "https://leetcode.com/u/komatimurari50/", "context": "DSA Mastery"}
+    {"name": "LinkedIn", "url": "https://www.linkedin.com/in/murarikomati/", "context": "Professional profile"},
+    {"name": "GitHub", "url": "https://github.com/Murarikomati", "context": "Technical implementations"},
+    {"name": "LeetCode", "url": "https://leetcode.com/u/komatimurari50/", "context": "DSA proficiency"}
   ]
-}`;
+}
+`;
+
 
   try {
     return await generateJSON<MatchSkillsToJobDescriptionOutput>(prompt);

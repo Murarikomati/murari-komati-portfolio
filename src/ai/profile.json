@@ -40,13 +40,26 @@
       "Advanced Data Structures & Algorithms (DSA)"
     ],
     "data_engineering": [
-      "PySpark", "Apache Spark", "SQL", "Delta Lake", "Medallion Architecture", "ADF", "Databricks", "ETL/ELT", "Snowflake", "dbt", "Microsoft Fabric"
+      "PySpark", "Apache Spark", "Hive", "Hadoop", "Scoop", "Kafka", "SQL", "Delta Lake", "Medallion Architecture", "ADF", "Databricks", "ETL/ELT", "Snowflake", "dbt", "Microsoft Fabric"
     ],
     "ai_ml": [
       "RAG Systems", "Agentic AI", "LangChain", "LangGraph", "CrewAI", "Vector Databases"
     ],
     "programming": [
-      "Python (Advanced)", "FastAPI", "Object Oriented Programming (OOP)", "Terraform", "Git"
+      "Python (Advanced)",
+      "FastAPI",
+      "Object Oriented Programming (OOP)",
+      "Terraform",
+      "Git",
+      "REST APIs"
+    ],
+    "testing": [
+      "Pytest",
+      "Unit Testing",
+      "Integration Testing",
+      "Test Automation",
+      "CI/CD Pipelines",
+      "GitHub Actions"
     ]
   },
   "projects": [

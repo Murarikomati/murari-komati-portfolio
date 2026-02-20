@@ -1,12 +1,35 @@
 
 export const SKILLS = [
-  { name: 'Azure Databricks / ADF', category: 'Cloud Platforms', icon: 'Cloud' },
-  { name: 'PySpark / Spark SQL', category: 'Data Engineering', icon: 'Zap' },
-  { name: 'Medallion Architecture', category: 'Data Engineering', icon: 'Workflow' },
-  { name: 'LangGraph / CrewAI', category: 'Agentic AI', icon: 'Bot' },
-  { name: 'RAG / Vector DBs', category: 'GenAI', icon: 'Sparkles' },
-  { name: 'Python (OOP) / FastAPI', category: 'Programming', icon: 'Code' },
-  { name: '880+ LeetCode Solved', category: 'Problem Solving', icon: 'Terminal' },
+  { 
+    category: 'Azure Ecosystem', 
+    icon: 'Cloud', 
+    skills: ['Azure Databricks', 'Azure Data Factory', 'Azure DevOps', 'Azure Event Hub'] 
+  },
+  { 
+    category: 'GCP & AWS', 
+    icon: 'Layers', 
+    skills: ['BigQuery', 'Dataflow', 'Dataform', 'Dataproc', 'AWS S3', 'Glue', 'EC2'] 
+  },
+  { 
+    category: 'Data Engineering Core', 
+    icon: 'Zap', 
+    skills: ['PySpark', 'Spark SQL', 'Medallion Architecture', 'Delta Lake', 'dbt', 'Snowflake', 'Microsoft Fabric'] 
+  },
+  { 
+    category: 'Agentic AI & LLMs', 
+    icon: 'Bot', 
+    skills: ['LangGraph', 'CrewAI', 'LangChain', 'RAG Systems', 'Vector Databases', 'FAISS'] 
+  },
+  { 
+    category: 'Programming & DevTools', 
+    icon: 'Code', 
+    skills: ['Python (OOP)', 'FastAPI', 'REST APIs', 'Terraform', 'Git', 'Pytest', 'CI/CD'] 
+  },
+  { 
+    category: 'Problem Solving', 
+    icon: 'Terminal', 
+    skills: ['880+ LeetCode Solved', 'DSA Proficiency', 'Top 17% Rating', 'System Design'] 
+  },
 ];
 
 export const PROJECTS = [
@@ -16,7 +39,7 @@ export const PROJECTS = [
     description: 'Built a natural language interface for enterprise MS SQL databases using Python, FastAPI, and LangChain. Enabled context-aware Q&A over massive documentation using RAG and vector embeddings.',
     tech: ['Python', 'FastAPI', 'LangChain', 'MS SQL', 'FAISS'],
     category: 'GenAI',
-    image: 'https://picsum.photos/seed/rag-ai/600/400',
+    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1000',
     url: 'https://github.com/Murarikomati/Customer-Service-RAG-chatbot'
   },
   {
@@ -25,25 +48,25 @@ export const PROJECTS = [
     description: 'Designed autonomous multi-agent systems for data reasoning using LangGraph and CrewAI. Automated complex data ingestion and validation workflows on Databricks platforms.',
     tech: ['LangGraph', 'CrewAI', 'Python', 'Databricks'],
     category: 'Agentic AI',
-    image: 'https://picsum.photos/seed/neural-agent/600/400',
+    image: 'https://images.unsplash.com/photo-1676277791608-ac54525aa94d?q=80&w=1000',
     url: 'https://github.com/Murarikomati/Agentic-AI-Workflow-Automation'
   },
   {
     id: 3,
-    title: 'Real-Time Movie Analytics ELT Platform (Netflix-Style Use Case)',
-    description: 'Designed and implemented a scalable cloud-native ELT platform using Amazon S3, Snowflake, and dbt to process large-scale movie metadata, ratings, and user interaction datasets. Built raw, staging, and analytics-ready layers using dimensional models based on Kimball star schema principles. Implemented data quality tests, governance rules, and modular dbt transformations.',
+    title: 'Real-Time Movie Analytics ELT Platform',
+    description: 'Designed and implemented a scalable cloud-native ELT platform using Amazon S3, Snowflake, and dbt to process large-scale movie metadata and user interaction datasets. Built staging and analytics layers using Kimball star schema models.',
     tech: ['S3', 'Snowflake', 'dbt', 'Kimball'],
     category: 'Data Engineering',
-    image: 'https://picsum.photos/seed/data-lake/600/400',
+    image: 'https://images.unsplash.com/photo-1551288049-bbbda540d3ad?q=80&w=1000',
     url: 'https://github.com/Murarikomati/Netflix_Data_Analysis-'
   },
   {
     id: 4,
     title: 'Real-Time Stock Market Data Pipeline',
-    description: 'Developed near real-time streaming ingestion pipelines using Azure Event Hub to process high-frequency stock market data. Implemented anomaly detection and automated alerting mechanisms, reducing analyst response time by 50%. Integrated streaming outputs with SQL Server and Microsoft Fabric.',
+    description: 'Developed near real-time streaming ingestion pipelines using Azure Event Hub to process high-frequency stock market data. Implemented anomaly detection and automated alerting mechanisms, reducing response time by 50%.',
     tech: ['Azure Event Hub', 'SQL Server', 'Fabric', 'Streaming'],
     category: 'Data Engineering',
-    image: 'https://picsum.photos/seed/fintech/600/400',
+    image: 'https://images.unsplash.com/photo-1611974717484-788cff6b4200?q=80&w=1000',
     url: 'https://github.com/Murarikomati/wiki-to-azure-lake-pipeline'
   },
 ];
