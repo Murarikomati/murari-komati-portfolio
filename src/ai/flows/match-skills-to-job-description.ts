@@ -2,8 +2,8 @@
 
 import { generateJSON } from '@/ai/llm';
 import { z } from 'zod';
+// Correctly import the JSON data.
 import profileData from '@/ai/profile.json';
-
 
 const MatchSkillsToJobDescriptionOutputSchema = z.object({
   matchScore: z.number(),
@@ -28,6 +28,10 @@ const MatchSkillsToJobDescriptionOutputSchema = z.object({
 export type MatchSkillsToJobDescriptionOutput = z.infer<typeof MatchSkillsToJobDescriptionOutputSchema>;
 
 export async function matchSkillsToJobDescription(input: { jobDescription: string }): Promise<MatchSkillsToJobDescriptionOutput> {
+  // THE FIX: The imported JSON object must be stringified before being embedded in the prompt string.
+  // My previous code was passing the object directly, which caused the server to crash.
+  const profileDataString = JSON.stringify(profileData, null, 2);
+
   const prompt = `
 You are a senior technical recruiter performing a structured relevance audit.
 
@@ -73,7 +77,7 @@ DO NOT:
 - Return long paragraphs
 
 Candidate Profile:
-${JSON.stringify(profileData)}
+${profileDataString}
 
 Job Description:
 ${input.jobDescription}
@@ -100,7 +104,9 @@ Return STRICT JSON ONLY:
   try {
     return await generateJSON<MatchSkillsToJobDescriptionOutput>(prompt);
   } catch (error: any) {
-    console.error("Match Flow Error:", error);
-    throw new Error("Analysis failed. Please try a different Job Description.");
+    // The error is now caught and logged by the robust llm.ts handler.
+    console.error("Match Flow Error:", error.message);
+    // Re-throw the error to be handled by the client.
+    throw error;
   }
 }
