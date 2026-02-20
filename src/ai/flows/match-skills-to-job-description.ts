@@ -4,7 +4,8 @@ import profileData from '@/ai/profile.json';
 import { generateJSON } from '@/ai/groq';
 
 const MatchSkillsToJobDescriptionOutputSchema = z.object({
-  matchScore: z.number().min(60).max(98),
+  // The matchScore has been temporarily commented out as requested.
+  // matchScore: z.number().min(60).max(98),
   impactSummary: z.string(),
   matchedSkills: z.array(z.string()).max(8),
   matchedProjects: z.array(
@@ -43,7 +44,6 @@ Follow the schema EXACTLY.
 REQUIRED JSON FORMAT:
 
 {
-  "matchScore": number (60-98),
   "impactSummary": "string (max 4 lines)",
   "matchedSkills": ["string"],
   "matchedProjects": [
@@ -63,8 +63,7 @@ REQUIRED JSON FORMAT:
 
 RULES:
 
-- matchScore = realistic overlap percentage (60–98)
-- impactSummary = max 4 concise lines, recruiter-friendly
+- impactSummary = Start with a strong, confident statement declaring the candidate as a professional and an excellent fit for the role. Then, provide a concise, recruiter-friendly summary (max 4 lines total).
 - matchedSkills = ONLY JD-aligned skills (max 8)
 - matchedProjects = top 3 most relevant projects (most relevant first)
 - recommendedLinks = top 3 links with 1-line context
