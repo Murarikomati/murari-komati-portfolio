@@ -2,11 +2,6 @@
 
 import Groq from 'groq-sdk';
 
-// Initialize the Groq client, checking for the API key.
-const groq = process.env.GROQ_API_KEY
-  ? new Groq({ apiKey: process.env.GROQ_API_KEY })
-  : null;
-
 /**
  * Generates structured JSON output using the Groq API.
  * Uses the specified Llama 3.3 70B model.
@@ -14,17 +9,22 @@ const groq = process.env.GROQ_API_KEY
 export async function generateJSON<T>(prompt: string): Promise<T> {
   // VERCEL DEBUGGING: Log all environment variable keys to see what is available.
   console.log("--- VERCEL RUNTIME LOG ---");
-  console.log("Checking for GROQ_API_KEY...");
-  console.log("Is key present?", process.env.GROQ_API_KEY ? "Yes" : "No");
+  console.log("Checking for GROQ_API_KEY inside the function...");
+  console.log("Is key present?", process.env.GROQ_API_KEY ? "Yes, it exists." : "No, it is UNDEFINED.");
   console.log("Available ENV Keys:", Object.keys(process.env));
   console.log("--- END VERCEL RUNTIME LOG ---");
 
-  // Provide a clear error message if the API key is missing.
-  if (!groq) {
+  const apiKey = process.env.GROQ_API_KEY;
+
+  // Provide a clear error message if the API key is missing at runtime.
+  if (!apiKey) {
     throw new Error(
-      'CRITICAL: GROQ_API_KEY is not configured in the production environment. Please add it to your Vercel project settings.'
+      'CRITICAL: GROQ_API_KEY is not configured in the production environment. Please check Vercel settings and ensure the project has been redeployed.'
     );
   }
+
+  // Initialize the Groq client *inside* the function to ensure runtime access to env vars.
+  const groq = new Groq({ apiKey });
 
   try {
     const chatCompletion = await groq.chat.completions.create({
