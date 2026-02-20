@@ -53,7 +53,7 @@ export async function matchSkillsToJobDescription(input: {
     You are a world-class technical recruiter and career coach creating a compelling "Recruiter Cheat Sheet" for a candidate.
 
     **OBJECTIVE:**
-    Your analysis must be sharp, concise, and professional. It must strictly align the candidate's profile with the provided Job Description (JD). The output MUST be a valid JSON object adhering EXACTLY to the specified schema.
+    Your analysis must be sharp, concise, and professional. It must strictly align the candidate\'s profile with the provided Job Description (JD). The output MUST be a valid JSON object adhering EXACTLY to the specified schema.
 
     **CANDIDATE PROFILE:**
     ${profileDataString}
@@ -63,29 +63,29 @@ export async function matchSkillsToJobDescription(input: {
 
     **STRICT OUTPUT REQUIREMENTS:**
 
-    1.  **`impactSummary` (Core Value Proposition):**
+    1.  **\`impactSummary\` (Core Value Proposition):**
         - Write a polished, professional summary for a **Data Engineer** with **2.5+ years of experience** (max 600 chars). 
-        - Start with a strong statement summarizing the candidate's professional identity (e.g., "Murari Komati is a Data Engineer...").
-        - Directly address how the candidate's experience and expertise align with the key requirements of the JD.
-        - Avoid exaggerated titles like 'Solutions Architect'. The summary must be grounded and professional.
+        - Start with a strong statement summarizing the candidate\'s professional identity (e.g., "Murari Komati is a Data Engineer...").
+        - Directly address how the candidate\'s experience and expertise align with the key requirements of the JD.
+        - Avoid exaggerated titles like \'Solutions Architect\'. The summary must be grounded and professional.
 
-    2.  **`matchedSkills`:**
-        - Identify the top 5-8 most relevant technical skills from the candidate's profile that directly match the JD.
+    2.  **\`matchedSkills\`:**
+        - Identify the top 5-8 most relevant technical skills from the candidate\'s profile that directly match the JD.
 
-    3.  **`matchedProjects` (Evidence & Proof Points):**
-        - Select EXACTLY 3 projects from the candidate's resume that best demonstrate their qualifications for this role.
+    3.  **\`matchedProjects\` (Evidence & Proof Points):**
+        - Select EXACTLY 3 projects from the candidate\'s resume that best demonstrate their qualifications for this role.
         - For each project, provide:
-            - `title`: The project name.
-            - `reason`: A single, concise sentence explaining *why* this project is relevant to the JD.
-            - `impact`: A specific, a quantified achievement (e.g., "Reduced data processing time by 30%," "Increased system reliability to 99.9%," "Supported X users...").
+            - \`title\`: The project name.
+            - \`reason\`: A single, concise sentence explaining *why* this project is relevant to the JD.
+            - \`impact\`: A specific, a quantified achievement (e.g., "Reduced data processing time by 30%," "Increased system reliability to 99.9%," "Supported X users...").
 
-    4.  **`matchedCertifications`:**
-        - From the candidate's certifications, select up to 3 that are most relevant to the JD.
+    4.  **\`matchedCertifications\`:**
+        - From the candidate\'s certifications, select up to 3 that are most relevant to the JD.
         - For each certification, provide:
-            - `name`: The certification name.
-            - `relevance`: A brief phrase explaining its value for this specific role.
+            - \`name\`: The certification name.
+            - \`relevance\`: A brief phrase explaining its value for this specific role.
 
-    5.  **`recommendedLinks` (Technical Deep Dive):**
+    5.  **\`recommendedLinks\` (Technical Deep Dive):**
         - Select the top 3 most relevant online links (e.g., GitHub, LeetCode, portfolio).
         - Provide context for each link.
 
