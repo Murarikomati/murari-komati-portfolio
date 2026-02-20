@@ -7,19 +7,19 @@ import Groq from 'groq-sdk';
  * Uses the specified Llama 3.3 70B model.
  */
 export async function generateJSON<T>(prompt: string): Promise<T> {
-  // VERCEL DEBUGGING: Log all environment variable keys to see what is available.
-  console.log("--- VERCEL RUNTIME LOG ---");
-  console.log("Checking for GROQ_API_KEY inside the function...");
-  console.log("Is key present?", process.env.GROQ_API_KEY ? "Yes, it exists." : "No, it is UNDEFINED.");
-  console.log("Available ENV Keys:", Object.keys(process.env));
-  console.log("--- END VERCEL RUNTIME LOG ---");
+  // Use a project-specific environment variable name to avoid potential conflicts.
+  const apiKey = process.env.PORTFOLIO_GROQ_API_KEY;
 
-  const apiKey = process.env.GROQ_API_KEY;
+  // VERCEL DEBUGGING: Log the new key to see if it's available.
+  console.log("--- VERCEL RUNTIME LOG (Final Attempt) ---");
+  console.log("Checking for PORTFOLIO_GROQ_API_KEY...");
+  console.log("Is key present?", apiKey ? "Yes, it exists." : "No, it is UNDEFINED.");
+  console.log("--- END VERCEL RUNTIME LOG ---");
 
   // Provide a clear error message if the API key is missing at runtime.
   if (!apiKey) {
     throw new Error(
-      'CRITICAL: GROQ_API_KEY is not configured in the production environment. Please check Vercel settings and ensure the project has been redeployed.'
+      'CRITICAL: PORTFOLIO_GROQ_API_KEY is not configured. Please check Vercel settings and ensure the project has been redeployed with the new variable name.'
     );
   }
 
