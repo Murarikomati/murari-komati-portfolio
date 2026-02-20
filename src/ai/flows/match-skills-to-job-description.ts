@@ -2,7 +2,6 @@ import { z } from 'zod';
 import profileData from '@/ai/profile.json';
 import { generateJSON } from '@/ai/gemini';
 
-// CORRECTED SCHEMA: Removed 'relevantCertifications' as it is not requested from the AI.
 const MatchSkillsToJobDescriptionOutputSchema = z.object({
   matchScore: z.number().describe('The match score between 60 and 98'),
   impactSummary: z.string().describe('Concise JD-aligned summary (max 4 lines)'),
@@ -48,10 +47,14 @@ export async function matchSkillsToJobDescription(input: { jobDescription: strin
     - Evaluate ALL projects and score each (0–10) based on direct JD alignment.
     - Return the top 3 most relevant projects.
 
-    STEP 4 — Realistic Fit Score
+    STEP 4 — Link Recommendation
+    - From the candidate's links, select the 3 most relevant links for the recruiter.
+    - For each link, provide a 1-line context on why it's relevant to the JD.
+
+    STEP 5 — Realistic Fit Score
     - Calculate a realistic overlap percentage. Do NOT inflate the score. Range: 60–98.
 
-    STEP 5 — Executive Summary
+    STEP 6 — Executive Summary
     - Maximum 4 short lines, no fluff. Start with years of experience.
 
     Candidate Profile:
@@ -65,11 +68,9 @@ export async function matchSkillsToJobDescription(input: { jobDescription: strin
 
   const output = await generateJSON<MatchSkillsToJobDescriptionOutput>(prompt);
 
-  // CORRECTED VALIDATION: Directly parse against the corrected schema.
   const validation = MatchSkillsToJobDescriptionOutputSchema.safeParse(output);
 
   if (!validation.success) {
-    // The error now includes detailed validation issues for easier debugging if it ever fails again.
     const errorMessage = `AI output validation failed: ${JSON.stringify(validation.error, null, 2)}`;
     console.error(errorMessage);
     throw new Error(errorMessage);

@@ -1,6 +1,20 @@
 {
   "name": "Murari Komati",
   "title": "Data Engineer & AI Solutions Architect",
+  "links": [
+    {
+      "name": "GitHub",
+      "url": "https://github.com/murariko"
+    },
+    {
+      "name": "LinkedIn",
+      "url": "https://linkedin.com/in/murarikomati"
+    },
+    {
+      "name": "LeetCode",
+      "url": "https://leetcode.com/u/murarikomati/"
+    }
+  ],
   "summary": "Data Engineer with 2.5+ years of professional experience building high-performance data architectures and autonomous AI systems. Expert in Azure Databricks, PySpark, BigQuery, and Agentic AI. Solved 880+ problems on LeetCode (Rating: 1650+).",
   "education": {
     "degree": "B.Tech in Electronics and Telecommunication Engineering",
