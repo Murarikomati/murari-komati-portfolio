@@ -1,3 +1,4 @@
+'use server';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 // Keep the top-level client initialization but defer the API key check.
