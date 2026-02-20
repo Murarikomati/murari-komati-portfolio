@@ -1,3 +1,4 @@
+'use server';
 import { z } from 'zod';
 import profileData from '@/ai/profile.json';
 import { generateJSON } from '@/ai/gemini';
