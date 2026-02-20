@@ -1,18 +1,25 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-if (!process.env.GOOGLE_GENAI_API_KEY) {
-  throw new Error("Missing GOOGLE_GENAI_API_KEY.");
+// Keep the top-level client initialization but defer the API key check.
+let genAI: GoogleGenerativeAI | null = null;
+if (process.env.GOOGLE_GENAI_API_KEY) {
+  genAI = new GoogleGenerativeAI(process.env.GOOGLE_GENAI_API_KEY);
 }
-
-const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GENAI_API_KEY);
 
 /**
  * Generates structured JSON output using the direct Google AI SDK.
  * Uses gemini-1.5-flash for stable production usage in the free tier.
  */
 export async function generateJSON<T>(prompt: string): Promise<T> {
+  // Add a specific check inside the function to provide a clear error message.
+  if (!genAI) {
+    throw new Error(
+      'CRITICAL: GOOGLE_GENAI_API_KEY is not configured in the production environment. Please add it to your Vercel project settings.'
+    );
+  }
+
   const model = genAI.getGenerativeModel({
-    model: "gemini-1.5-flash", // Corrected model name from 2.5 to 1.5
+    model: "gemini-1.5-flash",
     generationConfig: {
       temperature: 0.1,
       responseMimeType: "application/json",
@@ -32,6 +39,7 @@ export async function generateJSON<T>(prompt: string): Promise<T> {
     return JSON.parse(cleanText) as T;
   } catch (error) {
     console.error("AI Generation Error:", error);
-    throw new Error("The AI engine failed to produce a valid report. Please try again.");
+    // Re-throw the original error to get more details if it's not the API key issue.
+    throw error;
   }
 }
