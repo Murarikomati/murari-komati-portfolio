@@ -1,7 +1,7 @@
 'use server';
 import { z } from 'zod';
 import profileData from '@/ai/profile.json';
-import { generateJSON } from '@/ai/gemini';
+import { generateJSON } from '@/ai/groq';
 
 const MatchSkillsToJobDescriptionOutputSchema = z.object({
   matchScore: z.number().describe('The match score between 60 and 98'),
